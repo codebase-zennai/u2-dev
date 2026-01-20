@@ -56,8 +56,8 @@ export default function AboutHeroSection() {
                         </div>
                     </div>
                     {/* Description */}
-                    <div className="w-layout-vflex flex-center">
-                        <div className="max-width-800">
+                    <div className="w-layout-vflex flex-center" style={{ alignItems: 'center', textAlign: 'center' }}>
+                        <div className="max-width-800" style={{ textAlign: 'center' }}>
                             <p
                                 className="text-size-medium"
                                 style={{

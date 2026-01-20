@@ -102,6 +102,7 @@ export default function LocationsHeroSection() {
                         </Link>
                     </div>
                 </div>
+                <div className="margin-bottom-48"></div>
 
                 <ul
                     className="locations_grid"
