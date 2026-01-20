@@ -155,6 +155,14 @@ strong {
   margin-top: 6rem;
   padding-top: 5vh;
   padding-bottom: 0;
+  position: relative;
+}
+
+/* Hero title overlay */
+.section.is-video > .container-large {
+  position: relative;
+  z-index: 10;
+  text-align: center;
 }
 
 .section.is-location {
@@ -572,13 +580,14 @@ strong {
   height: 100vh;
   position: sticky;
   top: 0;
+  overflow: hidden;
 }
 
 .video_wrap {
-  gap: 2rem;
+  gap: 0;
   text-align: center;
   flex-flow: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
@@ -593,8 +602,8 @@ strong {
   background-color: var(--black);
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   position: relative;
   overflow: hidden;
@@ -627,7 +636,7 @@ strong {
 }
 
 .video_btn {
-  z-index: 2;
+  z-index: 3;
   gap: 1rem;
   color: var(--white);
   flex-flow: column;
@@ -636,7 +645,14 @@ strong {
   padding: 2rem;
   text-decoration: none;
   display: flex;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.video_btn .heading-style-h3 {
+  color: var(--white);
 }
 
 .video_play {
@@ -654,8 +670,12 @@ strong {
 .video_title {
   z-index: 2;
   color: var(--white);
+  text-align: center;
   position: absolute;
   bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
 }
 
 .is-word {
@@ -751,7 +771,7 @@ strong {
 
 /* Player/Coach Section */
 .player_list {
-  gap: 6rem;
+  gap: 4rem 6rem;
   grid-template-rows: auto auto;
   grid-template-columns: 1fr 1fr;
   margin-bottom: 0;
@@ -762,6 +782,10 @@ strong {
 
 .player_item {
   flex: 1;
+}
+
+.player_item .heading-style-h2 {
+  font-size: 2.5rem;
 }
 
 .player_visual {
@@ -878,13 +902,23 @@ strong {
 
 /* Bottom CTA */
 .bottom-cta_wrap {
-  gap: 2rem;
+  gap: 0;
   text-align: center;
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
   display: flex;
+}
+
+.bottom-cta_wrap .max-width-700 {
+  z-index: 3;
+  margin-bottom: -4rem;
+}
+
+.bottom-cta_wrap .max-width-full {
+  z-index: 3;
+  margin-top: 2rem;
 }
 
 .bottom-cta_box {
@@ -894,7 +928,6 @@ strong {
   align-items: center;
   width: 100%;
   height: 33.13rem;
-  margin-top: -6.4rem;
   display: flex;
   position: relative;
   overflow: hidden;
