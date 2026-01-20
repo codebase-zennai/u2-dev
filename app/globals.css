@@ -182,6 +182,7 @@ strong {
 .section.is-bottom-cta {
   padding-top: 7.5rem;
   padding-bottom: 5rem;
+  overflow: hidden;
 }
 
 /* Backgrounds */

@@ -15,21 +15,34 @@ export default function BottomCTASection() {
             const rect = sectionRef.current.getBoundingClientRect();
             const windowHeight = window.innerHeight;
 
-            // Calculate how far we've scrolled into the section
-            const visibleAmount = windowHeight - rect.top;
-            const sectionHeight = rect.height;
-            const progress = Math.max(0, Math.min(1, visibleAmount / (sectionHeight * 0.7)));
+            // Calculate scroll progress - starts when section enters viewport
+            // Progress goes from 0 to 1 as we scroll through the section
+            const sectionTop = rect.top;
+            const triggerPoint = windowHeight * 0.8;
 
-            setScrollProgress(progress);
+            if (sectionTop < triggerPoint) {
+                const scrolled = triggerPoint - sectionTop;
+                const maxScroll = windowHeight * 0.8;
+                const progress = Math.min(1, scrolled / maxScroll);
+                setScrollProgress(progress);
+            } else {
+                setScrollProgress(0);
+            }
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Image starts large (scale 1.3) and shrinks to normal (scale 1)
-    const imageScale = 1.3 - (scrollProgress * 0.3);
+    // INVERSE of hero animation:
+    // Image starts LARGE (filling the section) and SHRINKS to normal size on scroll
+    // Initial scale: 1.15 (fills the section edge-to-edge)
+    // Final scale: 0.85 (shows the image at proper size with rounded corners)
+    const imageScale = 1.15 - (scrollProgress * 0.3); // 1.15 -> 0.85
+
+    // Border radius INCREASES as we scroll (opposite of hero)
+    const borderRadius = scrollProgress * 50; // 0px -> 50px
 
     return (
         <section className="section is-bottom-cta" ref={sectionRef}>
@@ -47,13 +60,14 @@ export default function BottomCTASection() {
                         className="bottom-cta_box"
                         style={{
                             transform: `scale(${imageScale})`,
-                            transition: 'transform 0.1s ease-out'
+                            borderRadius: `${borderRadius}px`,
+                            overflow: 'hidden'
                         }}
                     >
                         <div className="video_bg">
                             <div className="video_bg_overlay"></div>
                             <Image
-                                src="/images/backgrounds/bg-cta.png"
+                                src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/670953ea64560c0dcf25d3e5_tennis-image-08.avif"
                                 alt="Tennis player"
                                 fill
                                 className="img-cover"

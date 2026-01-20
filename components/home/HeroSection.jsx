@@ -37,9 +37,9 @@ export default function HeroSection() {
     }, []);
 
     // The video starts visible and smaller, then expands to fill the screen
-    // Initial scale: 0.8 (shows video at 80% size with rounded corners visible)
+    // Initial scale: 0.6 (shows video at 60% size with rounded corners visible)
     // Final scale: 1.15 (slightly larger than container to fill screen edge-to-edge)
-    const videoScale = 0.8 + (scrollProgress * 0.35); // 0.8 -> 1.15
+    const videoScale = 0.6 + (scrollProgress * 0.55); // 0.6 -> 1.15
 
     // Border radius reduces as we scale up (rounded corners disappear)
     const borderRadius = (1 - scrollProgress) * 50; // 50px -> 0px
