@@ -1280,7 +1280,7 @@ strong {
 /* About Page Styles */
 .section.is-about-hero {
   padding-top: 12rem;
-  padding-bottom: 0;
+  padding-bottom: 6rem;
 }
 
 .about-hero_wrap {
@@ -1315,6 +1315,10 @@ strong {
   width: 100%;
   height: 100%;
   position: relative;
+}
+
+.section.is-about-hero .max-width-800 {
+  text-align: center;
 }
 
 .about-hero_image-wrapper {

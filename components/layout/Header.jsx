@@ -50,7 +50,7 @@ export default function Header() {
                                 </Link>
                             </div>
                             <div className="nav_menu-link-wrap">
-                                <Link href="/about" className="nav_link">
+                                <Link href="/about-us" className="nav_link">
                                     <div className="z-index-2">About</div>
                                     <div className="link_line"></div>
                                 </Link>

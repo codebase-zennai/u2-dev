@@ -1,22 +1,18 @@
 'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-
 export default function AboutHeroSection() {
     const [titleVisible, setTitleVisible] = useState(false);
-
     useEffect(() => {
         const timer = setTimeout(() => setTitleVisible(true), 100);
         return () => clearTimeout(timer);
     }, []);
-
     return (
         <section className="section is-about-hero">
             <div className="container-large">
                 <div className="about-hero_wrap">
-                    <div className="max-width-700">
+                    <div className="w-layout-vflex flex-center" style={{ position: 'relative', zIndex: 10, textAlign: 'center' }}>
                         <h1 className="heading-style-h1">
                             <span
                                 className="is-word is-1"
@@ -42,7 +38,6 @@ export default function AboutHeroSection() {
                             </span>
                         </h1>
                     </div>
-
                     {/* Hero Image */}
                     <div className="about-visual_wrap">
                         <div className="video_box">
@@ -55,11 +50,11 @@ export default function AboutHeroSection() {
                                     className="parallax-img is-full"
                                     sizes="(max-width: 991px) 81vw, 90vw"
                                     priority
+                                    style={{ filter: 'brightness(1.3)' }}
                                 />
                             </div>
                         </div>
                     </div>
-
                     {/* Description */}
                     <div className="w-layout-vflex flex-center">
                         <div className="max-width-800">

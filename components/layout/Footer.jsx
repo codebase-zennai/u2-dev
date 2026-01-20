@@ -38,7 +38,7 @@ export default function Footer() {
                                     </Link>
                                 </li>
                                 <li className="footer_link-item">
-                                    <Link href="/about" className="footer_link">
+                                    <Link href="/about-us" className="footer_link">
                                         About
                                         <div className="link_line"></div>
                                     </Link>
