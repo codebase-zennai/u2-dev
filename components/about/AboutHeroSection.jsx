@@ -12,7 +12,7 @@ export default function AboutHeroSection() {
         <section className="section is-about-hero">
             <div className="container-large">
                 <div className="about-hero_wrap">
-                    <div className="w-layout-vflex flex-center" style={{ position: 'relative', zIndex: 10, textAlign: 'center' }}>
+                    <div className="about-hero_title-wrapper">
                         <h1 className="heading-style-h1">
                             <span
                                 className="is-word is-1"
@@ -38,11 +38,11 @@ export default function AboutHeroSection() {
                             </span>
                         </h1>
                     </div>
+
                     {/* Hero Image */}
                     <div className="about-visual_wrap">
                         <div className="video_box">
                             <div className="video_bg">
-                                {/* TODO: Replace with actual image */}
                                 <Image
                                     src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67096674129bb1f7bfff8c3d_tennis-about.avif"
                                     alt="Tennis court"
@@ -50,7 +50,7 @@ export default function AboutHeroSection() {
                                     className="parallax-img is-full"
                                     sizes="(max-width: 991px) 81vw, 90vw"
                                     priority
-                                    style={{ filter: 'brightness(1.3)' }}
+                                    style={{ filter: 'brightness(1.15)' }}
                                 />
                             </div>
                         </div>

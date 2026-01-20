@@ -1287,6 +1287,16 @@ strong {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  position: relative;
+}
+
+.about-hero_title-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  text-align: center;
 }
 
 .about-visual_wrap {
@@ -1299,7 +1309,7 @@ strong {
   align-items: center;
   width: 100%;
   height: 32.5rem;
-  margin-top: -4.5rem;
+  margin-top: 4rem;
   margin-bottom: 2.5rem;
   display: flex;
 }
@@ -1447,5 +1457,97 @@ strong {
 @media screen and (max-width: 479px) {
   .section.is-about-hero {
     padding-top: 5rem;
+  }
+}
+
+/* Locations Page Styles */
+.section.is-location-hero {
+  padding-top: 12rem;
+  padding-bottom: 0;
+}
+
+.max-width-720 {
+  max-width: 45rem;
+}
+
+.locations_grid {
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 1fr;
+  padding-left: 0;
+  list-style-type: none;
+  display: grid;
+}
+
+.locations_card {
+  aspect-ratio: 4 / 3;
+  color: var(--white);
+  border-radius: 1.5rem;
+  flex-flow: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 2rem;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.locations_card_overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.locations_card .img-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.locations_card .z-index-3 {
+  position: relative;
+  z-index: 3;
+}
+
+.shadow-card {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Styles for Locations Page */
+@media screen and (max-width: 991px) {
+  .section.is-location-hero {
+    padding-top: 8rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .section.is-location-hero {
+    padding-top: 6rem;
+  }
+
+  .locations_grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .section.is-location-hero {
+    padding-top: 5rem;
+  }
+
+  .locations_card {
+    padding: 1.5rem;
   }
 }

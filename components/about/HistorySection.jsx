@@ -49,13 +49,13 @@ export default function HistorySection() {
         <section className="section is-history" ref={sectionRef}>
             {/* Parallax Background */}
             <div className="parallax-wrap">
-                {/* TODO: Replace with actual image */}
                 <Image
                     src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/6709456b6a02af03ac308b64_tennis-image-08%402x.avif"
                     alt="Tennis background"
                     fill
                     className="parallax-img"
                     sizes="100vw"
+                    style={{ filter: 'brightness(1.15)' }}
                 />
                 <div className="parallax-overlay is-full"></div>
             </div>
