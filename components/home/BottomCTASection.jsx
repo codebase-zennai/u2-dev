@@ -39,7 +39,7 @@ export default function BottomCTASection() {
     // Image starts LARGE (filling the section) and SHRINKS to normal size on scroll
     // Initial scale: 1.15 (fills the section edge-to-edge)
     // Final scale: 0.85 (shows the image at proper size with rounded corners)
-    const imageScale = 1.15 - (scrollProgress * 0.3); // 1.15 -> 0.85
+    const imageScale = 1.8 - (scrollProgress * 0.75); // 1.15 -> 0.85
 
     // Border radius INCREASES as we scroll (opposite of hero)
     const borderRadius = scrollProgress * 50; // 0px -> 50px
