@@ -7,27 +7,27 @@ import { useEffect, useRef, useState } from 'react';
 const locations = [
     {
         id: 1,
-        name: 'Grandview Park Tennis Center',
-        address: '123 Maplewood Drive, Riverton',
-        image: '/images/locations/locations-1.jpg',
+        name: '7D6N Nepal',
+        address: 'Lorem Ipsum',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/7b044fe5d67560989c45483c87766040.jpg&w=540&h=350&zc=1&a=',
     },
     {
         id: 2,
-        name: 'Oakridge Sports Complex',
-        address: '456 Oakridge Lane, Brookfield',
-        image: '/images/locations/locations-2.jpg',
+        name: '5D4N Dubai',
+        address: 'Lorem Ipsum',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/25c5ee03fb8f651c50ae1d1a9358c98e.jpg&w=540&h=350&zc=1&a=',
     },
     {
         id: 3,
-        name: 'Riverview Tennis Academy',
-        address: '789 Pinecrest Avenue, Hillside',
-        image: '/images/locations/locations-3.jpg',
+        name: '5D4N Mauritius',
+        address: 'Lorem Ipsum',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/f8342a2e832f93724a7a78c29f0d0b57.jpg&w=540&h=350&zc=1&a=',
     },
     {
         id: 4,
-        name: 'Pinecrest Court Club',
-        address: '101 Grandview Road, Lakeshore',
-        image: '/images/locations/locations-4.jpg',
+        name: '4D3N Hanoi',
+        address: 'Lorem Ipsum',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/a5455e21bfc749c27544850525c8ba11.jpg&w=540&h=350&zc=1&a=',
     },
 ];
 
@@ -72,13 +72,13 @@ export default function LocationsSection() {
             <div className="container-large">
                 <div className="locations_wrap">
                     <div className="max-width-700">
-                        <h2 className="heading-style-h2 margin-bottom-24">Our Locations</h2>
+                        <h2 className="heading-style-h2 margin-bottom-24">World Tours</h2>
                         <p className="text-size-large opacity-60 max-width-440 margin-bottom-24">
-                            Ready to take your tennis game to the next level? Experience world-class coaching, state-of-the-art facilities, and a vibrant tennis community. Enroll today and become part of a legacy of excellence.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum arcu mauris, ac luctus est imperdiet a. Donec congue varius ullamcorper. Nam a massa luctus, molestie sapien id, iaculis nulla. Fusce fringilla malesuada urna, in pulvinar magna ornare pharetra.
                         </p>
                         <div className="margin-top-32">
                             <Link href="/contact" className="button">
-                                <p>Start today</p>
+                                <p>View All</p>
                                 <Image
                                     src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/670563f226883663736a6d20_icon-arrow-light.svg"
                                     alt="Arrow"

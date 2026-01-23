@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
   reactCompiler: true,
   images: {
     remotePatterns: [
@@ -12,6 +11,11 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'wubflow-shield.NOCODEXPORT.DEV',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.u2travels.com.my',
         pathname: '/**',
       },
     ],

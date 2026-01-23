@@ -7,31 +7,31 @@ import { useEffect, useRef, useState } from 'react';
 const coaches = [
     {
         id: 1,
-        name: 'Sarah Thompson',
-        location: 'Los Angeles, CA',
-        description: 'With 18 years of coaching under her belt, Sarah is known for her ability to develop young talent, guiding players to reach their full potential on the court.',
-        image: 'https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67093f38a5337d5f28be5266_tennis-image-01%402x.avif',
+        name: '3D 2N Kota Kinabalu, Sabah',
+        location: 'KKIA - Kota Kinabalu - KKIA',
+        description: 'Lorem Ipsum',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads//e9389c36f005a9373d7453887edc60fdjpg&w=540&h=350&zc=1&a=',
     },
     {
         id: 2,
-        name: 'Jessica Novak',
-        location: 'Austin, TX',
-        description: 'Jessica brings 22 years of experience to the table, specializing in refining advanced techniques and mental toughness in competitive players.',
-        image: 'https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67093f38bde340df4cbf31cf_tennis-image-04%402x.avif',
+        name: '3D 2N Kuala Lumpur + Genting',
+        location: 'KLIA - City - Genting - KLIA',
+        description: 'Lorem Ipsum',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads//0531f419b44150f0190e168176e27a08jpg&w=540&h=350&zc=1&a=',
     },
     {
         id: 3,
-        name: 'Martina Rojas',
-        location: 'Miami, FL',
-        description: 'A former collegiate athlete with 15 years of coaching experience, Martina is praised for her dynamic coaching style and her success in training elite junior players.',
-        image: 'https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67093f97c1a41c3ca80b6dd3_tennis-image-07%402x.avif',
+        name: '4D 3N Kuala Lumpur + Penang',
+        location: 'KLIA - Kul City - Genting - Penang - Kul City - KLIA',
+        description: 'Lorem Ipsum',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads//5d64d8e7f24743e6041539583ea375e3jpg&w=540&h=350&zc=1&a=',
     },
     {
         id: 4,
-        name: "Kevin O'Connor",
-        location: 'Chicago, IL',
-        description: "With 20 years of experience, Kevin's passion for tennis has made him a favorite among players seeking to improve both their technical skills and strategic thinking.",
-        image: 'https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67093f38a6fdc3f1533d59be_tennis-image-03%402x.avif',
+        name: "3D 2N Kuala Lumpur + Melaka",
+        location: 'KLIA - Kuala Lumpur - Melaka - KLIA',
+        description: "Lorem Ipsum",
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads//28e24a8cd171c76cd803507ee2e69fe9jpg&w=540&h=350&zc=1&a=',
     },
 ];
 
@@ -93,7 +93,7 @@ export default function CoachesSection() {
                                         display: 'inline-block'
                                     }}
                                 >
-                                    Meet
+                                    Malaysian
                                 </span>{' '}
                                 <span
                                     className="is-word is-2"
@@ -104,9 +104,9 @@ export default function CoachesSection() {
                                         display: 'inline-block'
                                     }}
                                 >
-                                    the
+                                    Tours
                                 </span>{' '}
-                                <span
+                                {/* <span
                                     className="is-word is-3"
                                     style={{
                                         opacity: titleVisible ? 1 : 0,
@@ -138,7 +138,7 @@ export default function CoachesSection() {
                                     }}
                                 >
                                     Elysian
-                                </span>
+                                </span> */}
                             </h2>
                         </div>
                         <Link
@@ -150,7 +150,7 @@ export default function CoachesSection() {
                                 transition: 'opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s',
                             }}
                         >
-                            <div className="z-index-2"><p>Explore Academy</p></div>
+                            <div className="z-index-2"><p>Explore Tours</p></div>
                             <div className="z-index-2">
                                 <Image
                                     src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/670563f226883663736a6d20_icon-arrow-light.svg"
@@ -201,7 +201,7 @@ export default function CoachesSection() {
                                             <p className="text-size-medium">{coach.description}</p>
                                         </div>
                                         <Link href="/about-us" className="button is-secondary">
-                                            <p>Learn More</p>
+                                            <p>View Itinerary</p>
                                         </Link>
                                     </div>
                                 </div>
