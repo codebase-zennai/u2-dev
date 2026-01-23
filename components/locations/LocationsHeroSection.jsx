@@ -7,27 +7,27 @@ import { useEffect, useState } from 'react';
 const locations = [
     {
         id: 1,
-        name: 'Grandview Park Tennis Center',
-        address: '123 Maplewood Drive, Riverton',
-        image: 'https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67095e0ccacd026f9eeab8cb_tennis-location-01%402x.avif',
+        name: '7D6N Nepal',
+        address: 'Lorem Ipsum',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/7b044fe5d67560989c45483c87766040.jpg&w=540&h=350&zc=1&a=',
     },
     {
         id: 2,
-        name: 'Oakridge Sports Complex',
-        address: '456 Oakridge Lane, Brookfield',
-        image: 'https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67095e0c6cba826697f73697_tennis-location-02%402x.avif',
+        name: '5D4N Dubai',
+        address: 'Lorem Ipsum',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/25c5ee03fb8f651c50ae1d1a9358c98e.jpg&w=540&h=350&zc=1&a=',
     },
     {
         id: 3,
-        name: 'Riverview Tennis Academy',
-        address: '789 Pinecrest Avenue, Hillside',
-        image: 'https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67095e0dd36d63fe217b4700_tennis-location-06%402x.avif',
+        name: '5D4N Mauritius',
+        address: 'Lorem Ipsum',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/f8342a2e832f93724a7a78c29f0d0b57.jpg&w=540&h=350&zc=1&a=',
     },
     {
         id: 4,
-        name: 'Pinecrest Court Club',
-        address: '101 Grandview Road, Lakeshore',
-        image: 'https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67095f7ac618c30aad514866_tennis-location-07%402x.avif',
+        name: '4D3N Hanoi',
+        address: 'Lorem Ipsum',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/a5455e21bfc749c27544850525c8ba11.jpg&w=540&h=350&zc=1&a=',
     },
 ];
 
@@ -55,7 +55,7 @@ export default function LocationsHeroSection() {
                                         display: 'inline-block'
                                     }}
                                 >
-                                    Our
+                                    World
                                 </span>{' '}
                                 <span
                                     className="is-word is-2"
@@ -66,7 +66,7 @@ export default function LocationsHeroSection() {
                                         display: 'inline-block'
                                     }}
                                 >
-                                    Locations
+                                    Tours
                                 </span>
                             </h1>
                         </div>
@@ -79,7 +79,7 @@ export default function LocationsHeroSection() {
                                     transition: 'opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s',
                                 }}
                             >
-                                <strong>Discover Your Perfect Court</strong> – Ready to elevate your tennis game? Experience world-class coaching, state-of-the-art facilities, and a vibrant tennis community. Enroll now and be part of a legacy of excellence.
+                                <strong>Discover Your Perfect Country</strong> – Lorem Ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum arcu mauris, ac luctus est imperdiet a.  Donec congue varius ullamcorper. Nam a massa luctus, molestie sapien id, iaculis nulla. Fusce fringilla malesuada urna, in pulvinar magna ornare pharetra. Suspendisse potenti.
                             </p>
                         </div>
                         <Link
