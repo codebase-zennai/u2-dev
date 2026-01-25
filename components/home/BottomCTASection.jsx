@@ -53,7 +53,7 @@ export default function BottomCTASection() {
                             <span className="is-word is-1">Ready</span>{' '}
                             <span className="is-word is-2">to</span>
                             <br />
-                            <span className="is-word is-3">Rally?</span>
+                            <span className="is-word is-3">Travel?</span>
                         </h2>
                     </div>
                     <div
@@ -78,7 +78,7 @@ export default function BottomCTASection() {
                     </div>
                     <div className="max-width-full">
                         <Link href="/contact" className="button is-secondary">
-                            <p>Join a camp</p>
+                            <p>Book Now</p>
                             <Image
                                 src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/670563f226883663736a6d20_icon-arrow-light.svg"
                                 alt="Arrow"

@@ -20,7 +20,7 @@ export default function NewsletterSection() {
                     <div className="max-width-700">
                         <p className="text-size-eyebrow margin-bottom-20 text-color-lightgrey">Newsletter</p>
                         <h2 className="heading-style-h2 is-title">
-                            let's experience Tennis together
+                            Let's Explore the World Together
                         </h2>
                     </div>
                     <div className="email-form_wrap">

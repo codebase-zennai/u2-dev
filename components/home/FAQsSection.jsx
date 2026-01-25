@@ -5,33 +5,33 @@ import { useState } from 'react';
 const faqs = [
     {
         id: 1,
-        question: 'What skill levels do you cater to?',
-        answer: 'We welcome players of all skill levels, from complete beginners to advanced competitive players. Our coaching programs are tailored to meet your specific needs and help you improve at your own pace.',
+        question: 'How do I book a tour package?',
+        answer: 'You can book a tour package through our website by selecting your desired destination and filling out the enquiry form. Our team will contact you within 24 hours to confirm your booking and provide payment details.',
     },
     {
         id: 2,
-        question: 'How do I book a court or lesson?',
-        answer: 'You can easily book a court or lesson through our online booking system or by calling our front desk. We recommend booking in advance, especially during peak hours and weekends.',
+        question: 'What is included in tour packages?',
+        answer: 'Our tour packages typically include accommodation, transportation, guided tours, and selected meals. Specific inclusions vary by package and are clearly listed on each tour page. Flights are usually not included unless stated.',
     },
     {
         id: 3,
-        question: 'What equipment do I need to bring?',
-        answer: 'We recommend bringing your own racket, appropriate tennis shoes, and comfortable athletic wear. We do have rackets available for rent if needed, and tennis balls are always provided.',
+        question: 'Do you offer customized tours?',
+        answer: 'Yes! We specialize in creating personalized travel experiences. Contact us with your preferences, group size, and budget, and our travel experts will design a custom itinerary just for you.',
     },
     {
         id: 4,
-        question: 'Do you offer group lessons?',
-        answer: 'Yes! We offer group lessons for all ages and skill levels. Group lessons are a great way to learn, stay motivated, and meet other tennis enthusiasts. Check our schedule for available times.',
+        question: 'What are your payment options?',
+        answer: 'We accept bank transfers, credit cards, and online payment methods. A deposit is required to confirm your booking, with the remaining balance due before departure. Flexible payment plans are available for selected packages.',
     },
     {
         id: 5,
-        question: 'What are your membership options?',
-        answer: 'We offer various membership tiers to suit different needs, from casual players to dedicated enthusiasts. Each membership includes court access, and higher tiers include additional perks like coaching discounts and priority booking.',
+        question: 'Can I cancel or modify my booking?',
+        answer: 'Yes, cancellations and modifications are possible subject to our terms and conditions. Cancellation fees may apply depending on how close to the departure date the request is made. Contact us as early as possible for any changes.',
     },
     {
         id: 6,
-        question: 'Can I try before committing to membership?',
-        answer: 'Absolutely! We offer trial sessions and day passes so you can experience our facilities and coaching before making a commitment. Contact us to learn more about our trial options.',
+        question: 'Do you provide airport transfers?',
+        answer: 'Yes, we offer airport transfer services for all our tour packages. Private and shared transfer options are available at competitive rates. Transfers can be arranged for both arrival and departure.',
     },
 ];
 

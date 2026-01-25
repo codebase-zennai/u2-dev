@@ -19,7 +19,7 @@ export default function Footer() {
                             </Link>
                         </div>
                         <p className="text-size-medium max-width-250">
-                            Elysian Tennis Academy offers players of all levels an unparalleled tennis experience.
+                            U2 Travels & Tours offers unforgettable travel experiences across Malaysia and beyond.
                         </p>
                     </div>
                     <div className="w-layout-vflex max-width-440 is-full-responsive">
@@ -77,7 +77,7 @@ export default function Footer() {
                 <div className="footer_copyright">
                     <div className="footer_copyright-inner">
                         <p className="text-size-small text-color-darkgrey">
-                            © 2024 Elysian. All rights reserved.
+                            © 2024 U2 Travels. All rights reserved.
                         </p>
                         <div className="footer_bottom-links-container text-size-small text-color-darkgrey">
                             <Link href="/privacy-policy">Privacy Policy</Link>

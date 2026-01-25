@@ -27,10 +27,10 @@ export default function Header() {
                 <div className="nav_wrap">
                     <Link href="/" className="nav_brand">
                         <Image
-                            src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/6706419fa5621e4e2bdbb1f9_elysian-tennis-academy.svg"
-                            alt="Elysian Tennis Academy"
+                            src="/images/web/site_logo.png"
+                            alt="U2 Travels"
                             width={169}
-                            height={24}
+                            height={50}
                             className="nav_logo"
                             priority
                         />

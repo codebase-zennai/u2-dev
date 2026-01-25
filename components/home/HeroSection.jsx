@@ -60,7 +60,7 @@ export default function HeroSection() {
                                     display: 'inline-block'
                                 }}
                             >
-                                Swing
+                                Going
                             </span>{' '}
                             <span
                                 className="is-word is-2"
@@ -71,7 +71,7 @@ export default function HeroSection() {
                                     display: 'inline-block'
                                 }}
                             >
-                                with
+                                Beyond
                             </span>{' '}
                             <span
                                 className="is-word is-3"
@@ -82,7 +82,7 @@ export default function HeroSection() {
                                     display: 'inline-block'
                                 }}
                             >
-                                Confidence
+                                Borders
                             </span>
                         </h1>
                     </div>
@@ -126,7 +126,7 @@ export default function HeroSection() {
                                             display: 'inline-block'
                                         }}
                                     >
-                                        Elevate
+                                        Explore
                                     </span>{' '}
                                     <span
                                         className="is-word is-2"
@@ -137,7 +137,7 @@ export default function HeroSection() {
                                             display: 'inline-block'
                                         }}
                                     >
-                                        your
+                                        the
                                     </span>{' '}
                                     <span
                                         className="is-word is-3"
@@ -148,7 +148,7 @@ export default function HeroSection() {
                                             display: 'inline-block'
                                         }}
                                     >
-                                        Game
+                                        World
                                     </span>
                                 </p>
                             </div>

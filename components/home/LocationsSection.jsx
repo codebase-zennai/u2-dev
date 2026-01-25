@@ -8,26 +8,104 @@ const locations = [
     {
         id: 1,
         name: '7D6N Nepal',
-        address: 'Lorem Ipsum',
+        address: 'Kathmandu - Pokhara - Chitwan',
         image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/7b044fe5d67560989c45483c87766040.jpg&w=540&h=350&zc=1&a=',
     },
     {
         id: 2,
         name: '5D4N Dubai',
-        address: 'Lorem Ipsum',
+        address: 'Desert Safari - Burj Khalifa - Dubai Mall',
         image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/25c5ee03fb8f651c50ae1d1a9358c98e.jpg&w=540&h=350&zc=1&a=',
     },
     {
         id: 3,
         name: '5D4N Mauritius',
-        address: 'Lorem Ipsum',
+        address: 'Port Louis - Le Morne - Ile aux Cerfs',
         image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/f8342a2e832f93724a7a78c29f0d0b57.jpg&w=540&h=350&zc=1&a=',
     },
     {
         id: 4,
         name: '4D3N Hanoi',
-        address: 'Lorem Ipsum',
+        address: 'Old Quarter - Halong Bay - Temple of Literature',
         image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/a5455e21bfc749c27544850525c8ba11.jpg&w=540&h=350&zc=1&a=',
+    },
+    {
+        id: 5,
+        name: 'Eastern Europe',
+        address: 'Prague - Vienna - Budapest',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/7b044fe5d67560989c45483c87766040.jpg&w=540&h=350&zc=1&a=',
+    },
+    {
+        id: 6,
+        name: 'Western Europe',
+        address: 'Paris - Amsterdam - Brussels',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/25c5ee03fb8f651c50ae1d1a9358c98e.jpg&w=540&h=350&zc=1&a=',
+    },
+    {
+        id: 7,
+        name: 'Central Europe',
+        address: 'Germany - Switzerland - Austria',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/f8342a2e832f93724a7a78c29f0d0b57.jpg&w=540&h=350&zc=1&a=',
+    },
+    {
+        id: 8,
+        name: '3D2N Krabi',
+        address: 'Ao Nang - Railay Beach - 4 Islands',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/a5455e21bfc749c27544850525c8ba11.jpg&w=540&h=350&zc=1&a=',
+    },
+    {
+        id: 9,
+        name: '3D2N Phuket',
+        address: 'Patong Beach - Phi Phi Island - Old Town',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/7b044fe5d67560989c45483c87766040.jpg&w=540&h=350&zc=1&a=',
+    },
+    {
+        id: 10,
+        name: '5D4N Bali',
+        address: 'Ubud - Kuta - Tanah Lot - Uluwatu',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/25c5ee03fb8f651c50ae1d1a9358c98e.jpg&w=540&h=350&zc=1&a=',
+    },
+    {
+        id: 11,
+        name: '5D4N Korea',
+        address: 'Seoul - Nami Island - DMZ Tour',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/f8342a2e832f93724a7a78c29f0d0b57.jpg&w=540&h=350&zc=1&a=',
+    },
+    {
+        id: 12,
+        name: '6D7N South Africa',
+        address: 'Cape Town - Johannesburg - Safari',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/a5455e21bfc749c27544850525c8ba11.jpg&w=540&h=350&zc=1&a=',
+    },
+    {
+        id: 13,
+        name: '4D3N Ho Chi Minh',
+        address: 'Cu Chi Tunnels - Mekong Delta - City Tour',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/7b044fe5d67560989c45483c87766040.jpg&w=540&h=350&zc=1&a=',
+    },
+    {
+        id: 14,
+        name: '5D4N Chennai Shopping',
+        address: 'T Nagar - Pondy Bazaar - Temples',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/25c5ee03fb8f651c50ae1d1a9358c98e.jpg&w=540&h=350&zc=1&a=',
+    },
+    {
+        id: 15,
+        name: '6D5N Bangkok - Phuket',
+        address: 'Grand Palace - Floating Market - Beach',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/f8342a2e832f93724a7a78c29f0d0b57.jpg&w=540&h=350&zc=1&a=',
+    },
+    {
+        id: 16,
+        name: '5D4N Bangalore - Mysore',
+        address: 'Mysore Palace - Brindavan Gardens',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/a5455e21bfc749c27544850525c8ba11.jpg&w=540&h=350&zc=1&a=',
+    },
+    {
+        id: 17,
+        name: '7D6N Mumbai Shirdi Pilgrimage',
+        address: 'Mumbai - Shirdi - Nashik Temples',
+        image: 'https://www.u2travels.com.my/public/js/common/thumb.php?src=http://www.u2travels.com.my/traveldez/images/tp_thumbnail/uploads/7b044fe5d67560989c45483c87766040.jpg&w=540&h=350&zc=1&a=',
     },
 ];
 
@@ -74,7 +152,7 @@ export default function LocationsSection() {
                     <div className="max-width-700">
                         <h2 className="heading-style-h2 margin-bottom-24">World Tours</h2>
                         <p className="text-size-large opacity-60 max-width-440 margin-bottom-24">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum arcu mauris, ac luctus est imperdiet a. Donec congue varius ullamcorper. Nam a massa luctus, molestie sapien id, iaculis nulla. Fusce fringilla malesuada urna, in pulvinar magna ornare pharetra.
+                            Discover breathtaking destinations around the globe with our carefully curated world tour packages. From ancient temples to modern cities, we offer unforgettable travel experiences tailored to your preferences.
                         </p>
                         <div className="margin-top-32">
                             <Link href="/contact" className="button">
