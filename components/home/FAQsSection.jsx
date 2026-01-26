@@ -52,7 +52,7 @@ export default function FAQsSection() {
                             Frequently Asked Questions
                         </h2>
                         <p className="text-size-large text-color-lightgrey max-width-440">
-                            Find answers to common questions about our facilities, programs, and memberships.
+                            Find answers to common questions about our world tours, malaysian tours, and more.
                         </p>
                     </div>
                     <ul className="faqs_list">

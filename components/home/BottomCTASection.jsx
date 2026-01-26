@@ -67,7 +67,7 @@ export default function BottomCTASection() {
                         <div className="video_bg">
                             <div className="video_bg_overlay"></div>
                             <Image
-                                src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/670953ea64560c0dcf25d3e5_tennis-image-08.avif"
+                                src="/images/backgrounds/bg-cta-3.png"
                                 alt="Tennis player"
                                 fill
                                 className="img-cover"
