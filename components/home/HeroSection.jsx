@@ -163,15 +163,15 @@ export default function HeroSection() {
                                     muted
                                     playsInline
                                     className="video_bg_video"
-                                    poster="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b%2F670720d5112f313490c34fb9_5740607-uhd_4096_2160_25fps%20%281%29-poster-00001.jpg"
+                                    poster="https://images.pexels.com/photos/33535698/pexels-photo-33535698.jpeg"
                                     style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                                 >
                                     <source
-                                        src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b%2F670720d5112f313490c34fb9_5740607-uhd_4096_2160_25fps%20%281%29-transcode.mp4"
+                                        src="https://www.pexels.com/download/video/35996059/"
                                         type="video/mp4"
                                     />
                                     <source
-                                        src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b%2F670720d5112f313490c34fb9_5740607-uhd_4096_2160_25fps%20%281%29-transcode.webm"
+                                        src="https://www.pexels.com/download/video/35996059/"
                                         type="video/webm"
                                     />
                                 </video>

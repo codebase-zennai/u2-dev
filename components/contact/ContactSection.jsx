@@ -3,10 +3,10 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-const socialLinks = [
-    { name: 'Instagram', href: '#' },
-    { name: 'LinkedIn', href: '#' },
-    { name: 'TikTok', href: '#' },
+const contactInfo = [
+    { label: 'Phone', value: '+603 7781 4180 / +603 7781 4181' },
+    { label: 'Fax', value: '+603 7781 4182' },
+    { label: 'Email', value: 'info@u2travels.com.my' },
 ];
 
 export default function ContactSection() {
@@ -76,26 +76,31 @@ export default function ContactSection() {
                                     transition: 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s',
                                 }}
                             >
-                                Whether you want to book a court, join a class, or inquire about personalized coaching, fill out the form and we'll get back to you as soon as possible.
+                                Whether you want to book a tour, enquire about packages, or need transportation services, fill out the form and we&apos;ll get back to you as soon as possible.
                             </p>
                         </div>
-                        <div className="margin-top-24">
-                            <ul
-                                className="list_wrap"
-                                style={{
-                                    opacity: isVisible ? 1 : 0,
-                                    transform: isVisible ? 'translateY(0)' : 'translateY(0.5em)',
-                                    transition: 'opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s',
-                                }}
-                            >
-                                {socialLinks.map((link, index) => (
-                                    <li key={index} className="list_wrap-item">
-                                        <a href={link.href} className="text-style-inlinelink">
-                                            <div className="text-size-medium">{link.name}</div>
-                                        </a>
-                                    </li>
+                        <div
+                            className="margin-top-24"
+                            style={{
+                                opacity: isVisible ? 1 : 0,
+                                transform: isVisible ? 'translateY(0)' : 'translateY(0.5em)',
+                                transition: 'opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s',
+                            }}
+                        >
+                            <div className="contact_info-block">
+                                <p className="text-size-eyebrow margin-bottom-16">Malaysia (HQ)</p>
+                                <p className="text-size-medium" style={{ marginBottom: '0.75rem' }}>
+                                    No.226, 2nd Floor, Menara Mutiara Majestic,<br />
+                                    15, Jalan Othman (PJ Old Town),<br />
+                                    46000 Petaling Jaya, Selangor D.E.<br />
+                                    MALAYSIA
+                                </p>
+                                {contactInfo.map((info, index) => (
+                                    <p key={index} className="text-size-medium" style={{ marginBottom: '0.25rem' }}>
+                                        <strong>{info.label}:</strong> {info.value}
+                                    </p>
                                 ))}
-                            </ul>
+                            </div>
                         </div>
                         <div className="margin-top-64">
                             <div
@@ -201,8 +206,8 @@ export default function ContactSection() {
                     <div className="contact_visual">
                         <div className="contact_img">
                             <Image
-                                src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67096f5370a967884be1bceb_tennis-contact.avif"
-                                alt="Tennis contact"
+                                src="https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg"
+                                alt="Petronas Twin Towers Kuala Lumpur"
                                 fill
                                 className="img-cover"
                                 sizes="(max-width: 991px) 100vw, 50vw"

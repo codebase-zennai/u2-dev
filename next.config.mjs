@@ -18,6 +18,11 @@ const nextConfig = {
         hostname: 'www.u2travels.com.my',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.pexels.com',
+        pathname: '/**',
+      },
     ],
   },
 };

@@ -5,20 +5,20 @@ import { useEffect, useRef, useState } from 'react';
 
 const historyItems = [
     {
+        year: '2008',
+        description: 'U2 Travels was born on 27th November under Executive Director K. Jai Kishen',
+    },
+    {
         year: '2010',
-        description: 'Foundation of Academy in San Francisco',
+        description: 'Expanded inbound tour operations across all major Malaysian destinations',
     },
     {
-        year: '2013',
-        description: '2013 First Junior Tennis Champion',
-    },
-    {
-        year: '2014',
-        description: 'Expansion of Facilities to Los Angeles',
+        year: '2015',
+        description: 'Launched world tour packages covering 9+ countries including Europe, Korea & Dubai',
     },
     {
         year: '2020',
-        description: 'Global Recognition as top fitness academy',
+        description: '60+ years collective management experience, serving groups from 2 to 500+ travelers',
     },
 ];
 
@@ -50,8 +50,8 @@ export default function HistorySection() {
             {/* Parallax Background */}
             <div className="parallax-wrap">
                 <Image
-                    src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/6709456b6a02af03ac308b64_tennis-image-08%402x.avif"
-                    alt="Tennis background"
+                    src="https://images.pexels.com/photos/1538177/pexels-photo-1538177.jpeg"
+                    alt="Malaysia landscape"
                     fill
                     className="parallax-img"
                     sizes="100vw"
@@ -108,7 +108,7 @@ export default function HistorySection() {
                                         display: 'inline-block'
                                     }}
                                 >
-                                    Excellence
+                                    Travel
                                 </span>{' '}
                                 <span
                                     className="is-word is-5 text-white"
@@ -119,7 +119,7 @@ export default function HistorySection() {
                                         display: 'inline-block'
                                     }}
                                 >
-                                    Academy
+                                    Excellence
                                 </span>
                             </h2>
                         </div>
@@ -135,7 +135,7 @@ export default function HistorySection() {
                                         transition: 'opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s',
                                     }}
                                 >
-                                    Building champions since 2010, Our academy has been the bedrock of elite tennis training and fitness, empowering players to reach their peak physical potential.
+                                    The current management team has a collective experience of over 60 years in the travel & service industry. We are aggressively concentrating our efforts in promoting inbound tours to Malaysia — from cool hill stations and sunny beaches to lush green forest reserves and much more. U2 Travels can tailor-make tours to suit your heart&#39;s desire.
                                 </p>
 
                                 <div className="margin-top-40">
@@ -147,7 +147,7 @@ export default function HistorySection() {
                                             transition: 'opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s',
                                         }}
                                     >
-                                        Our history
+                                        Our Journey
                                     </p>
                                     <div className="margin-top-16">
                                         <ul

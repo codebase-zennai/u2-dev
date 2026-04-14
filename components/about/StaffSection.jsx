@@ -1,36 +1,37 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
-const staffMembers = [
+const testimonials = [
     {
         id: 1,
-        name: 'Sarah Thompson',
-        location: 'Los Angeles, CA',
-        description: 'With 18 years of coaching under her belt, Sarah is known for her ability to develop young talent, guiding players to reach their full potential on the court.',
-        image: 'https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67093f38a5337d5f28be5266_tennis-image-01%402x.avif',
+        name: 'Ms Riya',
+        location: 'Kuala Lumpur Tour',
+        description: 'Hey, the tour was amazing, and the driver was so friendly and helpful. We had good service. I\'m looking forward to doing more business together. Thank you!',
     },
     {
         id: 2,
-        name: 'Jessica Novak',
-        location: 'Austin, TX',
-        description: 'Jessica brings 22 years of experience to the table, specializing in refining advanced techniques and mental toughness in competitive players.',
-        image: 'https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67093f38bde340df4cbf31cf_tennis-image-04%402x.avif',
+        name: 'Madam Nivari',
+        location: 'City Tour',
+        description: 'Thank you for giving us ride two days and showing the city. The experience was wonderful and the service was top-notch.',
     },
     {
         id: 3,
-        name: 'Martina Rojas',
-        location: 'Miami, FL',
-        description: 'A former collegiate athlete with 15 years of coaching experience, Martina is praised for her dynamic coaching style and her success in training elite junior players.',
-        image: 'https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67093f97c1a41c3ca80b6dd3_tennis-image-07%402x.avif',
+        name: 'Mr Apurva Joshi',
+        location: 'Group Tour',
+        description: 'Thanks a lot Vikasbhai and all team members, nice experience with all of you. Will definitely recommend U2 Travels to others.',
     },
     {
         id: 4,
-        name: "Kevin O'Connor",
-        location: 'Chicago, IL',
-        description: "With 20 years of experience, Kevin's passion for tennis has made him a favorite among players seeking to improve both their technical skills and strategic thinking.",
-        image: 'https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67093f38a6fdc3f1533d59be_tennis-image-03%402x.avif',
+        name: 'Mr Ashish',
+        location: 'Langkawi + Kuala Lumpur',
+        description: 'We booked through U2 and visited Langkawi and Kuala Lumpur — it was great! They managed all bookings and the entire process was done smoothly.',
+    },
+    {
+        id: 5,
+        name: 'Mr Bharath Nelluta',
+        location: 'Malaysia Tour',
+        description: 'Thank you very much. We really liked and enjoyed your service. Excellent service throughout our entire trip!',
     },
 ];
 
@@ -71,7 +72,7 @@ export default function StaffSection() {
                                 display: 'inline-block'
                             }}
                         >
-                            Meet
+                            What
                         </span>{' '}
                         <span
                             className="is-word is-2"
@@ -82,7 +83,7 @@ export default function StaffSection() {
                                 display: 'inline-block'
                             }}
                         >
-                            our
+                            Our
                         </span>{' '}
                         <span
                             className="is-word is-3"
@@ -93,7 +94,18 @@ export default function StaffSection() {
                                 display: 'inline-block'
                             }}
                         >
-                            staff
+                            Clients
+                        </span>{' '}
+                        <span
+                            className="is-word is-4"
+                            style={{
+                                opacity: isVisible ? 1 : 0,
+                                transform: isVisible ? 'translateY(0)' : 'translateY(0.5em)',
+                                transition: 'opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s',
+                                display: 'inline-block'
+                            }}
+                        >
+                            Say
                         </span>
                     </h2>
                 </div>
@@ -106,23 +118,19 @@ export default function StaffSection() {
                         transition: 'opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s',
                     }}
                 >
-                    {staffMembers.map((staff) => (
-                        <li key={staff.id} className="staff_item">
-                            <Image
-                                src={staff.image}
-                                alt={staff.name}
-                                width={80}
-                                height={80}
-                                className="staff_avatar"
-                            />
+                    {testimonials.map((testimonial) => (
+                        <li key={testimonial.id} className="staff_item">
+                            <div className="testimonial_avatar">
+                                <span className="testimonial_initial">{testimonial.name.charAt(0)}</span>
+                            </div>
                             <div className="w-layout-vflex">
                                 <div className="margin-bottom-16">
-                                    <p className="text-size-eyebrow">{staff.location}</p>
+                                    <p className="text-size-eyebrow">{testimonial.location}</p>
                                 </div>
                                 <div className="margin-bottom-16">
-                                    <h3 className="heading-style-h3">{staff.name}</h3>
+                                    <h3 className="heading-style-h3">{testimonial.name}</h3>
                                 </div>
-                                <p>{staff.description}</p>
+                                <p>&ldquo;{testimonial.description}&rdquo;</p>
                             </div>
                         </li>
                     ))}

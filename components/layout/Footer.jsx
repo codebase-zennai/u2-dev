@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function Footer() {
     return (
@@ -9,14 +8,14 @@ export default function Footer() {
                     <div className="w-layout-vflex max-width-440">
                         <div className="margin-bottom-24">
                             <Link href="/" className="nav_brand" style={{ position: 'relative' }}>
-                                <Image
-                                    src="/images/web/site_logo.png"
-                                    alt="U2 Travels"
-                                    width={169}
-                                    height={50}
-                                    className="nav_logo"
-                                    priority
-                                />
+                                <span className="nav_brand-logo">
+                                    <span className="nav_brand-u2">U2</span>
+                                    <span className="nav_brand-divider"></span>
+                                    <span className="nav_brand-label">
+                                        <span className="nav_brand-label-top">Tours &amp;</span>
+                                        <span className="nav_brand-label-bottom">Travels</span>
+                                    </span>
+                                </span>
                             </Link>
                         </div>
                         <p className="text-size-xs max-width-500" style={{ fontSize: '.75rem' }}>
@@ -38,8 +37,8 @@ export default function Footer() {
                                     </Link>
                                 </li>
                                 <li className="footer_link-item">
-                                    <Link href="/fitness" className="footer_link">
-                                        Fitness
+                                    <Link href="/transportation" className="footer_link">
+                                        Transportation
                                         <div className="link_line"></div>
                                     </Link>
                                 </li>
@@ -83,7 +82,7 @@ export default function Footer() {
                 <div className="footer_copyright">
                     <div className="footer_copyright-inner">
                         <p className="text-size-small text-color-darkgrey">
-                            © 2024 U2 Travels. All rights reserved.
+                            © 2024 U2 Travels & Tours. All rights reserved.
                         </p>
                         <div className="footer_bottom-links-container text-size-small text-color-darkgrey">
                             <Link href="/privacy-policy">Privacy Policy</Link>

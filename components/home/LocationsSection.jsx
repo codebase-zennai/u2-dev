@@ -136,8 +136,8 @@ export default function LocationsSection() {
         <section className="section is-location" ref={parallaxRef}>
             <div className="parallax-wrap">
                 <Image
-                    src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67094c7f08fee1710d775ca6_tennis-location-background%402x.avif"
-                    alt="Tennis court background"
+                    src="https://images.pexels.com/photos/7891927/pexels-photo-7891927.jpeg"
+                    alt="Dessert Landscape"
                     fill
                     style={{
                         objectFit: 'cover',

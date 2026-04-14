@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,14 +25,14 @@ export default function Header() {
             <nav className="navbar">
                 <div className="nav_wrap">
                     <Link href="/" className="nav_brand">
-                        <Image
-                            src="/images/web/site_logo.png"
-                            alt="U2 Travels"
-                            width={169}
-                            height={50}
-                            className="nav_logo"
-                            priority
-                        />
+                        <span className="nav_brand-logo">
+                            <span className="nav_brand-u2">U2</span>
+                            <span className="nav_brand-divider"></span>
+                            <span className="nav_brand-label">
+                                <span className="nav_brand-label-top">Tours &amp;</span>
+                                <span className="nav_brand-label-bottom">Travels</span>
+                            </span>
+                        </span>
                         <div className="link_line"></div>
                     </Link>
 
@@ -44,8 +43,8 @@ export default function Header() {
                                     <div className="z-index-2">Locations</div>
                                     <div className="link_line"></div>
                                 </Link>
-                                <Link href="/fitness" className="nav_link">
-                                    <div className="z-index-2">Fitness</div>
+                                <Link href="/transportation" className="nav_link">
+                                    <div className="z-index-2">Transportation</div>
                                     <div className="link_line"></div>
                                 </Link>
                             </div>

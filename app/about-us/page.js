@@ -6,8 +6,8 @@ import StaffSection from '@/components/about/StaffSection';
 import BottomCTASection from '@/components/home/BottomCTASection';
 
 export const metadata = {
-    title: 'About Us | Elysian Tennis Academy',
-    description: 'Learn about Elysian Tennis Academy, our history, and meet our expert coaching staff.',
+    title: 'About Us | U2 Tours & Travels',
+    description: 'Learn about U2 Tours & Travels, founded in 2008 with over 25 years of experience in the travel industry. Going Beyond Borders!',
 };
 
 export default function AboutPage() {

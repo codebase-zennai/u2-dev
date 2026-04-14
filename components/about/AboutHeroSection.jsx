@@ -34,7 +34,7 @@ export default function AboutHeroSection() {
                                     display: 'inline-block'
                                 }}
                             >
-                                us
+                                U2
                             </span>
                         </h1>
                     </div>
@@ -44,8 +44,8 @@ export default function AboutHeroSection() {
                         <div className="video_box">
                             <div className="video_bg">
                                 <Image
-                                    src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67096674129bb1f7bfff8c3d_tennis-about.avif"
-                                    alt="Tennis court"
+                                    src="https://images.pexels.com/photos/2108845/pexels-photo-2108845.jpeg"
+                                    alt="Beautiful Malaysia travel destination"
                                     fill
                                     className="parallax-img is-full"
                                     sizes="(max-width: 991px) 81vw, 90vw"
@@ -66,7 +66,7 @@ export default function AboutHeroSection() {
                                     transition: 'opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s',
                                 }}
                             >
-                                Discover world-class tennis coaching, cutting-edge fitness training, and a supportive community dedicated to helping you succeed. Our expert team, top-tier facilities, and proven programs are designed to enhance your game at every level.
+                                Our main objective is to provide the most personalized service to ensure maximum customer satisfaction. With over 25 years of experience in the travel industry, U2 Travels delivers unforgettable tour experiences across Malaysia and the world.
                             </p>
                         </div>
                         <div className="margin-top-24">
@@ -79,7 +79,7 @@ export default function AboutHeroSection() {
                                     transition: 'opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s',
                                 }}
                             >
-                                <p>Join a camp</p>
+                                <p>Contact Us</p>
                                 <Image
                                     src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/670563f226883663736a6d20_icon-arrow-light.svg"
                                     alt="Arrow"

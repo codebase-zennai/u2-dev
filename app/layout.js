@@ -1,8 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Elysian Tennis Academy",
-  description: "World-class tennis facilities and coaching for players of all levels",
+  title: "U2 Tours & Travels - Going Beyond Borders!",
+  description: "Personalized travel services with 25+ years of experience. Malaysian tours, world tours, and transportation services tailored to your needs.",
 };
 
 export default function RootLayout({ children }) {
