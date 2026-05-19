@@ -28,7 +28,7 @@
 /* CSS Variables */
 :root {
   --black: #080808;
-  --white: white;
+  --white: #fff;
   --green: #ceff65;
   --dark-grey: darkgrey;
   --light-grey: #d8d8d8;
@@ -36,6 +36,10 @@
   --fitness-intro-shadow-y: -.6em;
   --bottom-cta-radius: 3.125rem;
   --player-radius: 3.5rem;
+
+  /* Corporate Colors */
+  --primary: #013b85;
+  --secondary: #7ff74b;
 }
 
 /* Base Styles */
@@ -193,8 +197,8 @@ strong {
 
 /* Backgrounds */
 .background-color-black {
-  background-color: var(--black);
-  color: var(--white);
+  background-color: var(--primary) !important;
+  color: var(--white) !important;
 }
 
 .background-color-white {
@@ -308,7 +312,7 @@ strong {
 /* Buttons */
 .button {
   gap: .25rem;
-  background-color: var(--green);
+  background-color: var(--secondary);
   color: var(--black);
   text-transform: uppercase;
   border-radius: 5rem;
@@ -327,17 +331,17 @@ strong {
 }
 
 .button:hover {
-  background-color: #b3e940;
+  background-color: #60d930;
 }
 
 .button.is-secondary {
-  border: 1px solid var(--dark-grey);
+  border: none;
   color: var(--black);
-  background-color: transparent;
+  background-color: var(--secondary);
 }
 
 .button.is-secondary:hover {
-  background-color: #f3f3f3;
+  background-color: #60d930;
 }
 
 /* Max Widths */
@@ -499,92 +503,129 @@ strong {
 .nav_wrapper {
   z-index: 99;
   border-bottom: 1px solid var(--light-grey);
-  background-color: var(--white);
+  background-color: white;
   position: fixed;
   inset: 0% 0% auto;
+  width: 100%;
 }
 
 .navbar {
   background-color: transparent;
   height: 6rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav_wrap {
-  justify-content: center;
+  display: flex;
   align-items: center;
   width: 100%;
-  max-width: 72.875rem;
   height: 100%;
-  margin-left: auto;
-  margin-right: auto;
   padding-left: 5%;
   padding-right: 5%;
-  display: flex;
   position: relative;
 }
 
+/* 3-column layout */
+.nav_col {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.nav_col-left {
+  flex: 1;
+}
+
+.nav_col-center {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5rem;
+  flex-wrap: nowrap;
+}
+
+.nav_col-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+
 .nav_link {
-  color: var(--black);
+  color: var(--primary);
   letter-spacing: .04em;
   text-transform: uppercase;
-  justify-content: center;
   align-items: center;
   padding: .1rem .5rem;
   font-family: 'Coolvetica Condensed', sans-serif;
-  font-size: 1.125rem;
-  line-height: 1;
+  font-size: 1.5rem;
+  line-height: 1.2;
   text-decoration: none;
-  display: flex;
+  display: inline-flex;
+  flex-direction: row;
   position: relative;
+  white-space: nowrap;
+}
+
+.nav_link .link_line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .nav_brand {
   z-index: 100;
-  justify-content: center;
-  align-items: center;
-  width: 10.5625rem;
-  padding-left: 0;
   display: flex;
-  position: absolute;
+  align-items: center;
   text-decoration: none;
+  color: var(--primary);
+  flex-shrink: 0;
 }
 
-.nav_menu-items {
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+.nav_agent-login {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.4rem;
+  border-radius: 5rem;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  font-family: 'Coolvetica Condensed', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav_agent-login:hover {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+/* legacy — no longer used in main nav, kept for mobile */
+.nav_menu-items {
+  display: none;
 }
 
 .nav_menu-items-inner {
-  gap: 15rem;
-  grid-template-rows: auto;
-  grid-template-columns: 1fr 1fr;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  display: grid;
-}
-
-.nav_logo {
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  display: block;
-  position: relative;
+  display: none;
 }
 
 .nav_menu-link-wrap {
-  gap: 3rem;
-  justify-content: flex-end;
-  align-items: center;
-  width: 20rem;
-  display: flex;
+  display: none;
 }
 
 .nav_menu-link-wrap.is-left {
-  justify-content: flex-start;
-  align-items: center;
+  display: none;
 }
 
 .link_line {
@@ -600,9 +641,9 @@ strong {
 }
 
 .nav_link:hover .link_line,
-.nav_brand:hover .link_line {
-  transform: scaleX(1);
-}
+  .nav_brand:hover .link_line {
+    transform: scaleX(1);
+  }
 
 .nav_button {
   display: none;
@@ -701,14 +742,14 @@ strong {
 }
 
 .video_bg_overlay {
-  z-index: 2;
-  background-image: linear-gradient(0deg, #00000040, transparent);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  width: 10.5625rem;
+  padding-left: 0;
+  display: flex;
   position: absolute;
-  inset: 0%;
-}
-
-.video_btn {
-  z-index: 3;
+  text-decoration: none;
   gap: 1rem;
   color: var(--white);
   flex-flow: column;
@@ -1830,9 +1871,9 @@ strong {
 
 .nav_brand-u2 {
   font-family: 'Coolvetica Condensed', sans-serif;
-  font-size: 2.2rem;
+  font-size: 5rem;
   font-weight: 400;
-  color: var(--black);
+  color: var(--secondary);
   line-height: 0.85;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -1841,7 +1882,7 @@ strong {
 .nav_brand-divider {
   width: 2px;
   height: 2rem;
-  background-color: var(--green);
+  background-color: var(--secondary);
   border-radius: 2px;
   flex-shrink: 0;
 }
@@ -1856,11 +1897,11 @@ strong {
 .nav_brand-label-top,
 .nav_brand-label-bottom {
   font-family: 'Coolvetica Condensed', sans-serif;
-  font-size: 0.7rem;
+  font-size: 1.5rem;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--black);
+  color: var(--primary);
 }
 
 /* =============================================
