@@ -1,11 +1,11 @@
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-import HeroSection from '@/components/home/HeroSection';
-import NewsletterSection from '@/components/home/NewsletterSection';
-import CoachesSection from '@/components/home/CoachesSection';
-import LocationsSection from '@/components/home/LocationsSection';
-import FAQsSection from '@/components/home/FAQsSection';
-import BottomCTASection from '@/components/home/BottomCTASection';
+import BottomCTASection from "@/components/home/BottomCTASection";
+import CoachesSection from "@/components/home/CoachesSection";
+import FAQsSection from "@/components/home/FAQsSection";
+import HeroSection from "@/components/home/HeroSection";
+import LocationsSection from "@/components/home/LocationsSection";
+import NewsletterSection from "@/components/home/NewsletterSection";
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
 
 export default function Home() {
   return (
