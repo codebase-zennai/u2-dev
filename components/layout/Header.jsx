@@ -9,6 +9,7 @@ import {
   X,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
@@ -131,8 +132,8 @@ export default function Header() {
                     <span className="nav_brand-u2">U2</span>
                     <span className="nav_brand-divider"></span>
                     <span className="nav_brand-label">
-                      <span className="nav_brand-label-top">Tours &amp;</span>
-                      <span className="nav_brand-label-bottom">Travels</span>
+                      <span className="nav_brand-label-top">Travels &amp;</span>
+                      <span className="nav_brand-label-bottom">Tours</span>
                     </span>
                   </span>
                 </Link>
@@ -238,14 +239,24 @@ export default function Header() {
                 {/* Brand Logo (Visible in Center ONLY if Logged Out) */}
                 {!isAgent && (
                   <Link href="/" className="nav_brand !no-underline">
+                    
                     <span className="nav_brand-logo">
                       <span className="nav_brand-u2">U2</span>
                       <span className="nav_brand-divider"></span>
                       <span className="nav_brand-label">
-                        <span className="nav_brand-label-top">Tours &amp;</span>
-                        <span className="nav_brand-label-bottom">Travels</span>
+                        <span className="nav_brand-label-top">Travels &amp;</span>
+                        <span className="nav_brand-label-bottom">Tours</span>
                       </span>
                     </span>
+                   
+                    {/* <Image 
+                      src="https://www.u2travels.com.my/public/images/u2_travels_malaysia.png"
+                      alt="U2 Travels Malaysia Logo"
+                      width={160}
+                      height={50}
+                      className="object-contain"
+                      priority
+                    /> */}
                   </Link>
                 )}
 

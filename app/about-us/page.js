@@ -6,9 +6,9 @@ import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 
 export const metadata = {
-  title: "About Us | U2 Tours & Travels",
+  title: "About Us | U2 Travels & Tours",
   description:
-    "Learn about U2 Tours & Travels, founded in 2008 with over 25 years of experience in the travel industry. Going Beyond Borders!",
+    "Learn about U2 Travels & Tours, founded in 2008 with over 25 years of experience in the travel industry. Going Beyond Borders!",
 };
 
 export default function AboutPage() {

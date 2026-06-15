@@ -4,9 +4,9 @@ import Header from "@/components/layout/Header";
 import ToursPage from "@/components/tours/ToursPage";
 
 export const metadata = {
-  title: "Tour Packages | U2 Tours & Travels",
+  title: "Tour Packages | U2 Travels & Tours",
   description:
-    "Discover our premium tour packages in Malaysia and around the world. Find your perfect travel gateway with U2 Tours & Travels.",
+    "Discover our premium tour packages in Malaysia and around the world. Find your perfect travel gateway with U2 Travels & Tours.",
 };
 
 export default function ToursListingPage() {

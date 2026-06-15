@@ -3,9 +3,9 @@ import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 
 export const metadata = {
-  title: "Contact | U2 Tours & Travels",
+  title: "Contact | U2 Travels & Tours",
   description:
-    "Get in touch with U2 Tours & Travels. Book a tour, enquire about packages, or arrange transportation services in Malaysia.",
+    "Get in touch with U2 Travels & Tours. Book a tour, enquire about packages, or arrange transportation services in Malaysia.",
 };
 
 export default function ContactPage() {

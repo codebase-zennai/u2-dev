@@ -13,7 +13,7 @@ export default function AboutHeroSection() {
       <div className="container-large">
         <div className="about-hero_wrap">
           <div className="about-hero_title-wrapper">
-            <h1 className="heading-style-h1">
+            <h1 className="heading-style-h1 text-stroke-white">
               <span
                 className="is-word is-1"
                 style={{
@@ -40,7 +40,7 @@ export default function AboutHeroSection() {
                   display: "inline-block",
                 }}
               >
-                U2
+                Us
               </span>
             </h1>
           </div>

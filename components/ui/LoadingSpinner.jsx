@@ -31,8 +31,8 @@ export default function LoadingSpinner({ fullScreen = false }) {
             <span className="nav_brand-u2">U2</span>
             <span className="nav_brand-divider" />
             <span className="nav_brand-label">
-              <span className="nav_brand-label-top">Tours &amp;</span>
-              <span className="nav_brand-label-bottom">Travels</span>
+              <span className="nav_brand-label-top">Travels &amp;</span>
+              <span className="nav_brand-label-bottom">Tours</span>
             </span>
           </span>
         </div>

@@ -3,7 +3,7 @@ import Header from "@/components/layout/Header";
 import TransportationSection from "@/components/transportation/TransportationSection";
 
 export const metadata = {
-  title: "Transportation & Transfers | U2 Tours & Travels",
+  title: "Transportation & Transfers | U2 Travels & Tours",
   description:
     "Airport transfers, city tours, and transportation services across Malaysia. Competitive rates from KLIA to KL, Genting, Melaka, and more.",
 };

@@ -50,7 +50,7 @@ export default function HeroSection() {
       <div className="container-large">
         <div className="flex-center">
           <div className="max-width-700">
-            <h1 className="heading-style-h1">
+            <h1 className="heading-style-h1 text-stroke-white">
               <span
                 className="is-word is-1"
                 style={{

@@ -79,6 +79,7 @@ h6 {
   font-family: "Coolvetica Condensed", sans-serif;
   font-weight: 400;
   text-transform: uppercase;
+  color: var(--primary);
 }
 
 h1 {
@@ -265,7 +266,24 @@ strong {
   margin-bottom: 1rem;
 }
 
+.text-stroke-white {
+  -webkit-text-stroke: 2px white;
+}
+
 /* Heading Styles */
+[class*="heading-style-h"] {
+  color: var(--primary);
+}
+
+.section.is-location h1, .section.is-location h2, .section.is-location h3, .section.is-location h4, .section.is-location h5, .section.is-location h6,
+.section.is-location [class*="heading-style-h"],
+.background-color-black h1, .background-color-black h2, .background-color-black h3, .background-color-black h4, .background-color-black h5, .background-color-black h6,
+.background-color-black [class*="heading-style-h"],
+.video_bg_overlay h1, .video_bg_overlay h2, .video_bg_overlay h3, .video_bg_overlay h4, .video_bg_overlay h5, .video_bg_overlay h6,
+.video_bg_overlay [class*="heading-style-h"] {
+  color: inherit;
+}
+
 .heading-style-h1 {
   letter-spacing: -0.02em;
   text-transform: uppercase;
