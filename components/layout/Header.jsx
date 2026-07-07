@@ -12,6 +12,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { tours } from "@/data/tours";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -62,33 +63,13 @@ export default function Header() {
   };
 
   // Shared tour list data for consistency
-  const malaysianTours = [
-    { name: "Genting Highlands", href: "/tours/genting-highlands" },
-    { name: "Gua Mulu", href: "/tours/gua-mulu" },
-    { name: "Johor", href: "/tours/johor" },
-    { name: "Kota Kinabalu", href: "/tours/kota-kinabalu" },
-    { name: "Kuala Lumpur", href: "/tours/kuala-lumpur" },
-    { name: "Kuantan", href: "/tours/kuantan" },
-    { name: "Langkawi Island", href: "/tours/langkawi" },
-    { name: "Melaka", href: "/tours/melaka" },
-    { name: "Pahang", href: "/tours/pahang" },
-    { name: "Penang", href: "/tours/penang" },
-    { name: "Perak", href: "/tours/perak" },
-    { name: "Selangor", href: "/tours/selangor" },
-    { name: "Tasik Widuri", href: "/tours/tasik-widuri" },
-  ];
+  const malaysianTours = tours
+    .filter((t) => t.category === "malaysian")
+    .map((t) => ({ name: t.name, href: `/tours/${t.slug}` }));
 
-  const worldTours = [
-    { name: "Dubai", href: "/tours/dubai" },
-    { name: "Europe", href: "/tours/europe" },
-    { name: "India", href: "/tours/india" },
-    { name: "Indonesia", href: "/tours/indonesia" },
-    { name: "Korea", href: "/tours/korea" },
-    { name: "Nepal", href: "/tours/nepal" },
-    { name: "South Africa", href: "/tours/south-africa" },
-    { name: "Thailand", href: "/tours/thailand" },
-    { name: "Vietnam", href: "/tours/vietnam" },
-  ];
+  const worldTours = tours
+    .filter((t) => t.category === "world")
+    .map((t) => ({ name: t.name, href: `/tours/${t.slug}` }));
 
   return (
     <div className="nav_wrapper">

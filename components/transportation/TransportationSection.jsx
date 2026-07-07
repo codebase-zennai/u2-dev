@@ -3,129 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-const airportTransfers = [
-  {
-    id: 1,
-    route: "KLIA to Kuala Lumpur City Hotels",
-    price: 28,
-    description:
-      "Private transfer from KLIA/KLIA2 to any hotel in Kuala Lumpur city center.",
-    image: "https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg",
-    duration: "1 Hr",
-    type: "airport",
-  },
-  {
-    id: 2,
-    route: "KLIA to Genting Highlands",
-    price: 68,
-    description:
-      "Direct transfer from the airport to the cool highlands of Genting.",
-    image: "https://images.pexels.com/photos/386009/pexels-photo-386009.jpeg",
-    duration: "2 Hrs",
-    type: "airport",
-  },
-  {
-    id: 3,
-    route: "Kuala Lumpur to Melaka",
-    price: 79,
-    description:
-      "Comfortable transfer from KL to the historic UNESCO World Heritage city.",
-    image: "https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg",
-    duration: "2.5 Hrs",
-    type: "airport",
-  },
-  {
-    id: 4,
-    route: "Kuala Lumpur to Port Dickson",
-    price: 58,
-    description: "Transfer to the beautiful beaches of Port Dickson from KL.",
-    image: "https://images.pexels.com/photos/973506/pexels-photo-973506.jpeg",
-    duration: "1.5 Hrs",
-    type: "airport",
-  },
-  {
-    id: 5,
-    route: "Train Station to KL City Hotels",
-    price: 19,
-    description:
-      "Pick-up from KL Sentral or any major train station to your hotel.",
-    image: "https://images.pexels.com/photos/1637859/pexels-photo-1637859.jpeg",
-    duration: "30 Mins",
-    type: "airport",
-  },
-];
-
-const tourTransfers = [
-  {
-    id: 6,
-    route: "Genting Tours",
-    duration: "8 Hrs",
-    price: 68,
-    description:
-      "Full day tour to Genting Highlands with flexible free time at the resort.",
-    image:
-      "https://images.pexels.com/photos/2387871/pexels-photo-2387871.jpeg?auto=compress&cs=tinysrgb&w=600",
-    type: "tour",
-  },
-  {
-    id: 7,
-    route: "Kuala Lumpur Night Tour",
-    duration: "3 Hrs",
-    price: 34,
-    description:
-      "Experience the dazzling lights and vibrant nightlife of Kuala Lumpur.",
-    image:
-      "https://images.pexels.com/photos/22804/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600",
-    type: "tour",
-  },
-  {
-    id: 8,
-    route: "Kuala Lumpur City Tour",
-    duration: "3.5 Hrs",
-    price: 34,
-    description:
-      "Discover iconic KL landmarks including Petronas Towers and Batu Caves.",
-    image:
-      "https://images.pexels.com/photos/1538177/pexels-photo-1538177.jpeg?auto=compress&cs=tinysrgb&w=600",
-    type: "tour",
-  },
-  {
-    id: 9,
-    route: "KL Country Tour",
-    duration: "4 Hrs",
-    price: 34,
-    description:
-      "Explore the natural beauty and rural charm surrounding Kuala Lumpur.",
-    image:
-      "https://images.pexels.com/photos/2832034/pexels-photo-2832034.jpeg?auto=compress&cs=tinysrgb&w=600",
-    type: "tour",
-  },
-  {
-    id: 10,
-    route: "Melaka Tour",
-    duration: "8 Hrs",
-    price: 113,
-    description:
-      "Full day tour of Melaka covering Dutch Square, A Famosa, and Jonker Street.",
-    image:
-      "https://images.pexels.com/photos/2104882/pexels-photo-2104882.jpeg?auto=compress&cs=tinysrgb&w=600",
-    type: "tour",
-  },
-  {
-    id: 11,
-    route: "Dinner Transfer",
-    duration: "Evening",
-    price: 27,
-    description: "Round-trip transfer to popular dining destinations in KL.",
-    image:
-      "https://images.pexels.com/photos/2034335/pexels-photo-2034335.jpeg?auto=compress&cs=tinysrgb&w=600",
-    type: "tour",
-  },
-];
-
-// Unified dataset for B2B/E-commerce search
-const _unifiedTransportation = [...airportTransfers, ...tourTransfers];
+import { unifiedTransportation, airportTransfers, tourTransfers } from "@/data/transportation";
 
 export default function TransportationSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -268,6 +146,9 @@ export default function TransportationSection() {
                 </p>
                 <div className="tp-transfer-table_price">
                   USD {transfer.price}
+                  <span className="text-size-small text-color-lightgrey" style={{ opacity: 0.6, marginLeft: "4px" }}>
+                    (~RM{Math.round(transfer.price * 4.4)})
+                  </span>
                 </div>
               </div>
             ))}
@@ -298,7 +179,8 @@ export default function TransportationSection() {
             </svg>
             <p className="text-size-small text-color-lightgrey">
               All rates are per vehicle (up to 4 pax). Prices may vary during
-              peak seasons.
+              peak seasons. <br />
+              <strong className="text-white">Notice:</strong> Prices are shown in USD for international travellers. Local MYR pricing is available upon request.
             </p>
           </div>
         </div>
@@ -360,6 +242,9 @@ export default function TransportationSection() {
                   <div className="tp-tour-card_footer">
                     <span className="tp-tour-card_price">
                       USD {transfer.price}
+                      <span className="text-size-small" style={{ opacity: 0.6, marginLeft: "4px", fontWeight: "normal" }}>
+                        (~RM{Math.round(transfer.price * 4.4)})
+                      </span>
                     </span>
                     <span className="text-size-small" style={{ opacity: 0.4 }}>
                       per vehicle
@@ -377,7 +262,7 @@ export default function TransportationSection() {
             >
               <span>Book a Transfer</span>
               <Image
-                src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/670563f226883663736a6d20_icon-arrow-light.svg"
+                src="/icons/icon-arrow-light.svg"
                 alt="Arrow"
                 width={16}
                 height={16}

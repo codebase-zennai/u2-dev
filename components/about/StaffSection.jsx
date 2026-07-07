@@ -40,6 +40,16 @@ const testimonials = [
   },
 ];
 
+// Helper to generate a deterministic color based on name
+const getColor = (name) => {
+  const colors = ['#2ECC71', '#3498DB', '#9B59B6', '#E67E22', '#E74C3C', '#1ABC9C'];
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return colors[Math.abs(hash) % colors.length];
+};
+
 export default function StaffSection() {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -125,10 +135,16 @@ export default function StaffSection() {
         >
           {testimonials.map((testimonial) => (
             <li key={testimonial.id} className="staff_item">
-              <div className="testimonial_avatar">
-                <span className="testimonial_initial">
-                  {testimonial.name.charAt(0)}
-                </span>
+              <div 
+                className="testimonial_avatar flex items-center justify-center rounded-full text-white font-bold text-xl"
+                style={{
+                  width: '64px',
+                  height: '64px',
+                  backgroundColor: getColor(testimonial.name),
+                  marginBottom: '1rem'
+                }}
+              >
+                {testimonial.name.replace(/^(Mr|Ms|Madam)\s+/i, '').charAt(0)}
               </div>
               <div className="w-layout-vflex">
                 <div className="margin-bottom-16">

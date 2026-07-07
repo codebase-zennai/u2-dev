@@ -112,7 +112,7 @@ export default function AgentLoginPage() {
             <div className="mb-8">
               <h2 className="text-3xl font-bold text-slate-900 mb-2 tracking-tight">Welcome Back!</h2>
               <p className="text-sm text-slate-500 font-medium leading-relaxed">
-                Don't have an account? <Link href="#" className="text-slate-900 font-bold underline hover:text-blue-600 transition-colors">Create a new account now</Link>, it's FREE! Takes less than a minute.
+                Don't have an account? <Link href="/contact" className="text-slate-900 font-bold underline hover:text-blue-600 transition-colors">Contact Administrator</Link> to create one.
               </p>
             </div>
 
@@ -177,9 +177,9 @@ export default function AgentLoginPage() {
 
               <div className="text-center mt-4">
                 <span className="text-sm text-slate-500 font-medium">
-                  Forget password{" "}
-                  <Link href="#" className="text-slate-900 font-bold hover:underline">
-                    Click here
+                  Forgot password?{" "}
+                  <Link href="/contact" className="text-slate-900 font-bold hover:underline">
+                    Contact Administrator
                   </Link>
                 </span>
               </div>

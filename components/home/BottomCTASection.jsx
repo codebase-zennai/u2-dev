@@ -80,7 +80,7 @@ export default function BottomCTASection() {
             <Link href="/contact" className="button is-secondary">
               <p>Book Now</p>
               <Image
-                src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/670563f226883663736a6d20_icon-arrow-light.svg"
+                src="/icons/icon-arrow-light.svg"
                 alt="Arrow"
                 width={16}
                 height={16}

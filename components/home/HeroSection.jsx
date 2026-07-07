@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export default function HeroSection() {
@@ -110,18 +111,18 @@ export default function HeroSection() {
               }}
             >
               {/* Learn more button */}
-              <a href="#intro" className="video_btn">
+              <Link href="/locations" className="video_btn">
                 <p className="heading-style-h3">Learn more</p>
                 <div className="video_play">
                   <Image
-                    src="https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/6708ff6b2b6b950e69959c97_icon-arrow-down.svg"
+                    src="/icons/icon-arrow-down.svg"
                     alt="Arrow down"
                     width={16}
                     height={16}
                     className="icon-16"
                   />
                 </div>
-              </a>
+              </Link>
 
               {/* Elevate your Game title */}
               <div className="video_title">

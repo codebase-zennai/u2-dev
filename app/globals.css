@@ -3,7 +3,7 @@
 /* Custom Fonts */
 @font-face {
   font-family: "Satoshi";
-  src: url("https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67055c2d430f5cb4e46d419e_Satoshi-Variable.ttf")
+  src: url("/fonts/Satoshi-Variable.ttf")
     format("truetype");
   font-weight: 300 900;
   font-style: normal;
@@ -12,7 +12,7 @@
 
 @font-face {
   font-family: "Satoshi";
-  src: url("https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67055c365927d3184aa576f9_Satoshi-VariableItalic.ttf")
+  src: url("/fonts/Satoshi-VariableItalic.ttf")
     format("truetype");
   font-weight: 300 900;
   font-style: italic;
@@ -21,7 +21,7 @@
 
 @font-face {
   font-family: "Coolvetica Condensed";
-  src: url("https://cdn.prod.website-files.com/67041c2a6a806901e0c7ed1b/67055b377bf93d91d276ad13_coolvetica%20condensed%20rg.otf")
+  src: url("/fonts/coolvetica_condensed_rg.otf")
     format("opentype");
   font-weight: 400;
   font-style: normal;
