@@ -32,6 +32,7 @@ export default function Header() {
   const [isMobileToursOpen, setIsMobileToursOpen] = useState(false);
   const [isMobileMalaysianOpen, setIsMobileMalaysianOpen] = useState(false);
   const [isMobileWorldOpen, setIsMobileWorldOpen] = useState(false);
+  const [isMobileSightseeingOpen, setIsMobileSightseeingOpen] = useState(false);
 
   // Read login state on mount and listen for custom login events
   useEffect(() => {
@@ -71,13 +72,17 @@ export default function Header() {
     .filter((t) => t.category === "world")
     .map((t) => ({ name: t.name, href: `/tours/${t.slug}` }));
 
+  const sightseeingTours = tours
+    .filter((t) => t.category === "sightseeing")
+    .map((t) => ({ name: t.name, href: `/tours/${t.slug}` }));
+
   return (
-    <div className="nav_wrapper">
-      <nav className="navbar">
-        <div className="nav_wrap">
+    <div className="nav_wrapper sticky top-0 z-50 bg-white border-b border-slate-100 shadow-sm">
+      <nav className="navbar w-full">
+        <div className="nav_wrap flex items-center justify-between w-full max-w-7xl mx-auto px-4 py-3 md:px-8">
           {/* Left — Logo or Agent Hamburger */}
           {isAgent ? (
-            <div className="nav_col nav_col-left flex justify-start">
+            <div className="nav_col nav_col-left flex justify-start flex-1 min-[992px]:flex-none">
               <button
                 type="button"
                 onClick={toggleAgentDrawer}
@@ -92,11 +97,11 @@ export default function Header() {
               </button>
             </div>
           ) : (
-            <div className="nav_col nav_col-left hidden min-[992px]:flex"></div>
+            <div className="nav_col nav_col-left hidden min-[992px]:flex min-[992px]:flex-1"></div>
           )}
 
           {/* Center — brand + links */}
-          <div className="nav_col nav_col-center w-full min-[992px]:w-auto justify-between min-[992px]:justify-center gap-8">
+          <div className="nav_col nav_col-center flex-1 min-[992px]:flex-none min-[992px]:w-auto flex justify-start min-[992px]:justify-center gap-8 items-center">
             {isAgent ? (
               <div className="flex items-center gap-3 text-[#013b85] py-2">
                 <span className="font-black text-base md:text-xl uppercase tracking-widest">
@@ -121,8 +126,9 @@ export default function Header() {
               </div>
             ) : (
               <>
-                {/* Desktop Tours Menu */}
-                <div className="hidden min-[992px]:block">
+                {/* Desktop Left Links */}
+                <div className="hidden min-[992px]:flex items-center gap-8">
+                  {/* Desktop Tours Menu */}
                   <NavigationMenu className="relative">
                     <NavigationMenuList>
                       <NavigationMenuItem>
@@ -162,6 +168,18 @@ export default function Header() {
                                 >
                                   World Tours
                                 </button>
+                                <button
+                                  type="button"
+                                  onMouseEnter={() => setActiveTab("sightseeing")}
+                                  onClick={() => setActiveTab("sightseeing")}
+                                  className={`w-full text-left px-3 py-2.5 rounded-lg text-lg font-bold transition-all cursor-pointer ${
+                                    activeTab === "sightseeing"
+                                      ? "bg-slate-100 text-[#013b85]"
+                                      : "text-slate-600 hover:bg-slate-50"
+                                  }`}
+                                >
+                                  Sightseeing Tours
+                                </button>
                               </div>
                               <Link
                                 href="/tours"
@@ -200,26 +218,40 @@ export default function Header() {
                                   ))}
                                 </div>
                               )}
+
+                              {activeTab === "sightseeing" && (
+                                <div className="grid grid-cols-3 gap-x-4 gap-y-3 w-full">
+                                  {sightseeingTours.map((tour) => (
+                                    <Link
+                                      key={tour.href}
+                                      href={tour.href}
+                                      className="text-slate-600 hover:text-[#013b85] hover:underline text-[11px] font-bold uppercase tracking-wider transition-colors"
+                                    >
+                                      {tour.name}
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
                             </div>
                           </div>
                         </NavigationMenuContent>
                       </NavigationMenuItem>
                     </NavigationMenuList>
                   </NavigationMenu>
-                </div>
 
-                {/* Desktop Transportation Link */}
-                <Link
-                  href="/transportation"
-                  className="nav_link hidden min-[992px]:inline-flex"
-                >
-                  <div className="z-index-2">Transportation</div>
-                  <div className="link_line"></div>
-                </Link>
+                  {/* Desktop Transportation Link */}
+                  <Link
+                    href="/transportation"
+                    className="nav_link inline-flex"
+                  >
+                    <div className="z-index-2">Transportation</div>
+                    <div className="link_line"></div>
+                  </Link>
+                </div>
 
                 {/* Brand Logo (Visible in Center ONLY if Logged Out) */}
                 {!isAgent && (
-                  <Link href="/" className="nav_brand !no-underline">
+                  <Link href="/" className="nav_brand !no-underline flex items-center shrink-0">
                     
                     <span className="nav_brand-logo">
                       <span className="nav_brand-u2">U2</span>
@@ -241,23 +273,26 @@ export default function Header() {
                   </Link>
                 )}
 
-                {/* Desktop About Link */}
-                <Link
-                  href="/about-us"
-                  className="nav_link hidden min-[992px]:inline-flex"
-                >
-                  <div className="z-index-2">About</div>
-                  <div className="link_line"></div>
-                </Link>
+                {/* Desktop Right Links */}
+                <div className="hidden min-[992px]:flex items-center gap-8">
+                  {/* Desktop About Link */}
+                  <Link
+                    href="/about-us"
+                    className="nav_link inline-flex"
+                  >
+                    <div className="z-index-2">About</div>
+                    <div className="link_line"></div>
+                  </Link>
 
-                {/* Desktop Contact Link */}
-                <Link
-                  href="/contact"
-                  className="nav_link hidden min-[992px]:inline-flex"
-                >
-                  <div className="z-index-2">Contact</div>
-                  <div className="link_line"></div>
-                </Link>
+                  {/* Desktop Contact Link */}
+                  <Link
+                    href="/contact"
+                    className="nav_link inline-flex"
+                  >
+                    <div className="z-index-2">Contact</div>
+                    <div className="link_line"></div>
+                  </Link>
+                </div>
               </>
             )}
           </div>
@@ -265,10 +300,10 @@ export default function Header() {
           {/* Right — Agent Login / Profile */}
           <div
             className={`nav_col nav_col-right ${
-              isAgent ? "flex" : "hidden min-[992px]:flex"
+              isAgent ? "flex" : "hidden min-[992px]:flex min-[992px]:flex-1"
             } items-center gap-4 justify-end`}
           >
-            {isAgent ? (
+            {/* {isAgent ? (
               <Link
                 href="/agent/profile"
                 className="flex items-center gap-2 bg-[#013b85]/10 hover:bg-[#013b85]/20 text-[#013b85] font-extrabold text-[11px] uppercase tracking-wider py-2.5 px-3 md:px-5 rounded-full transition-all border border-[#013b85]/20 !no-underline cursor-pointer"
@@ -283,22 +318,22 @@ export default function Header() {
               >
                 Agent Login
               </Link>
-            )}
+            )} */}
           </div>
 
           {/* Hamburger — mobile only */}
           {!isAgent && (
             <button
               type="button"
-              className={`nav_button ${isMenuOpen ? "is-open" : ""}`}
+              className="min-[992px]:hidden p-2 text-slate-700 hover:text-[#013b85] hover:bg-slate-100 rounded-lg transition-all cursor-pointer flex items-center justify-center"
               onClick={toggleMenu}
               aria-label="Toggle Menu"
             >
-              <div className="nav_button-inner">
-                <div className="nav_button-line is-top"></div>
-                <div className="nav_button-line is-middle"></div>
-                <div className="nav_button-line is-bottom"></div>
-              </div>
+              {isMenuOpen ? (
+                <X className="h-8 w-8" />
+              ) : (
+                <Menu className="h-8 w-8" />
+              )}
             </button>
           )}
         </div>
@@ -306,9 +341,9 @@ export default function Header() {
 
       {/* Mobile Drawer (Nested Accordion Structure) */}
       <div
-        className={`nav_menu-items overflow-y-auto pb-24 ${isMenuOpen ? "is-open" : ""}`}
+        className={`fixed inset-x-0 top-[60px] md:top-[70px] bottom-0 bg-white z-40 overflow-y-auto pb-24 transition-all duration-300 ease-in-out lg:hidden border-t border-slate-100 shadow-xl ${isMenuOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-4 pointer-events-none"}`}
       >
-        <div className="nav_menu-items-inner flex flex-col gap-6 pt-6">
+        <div className="nav_menu-items-inner flex flex-col gap-6 pt-6 px-6">
           {isAgent ? (
             <>
               {/* Agent Mobile Links */}
@@ -423,6 +458,35 @@ export default function Header() {
                         </div>
                       )}
                     </div>
+
+                    {/* Level 2: Sightseeing Tours */}
+                    <div>
+                      <button
+                        type="button"
+                        onClick={() => setIsMobileSightseeingOpen(!isMobileSightseeingOpen)}
+                        className="w-full text-left flex items-center justify-between py-2 text-xl font-semibold text-slate-700 hover:text-[#013b85] outline-none cursor-pointer"
+                      >
+                        <span>Sightseeing Tours</span>
+                        <ChevronDown
+                          className={`h-5 w-5 transition-transform duration-200 ${isMobileSightseeingOpen ? "rotate-180" : ""}`}
+                        />
+                      </button>
+
+                      {isMobileSightseeingOpen && (
+                        <div className="pl-4 mt-1.5 flex flex-col gap-3 border-l border-slate-100">
+                          {sightseeingTours.map((tour) => (
+                            <Link
+                              key={tour.href}
+                              href={tour.href}
+                              onClick={toggleMenu}
+                              className="text-slate-600 hover:text-[#013b85] text-base font-bold uppercase py-0.5 no-underline transition-colors block"
+                            >
+                              {tour.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
@@ -451,7 +515,7 @@ export default function Header() {
               </Link>
 
               {/* Agent Login / Logout inside mobile menu */}
-              <div className="pt-4 border-t border-slate-100 w-full mt-4 flex flex-col gap-3">
+              {/* <div className="pt-4 border-t border-slate-100 w-full mt-4 flex flex-col gap-3">
                 <Link
                   href="/agent-login"
                   onClick={toggleMenu}
@@ -459,7 +523,7 @@ export default function Header() {
                 >
                   Agent Login
                 </Link>
-              </div>
+              </div> */}
             </>
           )}
         </div>

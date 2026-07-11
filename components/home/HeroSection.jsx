@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export default function HeroSection() {
-  const videoRef = useRef(null);
   const videoWallRef = useRef(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [titleVisible, setTitleVisible] = useState(false);
@@ -126,7 +125,7 @@ export default function HeroSection() {
 
               {/* Elevate your Game title */}
               <div className="video_title">
-                <p className="heading-style-h2 is-title">
+                <p className="heading-style-h2 is-title white">
                   <span
                     className="is-word is-1"
                     style={{
@@ -153,7 +152,7 @@ export default function HeroSection() {
                       display: "inline-block",
                     }}
                   >
-                    the
+                    Malaysian
                   </span>{" "}
                   <span
                     className="is-word is-3"
@@ -167,31 +166,26 @@ export default function HeroSection() {
                       display: "inline-block",
                     }}
                   >
-                    World
+                    Tours
                   </span>
                 </p>
               </div>
 
-              {/* Video background */}
+              {/* Hero background video */}
               <div className="video_bg">
                 <div className="video_bg_overlay"></div>
                 <video
-                  ref={videoRef}
                   autoPlay
                   loop
                   muted
                   playsInline
                   className="video_bg_video"
-                  poster="https://images.pexels.com/photos/33535698/pexels-photo-33535698.jpeg"
+                  poster="/malaysia_hero_bg.png"
                   style={{ objectFit: "cover", width: "100%", height: "100%" }}
                 >
                   <source
-                    src="https://www.pexels.com/download/video/35996059/"
+                    src="/Prompt_Cinematic_ultra_high_.mp4"
                     type="video/mp4"
-                  />
-                  <source
-                    src="https://www.pexels.com/download/video/35996059/"
-                    type="video/webm"
                   />
                 </video>
               </div>

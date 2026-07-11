@@ -302,6 +302,10 @@ strong {
   line-height: 1.04;
 }
 
+.white {
+  color: white;
+}
+
 .heading-style-h2.is-title {
   font-size: 4rem;
 }
