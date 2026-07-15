@@ -1,10 +1,15 @@
-import { Caveat } from "next/font/google";
+import { Caveat, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import PreloaderWrapper from "@/components/layout/PreloaderWrapper";
 
 const caveat = Caveat({
   subsets: ["latin"],
   variable: "--font-caveat",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
 });
 
 export const metadata = {
@@ -16,7 +21,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={caveat.variable}>
+      <body className={`${caveat.variable} ${playfair.variable}`}>
         <PreloaderWrapper>{children}</PreloaderWrapper>
       </body>
     </html>

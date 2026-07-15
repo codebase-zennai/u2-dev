@@ -1940,6 +1940,15 @@ strong {
   letter-spacing: 0.12em;
   color: var(--primary);
 }
+.nav_brand-label-top2,
+.nav_brand-label-bottom2 {
+  font-family: "Coolvetica Condensed", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: white;
+}
 
 /* =============================================
    TRANSPORTATION PAGE — Hero

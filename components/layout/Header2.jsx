@@ -21,7 +21,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 
-export default function Header() {
+export default function Header2() {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("malaysian");
@@ -31,6 +31,7 @@ export default function Header() {
   // Scroll visibility states
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollYRef = useRef(0);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // Mobile Accordion States
   const [isMobileToursOpen, setIsMobileToursOpen] = useState(false);
@@ -38,10 +39,12 @@ export default function Header() {
   const [isMobileWorldOpen, setIsMobileWorldOpen] = useState(false);
   const [isMobileSightseeingOpen, setIsMobileSightseeingOpen] = useState(false);
 
-  // Listen to scroll direction to show/hide navbar
+  // Listen to scroll direction to show/hide navbar and change transparency
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 50);
+
       if (currentScrollY <= 50) {
         setIsVisible(true);
       } else if (currentScrollY > lastScrollYRef.current) {
@@ -53,6 +56,7 @@ export default function Header() {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial call
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -99,14 +103,76 @@ export default function Header() {
     .map((t) => ({ name: t.name, href: `/tours/${t.slug}` }));
 
   return (
-    <div 
-      className="nav_wrapper fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-100 shadow-sm"
-      style={{
-        transform: isVisible ? "translateY(0)" : "translateY(-100%)",
-        transition: "transform 0.3s ease-in-out",
-      }}
-    >
-      <nav className="navbar w-full">
+    <div className="header2-nav">
+      {/* Scoped CSS styling to make header transparent and style link colors */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        .header2-nav .nav_wrapper {
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          z-index: 50 !important;
+          transition: all 0.3s ease !important;
+        }
+        .header2-nav .nav_wrapper.is-at-top {
+          background-color: transparent !important;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+          box-shadow: none !important;
+          padding-top: 1rem !important;
+          padding-bottom: 1rem !important;
+        }
+        .header2-nav .nav_wrapper.is-at-top .nav_link {
+          color: white !important;
+        }
+        .header2-nav .nav_wrapper.is-at-top .nav_link:hover {
+          color: #dfa447 !important;
+        }
+        .header2-nav .nav_wrapper.is-at-top .link_line {
+          background-color: #dfa447 !important;
+        }
+        .header2-nav .nav_wrapper.is-at-top .nav_brand {
+          color: white !important;
+        }
+        .header2-nav .nav_wrapper.is-at-top button {
+          color: white !important;
+        }
+        .header2-nav .nav_wrapper.is-at-top .nav_brand-label-top2,
+        .header2-nav .nav_wrapper.is-at-top .nav_brand-label-bottom2 {
+          color: white !important;
+        }
+        .header2-nav .nav_wrapper.is-scrolled {
+          background-color: white !important;
+          border-bottom: 1px solid var(--light-grey) !important;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+          padding-top: 0.75rem !important;
+          padding-bottom: 0.75rem !important;
+        }
+        .header2-nav .nav_wrapper.is-scrolled .nav_link {
+          color: #013b85 !important;
+        }
+        .header2-nav .nav_wrapper.is-scrolled .nav_link:hover {
+          color: #dfa447 !important;
+        }
+        .header2-nav .nav_wrapper.is-scrolled .link_line {
+          background-color: var(--green) !important;
+        }
+        .header2-nav .nav_wrapper.is-scrolled .nav_brand {
+          color: #013b85 !important;
+        }
+        .header2-nav .nav_wrapper.is-scrolled button {
+          color: #013b85 !important;
+        }
+        .header2-nav .nav_wrapper.is-scrolled .nav_brand-label-top2,
+        .header2-nav .nav_wrapper.is-scrolled .nav_brand-label-bottom2 {
+          color: #013b85 !important;
+        }
+        /* Mobile menu text colors */
+        .header2-nav .nav_menu-items-inner .nav_link {
+          color: #1e293b !important; /* Keep mobile expanded drawer dark for readability */
+        }
+      ` }} />
+      <div className={`nav_wrapper fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"} ${isScrolled ? "is-scrolled" : "is-at-top"}`}>
+        <nav className="navbar w-full">
         <div className="nav_wrap flex items-center justify-between w-full max-w-7xl mx-auto px-4 py-3 md:px-8">
           {/* Left — Logo or Agent Hamburger */}
           {isAgent ? (
@@ -125,7 +191,18 @@ export default function Header() {
               </button>
             </div>
           ) : (
-            <div className="nav_col nav_col-left hidden min-[992px]:flex min-[992px]:flex-1"></div>
+            <div className="nav_col nav_col-left flex flex-1">
+              <Link href="/" className="nav_brand !no-underline flex items-center shrink-0">
+                <span className="nav_brand-logo">
+                  <span className="nav_brand-u2">U2</span>
+                  <span className="nav_brand-divider"></span>
+                  <span className="nav_brand-label">
+                    <span className="nav_brand-label-top2">Travels &amp;</span>
+                    <span className="nav_brand-label-bottom2">Tours</span>
+                  </span>
+                </span>
+              </Link>
+            </div>
           )}
 
           {/* Center — brand + links */}
@@ -154,7 +231,7 @@ export default function Header() {
               </div>
             ) : (
               <>
-                {/* Desktop Left Links */}
+                {/* Desktop Left & Right Links grouped continuously (Logo is moved to the left) */}
                 <div className="hidden min-[992px]:flex items-center gap-8">
                   {/* Desktop Tours Menu */}
                   <NavigationMenu className="relative">
@@ -275,34 +352,7 @@ export default function Header() {
                     <div className="z-index-2">Transportation</div>
                     <div className="link_line"></div>
                   </Link>
-                </div>
 
-                {/* Brand Logo (Visible in Center ONLY if Logged Out) */}
-                {!isAgent && (
-                  <Link href="/" className="nav_brand !no-underline flex items-center shrink-0">
-                    
-                    <span className="nav_brand-logo">
-                      <span className="nav_brand-u2">U2</span>
-                      <span className="nav_brand-divider"></span>
-                      <span className="nav_brand-label">
-                        <span className="nav_brand-label-top">Travels &amp;</span>
-                        <span className="nav_brand-label-bottom">Tours</span>
-                      </span>
-                    </span>
-                   
-                    {/* <Image 
-                      src="https://www.u2travels.com.my/public/images/u2_travels_malaysia.png"
-                      alt="U2 Travels Malaysia Logo"
-                      width={160}
-                      height={50}
-                      className="object-contain"
-                      priority
-                    /> */}
-                  </Link>
-                )}
-
-                {/* Desktop Right Links */}
-                <div className="hidden min-[992px]:flex items-center gap-8">
                   {/* Desktop About Link */}
                   <Link
                     href="/about-us"
@@ -627,5 +677,6 @@ export default function Header() {
         </>
       )}
     </div>
-  );
+  </div>
+);
 }
