@@ -36,10 +36,10 @@ export default function NewsletterSection() {
 
   return (
     <section className="section background-color-black">
-      <div className="container-large flex flex-col gap-10">
+      <div className="container-large flex flex-col items-center gap-10">
         
         {/* Section Heading */}
-        <div className="max-width-700">
+        <div className="max-width-700 text-center">
           <p className="text-size-eyebrow margin-bottom-16 text-color-lightgrey">
             Find Your Journey
           </p>
@@ -176,6 +176,45 @@ export default function NewsletterSection() {
             <span>Search</span>
           </button>
 
+        </div>
+
+        {/* Stats Row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mt-4 pt-10 border-t border-white/10 w-full max-w-4xl">
+          <div className="flex flex-col items-center text-center">
+            <span className="text-4xl md:text-5xl font-bold text-[#7ff74b] tracking-tight leading-none mb-2" style={{ fontFamily: "var(--font-playfair), serif", textTransform: "none" }}>
+              50K+
+            </span>
+            <span className="text-[10px] md:text-xs font-semibold text-white/70 uppercase tracking-widest">
+              Happy Travellers
+            </span>
+          </div>
+
+          <div className="flex flex-col items-center text-center">
+            <span className="text-4xl md:text-5xl font-bold text-[#7ff74b] tracking-tight leading-none mb-2" style={{ fontFamily: "var(--font-playfair), serif", textTransform: "none" }}>
+              150+
+            </span>
+            <span className="text-[10px] md:text-xs font-semibold text-white/70 uppercase tracking-widest">
+              Curated Packages
+            </span>
+          </div>
+
+          <div className="flex flex-col items-center text-center">
+            <span className="text-4xl md:text-5xl font-bold text-[#7ff74b] tracking-tight leading-none mb-2" style={{ fontFamily: "var(--font-playfair), serif", textTransform: "none" }}>
+              25+
+            </span>
+            <span className="text-[10px] md:text-xs font-semibold text-white/70 uppercase tracking-widest">
+              Destinations
+            </span>
+          </div>
+
+          <div className="flex flex-col items-center text-center">
+            <span className="text-4xl md:text-5xl font-bold text-[#dfa447] tracking-tight leading-none mb-2 flex items-center gap-0.5" style={{ fontFamily: "var(--font-playfair), serif", textTransform: "none" }}>
+              4.9<span className="text-2xl md:text-3xl text-[#dfa447] align-middle">★</span>
+            </span>
+            <span className="text-[10px] md:text-xs font-semibold text-white/70 uppercase tracking-widest">
+              Guest Rating
+            </span>
+          </div>
         </div>
 
       </div>

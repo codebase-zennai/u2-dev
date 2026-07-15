@@ -171,7 +171,13 @@ export default function Header2() {
           color: #1e293b !important; /* Keep mobile expanded drawer dark for readability */
         }
       ` }} />
-      <div className={`nav_wrapper fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"} ${isScrolled ? "is-scrolled" : "is-at-top"}`}>
+      <div 
+        className={`nav_wrapper fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "is-scrolled" : "is-at-top"}`}
+        style={{
+          transform: isVisible ? "translateY(0)" : "translateY(-100%)",
+          transition: "transform 0.3s ease-in-out, background-color 0.3s ease-in-out, padding 0.3s ease-in-out",
+        }}
+      >
         <nav className="navbar w-full">
         <div className="nav_wrap flex items-center justify-between w-full max-w-7xl mx-auto px-4 py-3 md:px-8">
           {/* Left — Logo or Agent Hamburger */}

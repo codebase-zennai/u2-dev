@@ -1,9 +1,9 @@
 import BottomCTASection from "@/components/home/BottomCTASection";
-import CoachesSection from "@/components/home/CoachesSection";
+import ToursSection from "@/components/home/ToursSection";
 import FAQsSection from "@/components/home/FAQsSection";
 import HeroSection from "@/components/home/HeroSection";
 import HeroSection2 from "@/components/home/HeroSection2";
-import LocationsSection from "@/components/home/LocationsSection";
+import AboutUsSection from "@/components/home/AboutUsSection";
 import NewsletterSection from "@/components/home/NewsletterSection";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
@@ -16,8 +16,8 @@ export default function Home() {
       <main>
         <HeroSection2 />
         <NewsletterSection />
-        <CoachesSection />
-        <LocationsSection />
+        <ToursSection />
+        <AboutUsSection />
         <FAQsSection />
         <BottomCTASection />
       </main>
