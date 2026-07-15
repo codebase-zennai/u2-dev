@@ -1,6 +1,7 @@
 import BottomCTASection from "@/components/home/BottomCTASection";
 import ToursSection from "@/components/home/ToursSection";
 import FAQsSection from "@/components/home/FAQsSection";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
 import HeroSection from "@/components/home/HeroSection";
 import HeroSection2 from "@/components/home/HeroSection2";
 import AboutUsSection from "@/components/home/AboutUsSection";
@@ -18,6 +19,7 @@ export default function Home() {
         <NewsletterSection />
         <ToursSection />
         <AboutUsSection />
+        <TestimonialsSection />
         <FAQsSection />
         <BottomCTASection />
       </main>
