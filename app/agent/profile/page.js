@@ -17,7 +17,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
+import Header2 from "@/components/layout/Header2";
 
 export default function AgentProfilePage() {
   const router = useRouter();
@@ -46,7 +46,7 @@ export default function AgentProfilePage() {
 
   return (
     <>
-      <Header />
+      <Header2 />
       <main className="main-wrapper bg-slate-50 min-h-[85vh] pt-28 pb-16 px-4 md:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Back to Dashboard Link */}

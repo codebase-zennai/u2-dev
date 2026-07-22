@@ -1,5 +1,5 @@
 import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
+import Header2 from "@/components/layout/Header2";
 import Link from "next/link";
 
 export const metadata = {
@@ -10,7 +10,7 @@ export const metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <>
-      <Header />
+      <Header2 />
       <main className="main-wrapper">
         <section className="section is-hero-sub">
           <div className="container-large">

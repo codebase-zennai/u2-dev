@@ -7,7 +7,6 @@ import HeroSection2 from "@/components/home/HeroSection2";
 import AboutUsSection from "@/components/home/AboutUsSection";
 import NewsletterSection from "@/components/home/NewsletterSection";
 import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 import Header2 from "@/components/layout/Header2";
 
 export default function Home() {

@@ -14,7 +14,7 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import Header from "@/components/layout/Header";
+import Header2 from "@/components/layout/Header2";
 
 export default function AgentDashboardPage() {
   const router = useRouter();
@@ -50,7 +50,7 @@ export default function AgentDashboardPage() {
 
   return (
     <>
-      <Header />
+      <Header2 />
       <main className="w-full min-h-screen bg-slate-50 pt-24 pb-12 font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           

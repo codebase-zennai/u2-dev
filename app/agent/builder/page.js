@@ -8,7 +8,7 @@ import {
   MapPin, Hotel, Car, Ticket, Utensils, Settings, Calendar, DollarSign,
   Plus, Trash2, GripVertical
 } from "lucide-react";
-import Header from "@/components/layout/Header";
+import Header2 from "@/components/layout/Header2";
 import { DESTINATIONS, HOTELS, TRANSPORT_OPTIONS, ATTRACTIONS, ADDITIONAL_SERVICES } from "./data";
 
 export default function BuilderPage() {
@@ -72,7 +72,7 @@ export default function BuilderPage() {
 
   return (
     <>
-      <Header />
+      <Header2 />
       <div className="min-h-screen bg-slate-50 pt-20 flex flex-col font-sans">
         
         {/* Top bar */}

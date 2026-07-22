@@ -1,6 +1,6 @@
 import BottomCTASection from "@/components/home/BottomCTASection";
 import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
+import Header2 from "@/components/layout/Header2";
 import ToursPage from "@/components/tours/ToursPage";
 
 export const metadata = {
@@ -13,7 +13,7 @@ export default function ToursListingPage({ searchParams }) {
   const category = searchParams?.category || "all";
   return (
     <>
-      <Header />
+      <Header2 />
       <main className="main-wrapper">
         <ToursPage initialCategory={category} />
         <BottomCTASection />

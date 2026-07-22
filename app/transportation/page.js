@@ -1,5 +1,5 @@
 import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
+import Header2 from "@/components/layout/Header2";
 import TransportationSection from "@/components/transportation/TransportationSection";
 
 export const metadata = {
@@ -11,7 +11,7 @@ export const metadata = {
 export default function TransportationPage() {
   return (
     <>
-      <Header />
+      <Header2 />
       <main className="main-wrapper">
         <TransportationSection />
       </main>

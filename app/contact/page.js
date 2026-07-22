@@ -1,6 +1,6 @@
 import ContactSection from "@/components/contact/ContactSection";
 import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
+import Header2 from "@/components/layout/Header2";
 
 export const metadata = {
   title: "Contact | U2 Travels & Tours",
@@ -11,7 +11,7 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <>
-      <Header />
+      <Header2 />
       <main className="main-wrapper">
         <ContactSection />
       </main>

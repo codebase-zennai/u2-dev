@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
+import Header2 from "@/components/layout/Header2";
 
 
 
@@ -18,7 +18,7 @@ export default async function TourItineraryPage({ params }) {
 
   return (
     <>
-      <Header />
+      <Header2 />
       <main className="main-wrapper bg-slate-50 pt-24 pb-16">
         <div className="container-large">
           {/* Back Link */}

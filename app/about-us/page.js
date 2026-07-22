@@ -3,7 +3,7 @@ import HistorySection from "@/components/about/HistorySection";
 import StaffSection from "@/components/about/StaffSection";
 import BottomCTASection from "@/components/home/BottomCTASection";
 import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
+import Header2 from "@/components/layout/Header2";
 
 export const metadata = {
   title: "About Us | U2 Travels & Tours",
@@ -14,7 +14,7 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <>
-      <Header />
+      <Header2 />
       <main className="main-wrapper">
         <AboutHeroSection />
         <HistorySection />

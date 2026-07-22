@@ -1,6 +1,5 @@
 import BottomCTASection from "@/components/home/BottomCTASection";
 import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 import Header2 from "@/components/layout/Header2";
 import MiceSection from "@/components/mice/MiceSection";
 
