@@ -24,7 +24,6 @@ import {
 export default function Header2() {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("malaysian");
   const [isAgent, setIsAgent] = useState(false);
   const [isAgentDrawerOpen, setIsAgentDrawerOpen] = useState(false);
 
@@ -36,8 +35,6 @@ export default function Header2() {
   // Mobile Accordion States
   const [isMobileToursOpen, setIsMobileToursOpen] = useState(false);
   const [isMobileMalaysianOpen, setIsMobileMalaysianOpen] = useState(false);
-  const [isMobileWorldOpen, setIsMobileWorldOpen] = useState(false);
-  const [isMobileSightseeingOpen, setIsMobileSightseeingOpen] = useState(false);
 
   // Listen to scroll direction to show/hide navbar and change transparency
   useEffect(() => {
@@ -89,19 +86,6 @@ export default function Header2() {
     router.push("/");
   };
 
-  // Shared tour list data for consistency
-  const malaysianTours = tours
-    .filter((t) => t.category === "malaysian")
-    .map((t) => ({ name: t.name, href: `/tours/${t.slug}` }));
-
-  const worldTours = tours
-    .filter((t) => t.category === "world")
-    .map((t) => ({ name: t.name, href: `/tours/${t.slug}` }));
-
-  const sightseeingTours = tours
-    .filter((t) => t.category === "sightseeing")
-    .map((t) => ({ name: t.name, href: `/tours/${t.slug}` }));
-
   return (
     <div className="header2-nav">
       {/* Scoped CSS styling to make header transparent and style link colors */}
@@ -136,6 +120,7 @@ export default function Header2() {
         .header2-nav .nav_wrapper.is-at-top button {
           color: white !important;
         }
+
         .header2-nav .nav_wrapper.is-at-top .nav_brand-label-top2,
         .header2-nav .nav_wrapper.is-at-top .nav_brand-label-bottom2 {
           color: white !important;
@@ -251,98 +236,56 @@ export default function Header2() {
                           <div className="link_line"></div>
                         </NavigationMenuTrigger>
                         <NavigationMenuContent className="w-[600px] p-6">
-                          <div className="grid grid-cols-[180px_1fr] gap-6 text-left">
-                            {/* Left Panel - Categories */}
-                            <div className="flex flex-col gap-2 border-r border-slate-100 pr-4 justify-between min-h-[220px]">
-                              <div className="flex flex-col gap-2">
-                                <button
-                                  type="button"
-                                  onMouseEnter={() => setActiveTab("malaysian")}
-                                  onClick={() => setActiveTab("malaysian")}
-                                  className={`w-full text-left px-3 py-2.5 rounded-lg text-lg font-bold transition-all cursor-pointer ${
-                                    activeTab === "malaysian"
-                                      ? "bg-slate-100 text-[#013b85]"
-                                      : "text-slate-600 hover:bg-slate-50"
-                                  }`}
+                          <div className="grid grid-cols-2 gap-8 text-left">
+                            {/* Left Column: Malaysian Tours */}
+                            <div className="flex flex-col gap-3">
+                              <h4 className="text-xs font-black uppercase tracking-wider text-[#013b85] border-b border-slate-100 pb-2">
+                                Malaysian Tours
+                              </h4>
+                              <div className="flex flex-col gap-4 pt-1">
+                                <Link
+                                  href="/tours?category=sightseeing"
+                                  className="group/item flex flex-col gap-1 !no-underline"
                                 >
-                                  Malaysian Tours
-                                </button>
-                                <button
-                                  type="button"
-                                  onMouseEnter={() => setActiveTab("world")}
-                                  onClick={() => setActiveTab("world")}
-                                  className={`w-full text-left px-3 py-2.5 rounded-lg text-lg font-bold transition-all cursor-pointer ${
-                                    activeTab === "world"
-                                      ? "bg-slate-100 text-[#013b85]"
-                                      : "text-slate-600 hover:bg-slate-50"
-                                  }`}
+                                  <span className="text-sm font-extrabold text-slate-800 group-hover/item:text-[#013b85] transition-colors">
+                                    Day tours
+                                  </span>
+                                  <span className="text-xs text-slate-400 font-medium">
+                                    Short sightseeing & local day trips
+                                  </span>
+                                </Link>
+                                <Link
+                                  href="/tours?category=malaysian"
+                                  className="group/item flex flex-col gap-1 !no-underline"
                                 >
-                                  World Tours
-                                </button>
-                                <button
-                                  type="button"
-                                  onMouseEnter={() => setActiveTab("sightseeing")}
-                                  onClick={() => setActiveTab("sightseeing")}
-                                  className={`w-full text-left px-3 py-2.5 rounded-lg text-lg font-bold transition-all cursor-pointer ${
-                                    activeTab === "sightseeing"
-                                      ? "bg-slate-100 text-[#013b85]"
-                                      : "text-slate-600 hover:bg-slate-50"
-                                  }`}
-                                >
-                                  Sightseeing Tours
-                                </button>
+                                  <span className="text-sm font-extrabold text-slate-800 group-hover/item:text-[#013b85] transition-colors">
+                                    All Malaysian Tours
+                                  </span>
+                                  <span className="text-xs text-slate-400 font-medium">
+                                    Multi-day domestic retreats & destinations
+                                  </span>
+                                </Link>
                               </div>
-                              <Link
-                                href="/tours"
-                                className="w-full text-center bg-[#013b85] hover:bg-[#7ff74b] hover:!text-black !text-white font-extrabold text-[11px] uppercase tracking-wider py-2.5 px-3 rounded-lg shadow-sm hover:shadow-md transition-all !no-underline block"
-                              >
-                                View All Tours
-                              </Link>
                             </div>
 
-                            {/* Right Panel - Submenus */}
-                            <div className="min-h-[220px] flex items-center">
-                              {activeTab === "malaysian" && (
-                                <div className="grid grid-cols-3 gap-x-4 gap-y-3 w-full">
-                                  {malaysianTours.map((tour) => (
-                                    <Link
-                                      key={tour.href}
-                                      href={tour.href}
-                                      className="text-slate-600 hover:text-[#013b85] hover:underline text-[11px] font-bold uppercase tracking-wider transition-colors"
-                                    >
-                                      {tour.name}
-                                    </Link>
-                                  ))}
-                                </div>
-                              )}
-
-                              {activeTab === "world" && (
-                                <div className="grid grid-cols-3 gap-x-4 gap-y-3 w-full">
-                                  {worldTours.map((tour) => (
-                                    <Link
-                                      key={tour.href}
-                                      href={tour.href}
-                                      className="text-slate-600 hover:text-[#013b85] hover:underline text-[11px] font-bold uppercase tracking-wider transition-colors"
-                                    >
-                                      {tour.name}
-                                    </Link>
-                                  ))}
-                                </div>
-                              )}
-
-                              {activeTab === "sightseeing" && (
-                                <div className="grid grid-cols-3 gap-x-4 gap-y-3 w-full">
-                                  {sightseeingTours.map((tour) => (
-                                    <Link
-                                      key={tour.href}
-                                      href={tour.href}
-                                      className="text-slate-600 hover:text-[#013b85] hover:underline text-[11px] font-bold uppercase tracking-wider transition-colors"
-                                    >
-                                      {tour.name}
-                                    </Link>
-                                  ))}
-                                </div>
-                              )}
+                            {/* Right Column: World Tours */}
+                            <div className="flex flex-col gap-3 border-l border-slate-100 pl-8">
+                              <h4 className="text-xs font-black uppercase tracking-wider text-[#013b85] border-b border-slate-100 pb-2">
+                                World Tours
+                              </h4>
+                              <div className="flex flex-col gap-4 pt-1">
+                                <Link
+                                  href="/tours?category=world"
+                                  className="group/item flex flex-col gap-1 !no-underline"
+                                >
+                                  <span className="text-sm font-extrabold text-slate-800 group-hover/item:text-[#013b85] transition-colors">
+                                    World Tours
+                                  </span>
+                                  <span className="text-xs text-slate-400 font-medium">
+                                    Curated international tour packages
+                                  </span>
+                                </Link>
+                              </div>
                             </div>
                           </div>
                         </NavigationMenuContent>
@@ -356,6 +299,15 @@ export default function Header2() {
                     className="nav_link inline-flex"
                   >
                     <div className="z-index-2">Transportation</div>
+                    <div className="link_line"></div>
+                  </Link>
+
+                  {/* Desktop MICE Link */}
+                  <Link
+                    href="/mice"
+                    className="nav_link inline-flex"
+                  >
+                    <div className="z-index-2">MICE</div>
                     <div className="link_line"></div>
                   </Link>
 
@@ -387,22 +339,6 @@ export default function Header2() {
               isAgent ? "flex" : "hidden min-[992px]:flex min-[992px]:flex-1"
             } items-center gap-4 justify-end`}
           >
-            {/* {isAgent ? (
-              <Link
-                href="/agent/profile"
-                className="flex items-center gap-2 bg-[#013b85]/10 hover:bg-[#013b85]/20 text-[#013b85] font-extrabold text-[11px] uppercase tracking-wider py-2.5 px-3 md:px-5 rounded-full transition-all border border-[#013b85]/20 !no-underline cursor-pointer"
-              >
-                <User className="h-4 w-4 shrink-0" />
-                <span className="hidden md:inline">Profile</span>
-              </Link>
-            ) : (
-              <Link
-                href="/agent-login"
-                className="nav_agent-login !no-underline"
-              >
-                Agent Login
-              </Link>
-            )} */}
           </div>
 
           {/* Hamburger — mobile only */}
@@ -475,14 +411,6 @@ export default function Header2() {
 
                 {isMobileToursOpen && (
                   <div className="pl-4 mt-2 flex flex-col gap-4 border-l border-slate-200">
-                    <Link
-                      href="/tours"
-                      onClick={toggleMenu}
-                      className="text-[#013b85] hover:underline text-lg font-bold uppercase py-1.5 no-underline transition-colors block"
-                    >
-                      View All Tours
-                    </Link>
-
                     {/* Level 2: Malaysian Tours */}
                     <div>
                       <button
@@ -500,77 +428,32 @@ export default function Header2() {
 
                       {isMobileMalaysianOpen && (
                         <div className="pl-4 mt-1.5 flex flex-col gap-3 border-l border-slate-100">
-                          {malaysianTours.map((tour) => (
-                            <Link
-                              key={tour.href}
-                              href={tour.href}
-                              onClick={toggleMenu}
-                              className="text-slate-600 hover:text-[#013b85] text-base font-bold uppercase py-0.5 no-underline transition-colors block"
-                            >
-                              {tour.name}
-                            </Link>
-                          ))}
+                          <Link
+                            href="/tours?category=sightseeing"
+                            onClick={toggleMenu}
+                            className="text-slate-600 hover:text-[#013b85] text-base font-bold uppercase py-0.5 no-underline transition-colors block"
+                          >
+                            Day tours
+                          </Link>
+                          <Link
+                            href="/tours?category=malaysian"
+                            onClick={toggleMenu}
+                            className="text-slate-600 hover:text-[#013b85] text-base font-bold uppercase py-0.5 no-underline transition-colors block"
+                          >
+                            All Malaysian Tours
+                          </Link>
                         </div>
                       )}
                     </div>
 
                     {/* Level 2: World Tours */}
-                    <div>
-                      <button
-                        type="button"
-                        onClick={() => setIsMobileWorldOpen(!isMobileWorldOpen)}
-                        className="w-full text-left flex items-center justify-between py-2 text-xl font-semibold text-slate-700 hover:text-[#013b85] outline-none cursor-pointer"
-                      >
-                        <span>World Tours</span>
-                        <ChevronDown
-                          className={`h-5 w-5 transition-transform duration-200 ${isMobileWorldOpen ? "rotate-180" : ""}`}
-                        />
-                      </button>
-
-                      {isMobileWorldOpen && (
-                        <div className="pl-4 mt-1.5 flex flex-col gap-3 border-l border-slate-100">
-                          {worldTours.map((tour) => (
-                            <Link
-                              key={tour.href}
-                              href={tour.href}
-                              onClick={toggleMenu}
-                              className="text-slate-600 hover:text-[#013b85] text-base font-bold uppercase py-0.5 no-underline transition-colors block"
-                            >
-                              {tour.name}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Level 2: Sightseeing Tours */}
-                    <div>
-                      <button
-                        type="button"
-                        onClick={() => setIsMobileSightseeingOpen(!isMobileSightseeingOpen)}
-                        className="w-full text-left flex items-center justify-between py-2 text-xl font-semibold text-slate-700 hover:text-[#013b85] outline-none cursor-pointer"
-                      >
-                        <span>Sightseeing Tours</span>
-                        <ChevronDown
-                          className={`h-5 w-5 transition-transform duration-200 ${isMobileSightseeingOpen ? "rotate-180" : ""}`}
-                        />
-                      </button>
-
-                      {isMobileSightseeingOpen && (
-                        <div className="pl-4 mt-1.5 flex flex-col gap-3 border-l border-slate-100">
-                          {sightseeingTours.map((tour) => (
-                            <Link
-                              key={tour.href}
-                              href={tour.href}
-                              onClick={toggleMenu}
-                              className="text-slate-600 hover:text-[#013b85] text-base font-bold uppercase py-0.5 no-underline transition-colors block"
-                            >
-                              {tour.name}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                    <Link
+                      href="/tours?category=world"
+                      onClick={toggleMenu}
+                      className="text-slate-700 hover:text-[#013b85] text-xl font-semibold py-2 no-underline transition-colors block"
+                    >
+                      World Tours
+                    </Link>
                   </div>
                 )}
               </div>
@@ -582,6 +465,13 @@ export default function Header2() {
                 className="nav_link font-bold text-3xl no-underline"
               >
                 Transportation
+              </Link>
+              <Link
+                href="/mice"
+                onClick={toggleMenu}
+                className="nav_link font-bold text-3xl no-underline"
+              >
+                MICE
               </Link>
               <Link
                 href="/about-us"

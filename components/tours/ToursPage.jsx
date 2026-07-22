@@ -7,10 +7,14 @@ import { useEffect, useMemo, useState } from "react";
 
 import { tours } from "@/data/tours";
 
-export default function ToursPage() {
+export default function ToursPage({ initialCategory = "all" }) {
   const [isVisible, setIsVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
+
+  useEffect(() => {
+    setSelectedCategory(initialCategory);
+  }, [initialCategory]);
   const [sortBy, setSortBy] = useState("name-asc");
 
   useEffect(() => {
