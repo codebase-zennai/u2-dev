@@ -83,7 +83,7 @@ export default function Header() {
   };
 
   return (
-    <div 
+    <div
       className="nav_wrapper fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-100 shadow-sm"
       style={{
         transform: isVisible ? "translateY(0)" : "translateY(-100%)",
@@ -210,10 +210,7 @@ export default function Header() {
                   </NavigationMenu>
 
                   {/* Desktop Transportation Link */}
-                  <Link
-                    href="/transportation"
-                    className="nav_link inline-flex"
-                  >
+                  <Link href="/transportation" className="nav_link inline-flex">
                     <div className="z-index-2">Transportation</div>
                     <div className="link_line"></div>
                   </Link>
@@ -221,12 +218,17 @@ export default function Header() {
 
                 {/* Brand Logo (Visible in Center ONLY if Logged Out) */}
                 {!isAgent && (
-                  <Link href="/" className="nav_brand !no-underline flex items-center shrink-0">
+                  <Link
+                    href="/"
+                    className="nav_brand !no-underline flex items-center shrink-0"
+                  >
                     <span className="nav_brand-logo">
                       <span className="nav_brand-u2">U2</span>
                       <span className="nav_brand-divider"></span>
                       <span className="nav_brand-label">
-                        <span className="nav_brand-label-top">Travels &amp;</span>
+                        <span className="nav_brand-label-top">
+                          Travels &amp;
+                        </span>
                         <span className="nav_brand-label-bottom">Tours</span>
                       </span>
                     </span>
@@ -236,28 +238,19 @@ export default function Header() {
                 {/* Desktop Right Links */}
                 <div className="hidden min-[992px]:flex items-center gap-8">
                   {/* Desktop MICE Link */}
-                  <Link
-                    href="/mice"
-                    className="nav_link inline-flex"
-                  >
+                  <Link href="/mice" className="nav_link inline-flex">
                     <div className="z-index-2">MICE</div>
                     <div className="link_line"></div>
                   </Link>
 
                   {/* Desktop About Link */}
-                  <Link
-                    href="/about-us"
-                    className="nav_link inline-flex"
-                  >
+                  <Link href="/about-us" className="nav_link inline-flex">
                     <div className="z-index-2">About</div>
                     <div className="link_line"></div>
                   </Link>
 
                   {/* Desktop Contact Link */}
-                  <Link
-                    href="/contact"
-                    className="nav_link inline-flex"
-                  >
+                  <Link href="/contact" className="nav_link inline-flex">
                     <div className="z-index-2">Contact</div>
                     <div className="link_line"></div>
                   </Link>
@@ -271,8 +264,7 @@ export default function Header() {
             className={`nav_col nav_col-right ${
               isAgent ? "flex" : "hidden min-[992px]:flex min-[992px]:flex-1"
             } items-center gap-4 justify-end`}
-          >
-          </div>
+          ></div>
 
           {/* Hamburger — mobile only */}
           {!isAgent && (

@@ -3,7 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { unifiedTransportation, airportTransfers, tourTransfers } from "@/data/transportation";
+import {
+  unifiedTransportation,
+  airportTransfers,
+  tourTransfers,
+} from "@/data/transportation";
 
 export default function TransportationSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -51,7 +55,7 @@ export default function TransportationSection() {
       <section className="tp-hero">
         <div className="tp-hero_bg">
           <Image
-            src="https://images.pexels.com/photos/2108845/pexels-photo-2108845.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            src="https://images.pexels.com/photos/24531550/pexels-photo-24531550.jpeg"
             alt="Malaysia highway aerial view"
             fill
             className="img-cover"
@@ -146,7 +150,10 @@ export default function TransportationSection() {
                 </p>
                 <div className="tp-transfer-table_price">
                   USD {transfer.price}
-                  <span className="text-size-small text-color-lightgrey" style={{ opacity: 0.6, marginLeft: "4px" }}>
+                  <span
+                    className="text-size-small text-color-lightgrey"
+                    style={{ opacity: 0.6, marginLeft: "4px" }}
+                  >
                     (~RM{Math.round(transfer.price * 4.4)})
                   </span>
                 </div>
@@ -180,12 +187,13 @@ export default function TransportationSection() {
             <p className="text-size-small text-color-lightgrey">
               All rates are per vehicle (up to 4 pax). Prices may vary during
               peak seasons. <br />
-              <strong className="text-white">Notice:</strong> Prices are shown in USD for international travellers. Local MYR pricing is available upon request.
+              <strong className="text-white">Notice:</strong> Prices are shown
+              in USD for international travellers. Local MYR pricing is
+              available upon request.
             </p>
           </div>
         </div>
       </section>
-
     </>
   );
 }

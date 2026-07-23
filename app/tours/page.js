@@ -13,7 +13,7 @@ export default function ToursListingPage({ searchParams }) {
   const category = searchParams?.category || "all";
   return (
     <>
-      <Header2 />
+      <Header2 isSolid={true} />
       <main className="main-wrapper">
         <ToursPage initialCategory={category} />
         <BottomCTASection />

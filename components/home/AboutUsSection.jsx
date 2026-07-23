@@ -9,8 +9,8 @@ export default function AboutUsSection() {
     <section className="section is-location">
       <div className="parallax-wrap" style={{ overflow: "hidden" }}>
         <Image
-          src="https://images.pexels.com/photos/1518500/pexels-photo-1518500.jpeg"
-          alt="Petronas Twin Towers Malaysia"
+          src="https://images.pexels.com/photos/36949767/pexels-photo-36949767.jpeg"
+          alt="Batu Caves"
           fill
           style={{
             objectFit: "cover",
@@ -21,7 +21,9 @@ export default function AboutUsSection() {
       </div>
 
       {/* Scoped styles for 2x2 grid and card formatting */}
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         .locations_wrap {
           display: flex !important;
           flex-direction: column !important;
@@ -74,11 +76,12 @@ export default function AboutUsSection() {
           transform: translateY(-5px) !important;
           box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2) !important;
         }
-      ` }} />
+      `,
+        }}
+      />
 
       <div className="container-large">
         <div className="locations_wrap">
-          
           {/* Left Column: Heading and Description */}
           <div className="about_left flex flex-col items-start pr-0 md:pr-4">
             <p className="text-size-eyebrow text-color-lightgrey margin-bottom-12">
@@ -88,7 +91,9 @@ export default function AboutUsSection() {
               Why Travel With Us?
             </h2>
             <p className="text-size-large text-white/70 margin-bottom-32 leading-relaxed">
-              We are committed to crafting exceptional, hassle-free travel experiences designed around your needs. Discover why thousands of travelers trust us with their dream holidays.
+              We are committed to crafting exceptional, hassle-free travel
+              experiences designed around your needs. Discover why thousands of
+              travelers trust us with their dream holidays.
             </p>
             <Link href="/contact" className="button">
               <p>Contact Us</p>
@@ -104,15 +109,17 @@ export default function AboutUsSection() {
 
           {/* Right Column: 2x2 Grid of Cards */}
           <div className="about_grid">
-            
             {/* Card 1 */}
             <div className="about_card group">
               <div className="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center mb-5 group-hover:bg-[#7ff74b]/15 group-hover:border-[#7ff74b]/40 transition-all duration-300">
                 <ShieldCheck className="h-5.5 w-5.5 text-[#7ff74b]" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">23 Years Trusted</h3>
+              <h3 className="text-lg font-bold text-white mb-2">
+                18+ Years Trusted
+              </h3>
               <p className="text-sm text-white/60 font-light leading-relaxed">
-                Since 2001, thousands of unforgettable journeys crafted with care.
+                Since 2008, thousands of unforgettable journeys crafted with
+                care.
               </p>
             </div>
 
@@ -132,9 +139,11 @@ export default function AboutUsSection() {
               <div className="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center mb-5 group-hover:bg-[#7ff74b]/15 group-hover:border-[#7ff74b]/40 transition-all duration-300">
                 <Award className="h-5.5 w-5.5 text-[#7ff74b]" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">Award-Winning</h3>
+              <h3 className="text-lg font-bold text-white mb-2">
+                Official Recognition
+              </h3>
               <p className="text-sm text-white/60 font-light leading-relaxed">
-                Certified by PATA, MATTA, MITA and licensed tourism bodies.
+                Proudly affiliated with the Ministry of Tourism Malaysia, PATA, MATTA, MITA, and other trusted tourism organizations.
               </p>
             </div>
 
@@ -148,9 +157,7 @@ export default function AboutUsSection() {
                 Flights, hotels, transfers — handled end-to-end by our team.
               </p>
             </div>
-
           </div>
-
         </div>
       </div>
     </section>

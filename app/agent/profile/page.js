@@ -46,7 +46,7 @@ export default function AgentProfilePage() {
 
   return (
     <>
-      <Header2 />
+      <Header2 isSolid={true} />
       <main className="main-wrapper bg-slate-50 min-h-[85vh] pt-28 pb-16 px-4 md:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Back to Dashboard Link */}

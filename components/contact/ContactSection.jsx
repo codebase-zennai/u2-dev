@@ -239,7 +239,7 @@ export default function ContactSection() {
           <div className="contact_visual">
             <div className="contact_img">
               <Image
-                src="https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg"
+                src="https://images.pexels.com/photos/31360768/pexels-photo-31360768.jpeg"
                 alt="Petronas Twin Towers Kuala Lumpur"
                 fill
                 className="img-cover"

@@ -15,7 +15,7 @@ const playfair = Playfair_Display({
 export const metadata = {
   title: "U2 Travels & Tours - Going Beyond Borders!",
   description:
-    "Personalized travel services with 25+ years of experience. Malaysian tours, world tours, and transportation services tailored to your needs.",
+    "Personalized travel services with 18+ years of experience. Malaysian tours, world tours, and transportation services tailored to your needs.",
 };
 
 export default function RootLayout({ children }) {

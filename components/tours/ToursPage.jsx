@@ -65,7 +65,11 @@ export default function ToursPage({ initialCategory = "all" }) {
             />
             {/* Category badge */}
             <div className="absolute left-4 top-4 bg-white/90 backdrop-blur-sm border border-slate-100 rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-wider text-[#013b85] shadow-sm">
-              {tour.category === "malaysian" ? "Local Tour" : tour.category === "sightseeing" ? "Sightseeing" : "International"}
+              {tour.category === "malaysian"
+                ? "Local Tour"
+                : tour.category === "sightseeing"
+                  ? "Sightseeing"
+                  : "International"}
             </div>
             {/* Duration overlay tag */}
             <div className="absolute right-4 bottom-4 bg-[#013b85]/90 backdrop-blur-sm rounded-full px-3 py-1 text-[10px] font-extrabold uppercase tracking-wide text-white shadow-sm">

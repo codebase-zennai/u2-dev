@@ -6,11 +6,9 @@ import { notFound } from "next/navigation";
 import Footer from "@/components/layout/Footer";
 import Header2 from "@/components/layout/Header2";
 
-
-
 export default async function TourItineraryPage({ params }) {
   const { slug } = await params;
-  const tour = tours.find(t => t.slug === slug);
+  const tour = tours.find((t) => t.slug === slug);
 
   if (!tour) {
     notFound();
@@ -18,7 +16,7 @@ export default async function TourItineraryPage({ params }) {
 
   return (
     <>
-      <Header2 />
+      <Header2 isSolid={true} />
       <main className="main-wrapper bg-slate-50 pt-24 pb-16">
         <div className="container-large">
           {/* Back Link */}

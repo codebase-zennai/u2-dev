@@ -3,8 +3,7 @@
 /* Custom Fonts */
 @font-face {
   font-family: "Satoshi";
-  src: url("/fonts/Satoshi-Variable.ttf")
-    format("truetype");
+  src: url("/fonts/Satoshi-Variable.ttf") format("truetype");
   font-weight: 300 900;
   font-style: normal;
   font-display: swap;
@@ -12,8 +11,7 @@
 
 @font-face {
   font-family: "Satoshi";
-  src: url("/fonts/Satoshi-VariableItalic.ttf")
-    format("truetype");
+  src: url("/fonts/Satoshi-VariableItalic.ttf") format("truetype");
   font-weight: 300 900;
   font-style: italic;
   font-display: swap;
@@ -21,8 +19,7 @@
 
 @font-face {
   font-family: "Coolvetica Condensed";
-  src: url("/fonts/coolvetica_condensed_rg.otf")
-    format("opentype");
+  src: url("/fonts/coolvetica_condensed_rg.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -276,11 +273,26 @@ strong {
   color: var(--primary);
 }
 
-.section.is-location h1, .section.is-location h2, .section.is-location h3, .section.is-location h4, .section.is-location h5, .section.is-location h6,
+.section.is-location h1,
+.section.is-location h2,
+.section.is-location h3,
+.section.is-location h4,
+.section.is-location h5,
+.section.is-location h6,
 .section.is-location [class*="heading-style-h"],
-.background-color-black h1, .background-color-black h2, .background-color-black h3, .background-color-black h4, .background-color-black h5, .background-color-black h6,
+.background-color-black h1,
+.background-color-black h2,
+.background-color-black h3,
+.background-color-black h4,
+.background-color-black h5,
+.background-color-black h6,
 .background-color-black [class*="heading-style-h"],
-.video_bg_overlay h1, .video_bg_overlay h2, .video_bg_overlay h3, .video_bg_overlay h4, .video_bg_overlay h5, .video_bg_overlay h6,
+.video_bg_overlay h1,
+.video_bg_overlay h2,
+.video_bg_overlay h3,
+.video_bg_overlay h4,
+.video_bg_overlay h5,
+.video_bg_overlay h6,
 .video_bg_overlay [class*="heading-style-h"] {
   color: inherit;
 }
@@ -1764,7 +1776,7 @@ strong {
 }
 
 .contact_img {
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 3;
   border-radius: 1.5rem;
   overflow: hidden;
   position: relative;

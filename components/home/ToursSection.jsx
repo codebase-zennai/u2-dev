@@ -38,7 +38,9 @@ export default function ToursSection() {
       id="tours-slider"
     >
       {/* Scoped CSS for Horizontal Scroll Row and Card layouts */}
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         .tours_list {
           display: flex !important;
           flex-direction: row !important;
@@ -112,10 +114,11 @@ export default function ToursSection() {
         .tours_item:hover .img-cover {
           transform: scale(1.08) !important;
         }
-      ` }} />
+      `,
+        }}
+      />
 
       <div className="container-large">
-        
         {/* Title and Top Navigation Header */}
         <div className="margin-bottom-48">
           <div className="wrap_flex is-align-bottom">
@@ -151,7 +154,7 @@ export default function ToursSection() {
                 </span>
               </h2>
             </div>
-            
+
             {/* View All Button */}
             <Link
               href="/tours"
@@ -208,7 +211,6 @@ export default function ToursSection() {
             <TourCard key={tour.id} tour={tour} imageScale={1} />
           ))}
         </ul>
-
       </div>
     </section>
   );

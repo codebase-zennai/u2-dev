@@ -32,7 +32,7 @@ export default function HeroSection2() {
 
       {/* Hero Content */}
       <div className="container-large relative z-20 w-full px-4 md:px-8">
-        <div 
+        <div
           className="max-width-800 text-left flex flex-col items-start"
           style={{
             opacity: loaded ? 1 : 0,
@@ -44,29 +44,29 @@ export default function HeroSection2() {
           <div className="inline-flex items-center gap-2 px-4 py-2 border border-white/20 bg-white/5 backdrop-blur-md rounded-full mb-8 hover:bg-white/10 hover:border-white/35 transition-all duration-300">
             <Sparkle className="h-4 w-4 text-[#dfa447] animate-pulse" />
             <span className="text-[10px] md:text-xs font-medium uppercase tracking-[0.25em] text-white/90">
-              23 Years of Curated Journeys
+              18+ Years of Curated Journeys
             </span>
           </div>
 
           {/* Large Serif Title with Cursive Accent */}
-          <p 
+          <p
             className="text-white font-normal text-7xl leading-[1.1] mb-6 tracking-tight select-none"
-            style={{ 
+            style={{
               fontFamily: "var(--font-playfair), Georgia, serif",
               textTransform: "none",
               letterSpacing: "-0.01em",
             }}
           >
             Wander{" "}
-            <span 
+            <span
               className="text-[#dfa447] px-2 italic font-normal inline-block relative"
-              style={{ 
+              style={{
                 fontFamily: "var(--font-caveat), cursive",
                 textTransform: "none",
                 transform: "rotate(-2deg)",
               }}
             >
-              where 
+              where
             </span>{" "}
             <br />
             the world calls you.
@@ -74,7 +74,8 @@ export default function HeroSection2() {
 
           {/* Subtitle Description */}
           <p className="text-white/80 text-base sm:text-lg md:text-xl max-w-xl leading-relaxed font-light tracking-wide mb-10">
-            Handcrafted Malaysian experiences and world tours designed to be affordable, effortless, and unforgettable.
+            Handcrafted Malaysian experiences and world tours designed to be
+            affordable, effortless, and unforgettable.
           </p>
 
           {/* Call-to-action buttons */}

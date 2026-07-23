@@ -68,34 +68,36 @@ export default function LocationsSection() {
             </div>
           </div>
           <ul className="locations_list">
-            {tours.filter(t => t.featured).map((location) => (
-              <li key={location.id} className="locations_item">
-                <Link
-                  href={`/tours/${location.slug}`}
-                  style={{ textDecoration: "none", display: "block" }}
-                >
-                  <div className="margin-bottom-20">
-                    <div className="locations_visual">
-                      <Image
-                        src={location.image}
-                        alt={location.name}
-                        fill
-                        className="img-cover"
-                        sizes="(max-width: 767px) 81vw, (max-width: 991px) 44vw, 20vw"
-                      />
+            {tours
+              .filter((t) => t.featured)
+              .map((location) => (
+                <li key={location.id} className="locations_item">
+                  <Link
+                    href={`/tours/${location.slug}`}
+                    style={{ textDecoration: "none", display: "block" }}
+                  >
+                    <div className="margin-bottom-20">
+                      <div className="locations_visual">
+                        <Image
+                          src={location.image}
+                          alt={location.name}
+                          fill
+                          className="img-cover"
+                          sizes="(max-width: 767px) 81vw, (max-width: 991px) 44vw, 20vw"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <div className="margin-bottom-8">
-                      <p className="heading-style-h4">{location.name}</p>
+                    <div>
+                      <div className="margin-bottom-8">
+                        <p className="heading-style-h4">{location.name}</p>
+                      </div>
+                      <div className="text-color-lightgrey">
+                        <p className="text-size-eyebrow">{location.duration}</p>
+                      </div>
                     </div>
-                    <div className="text-color-lightgrey">
-                      <p className="text-size-eyebrow">{location.duration}</p>
-                    </div>
-                  </div>
-                </Link>
-              </li>
-            ))}
+                  </Link>
+                </li>
+              ))}
           </ul>
         </div>
       </div>

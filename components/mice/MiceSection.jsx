@@ -22,8 +22,8 @@ export default function MiceSection() {
         "Executive board retreats",
         "Confidential corporate assemblies",
         "Strategic planning seminars",
-        "Seamless audiovisual & IT setup"
-      ]
+        "Seamless audiovisual & IT setup",
+      ],
     },
     {
       icon: <Award className="h-8 w-8 text-[#dfa447]" />,
@@ -34,8 +34,8 @@ export default function MiceSection() {
         "Luxury team-building tours",
         "Private cruise and yacht dinners",
         "Custom sports & golf tournaments",
-        "Award ceremonies & theme gala nights"
-      ]
+        "Award ceremonies & theme gala nights",
+      ],
     },
     {
       icon: <Calendar className="h-8 w-8 text-[#dfa447]" />,
@@ -46,8 +46,8 @@ export default function MiceSection() {
         "National & regional assemblies",
         "Product launches & press meets",
         "Delegate registry & check-in apps",
-        "Luxury VIP ground logistics"
-      ]
+        "Luxury VIP ground logistics",
+      ],
     },
     {
       icon: <Briefcase className="h-8 w-8 text-[#dfa447]" />,
@@ -58,70 +58,90 @@ export default function MiceSection() {
         "Trade fair pavilion planning",
         "Product expo setups",
         "Exhibitor logistical support",
-        "Media launches & networking cocktails"
-      ]
-    }
+        "Media launches & networking cocktails",
+      ],
+    },
   ];
 
   const caseStudies = [
     {
       title: "350+ Delegate Incentive in Langkawi",
       client: "Leading Tech Multinational",
-      image: "https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg",
-      desc: "U2 Travels managed a 4-day incentive program that culminated in a private yacht team-building competition, beachside themed BBQ gala dinner, and comprehensive resort accommodations for all delegates."
+      image:
+        "https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg",
+      desc: "U2 Travels managed a 4-day incentive program that culminated in a private yacht team-building competition, beachside themed BBQ gala dinner, and comprehensive resort accommodations for all delegates.",
     },
     {
       title: "Regional Sales Conference in Kuala Lumpur",
       client: "Global Financial Services",
-      image: "https://images.pexels.com/photos/2774576/pexels-photo-2774576.jpeg",
-      desc: "We provided full end-to-end logistics including ground transfer management with a fleet of 25 luxury coaches, stage layout design, and VIP hosting services for executives arriving from 8 countries."
+      image:
+        "https://images.pexels.com/photos/2774576/pexels-photo-2774576.jpeg",
+      desc: "We provided full end-to-end logistics including ground transfer management with a fleet of 25 luxury coaches, stage layout design, and VIP hosting services for executives arriving from 8 countries.",
     },
     {
       title: "Executive Board Retreat in Cameron Highlands",
       client: "Aviation & Logistics Enterprise",
-      image: "https://images.pexels.com/photos/3182796/pexels-photo-3182796.jpeg",
-      desc: "Designed a tranquil, high-focus boardroom retreat set inside a historic tea plantation. The 3-day itinerary blended business strategy sessions with private tea-tasting events and high-altitude golf tournaments."
-    }
+      image:
+        "https://images.pexels.com/photos/3182796/pexels-photo-3182796.jpeg",
+      desc: "Designed a tranquil, high-focus boardroom retreat set inside a historic tea plantation. The 3-day itinerary blended business strategy sessions with private tea-tasting events and high-altitude golf tournaments.",
+    },
   ];
 
   return (
     <div className="mice-page">
       {/* Hero Banner Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-start overflow-hidden pt-28 pb-16 md:pt-36">
-        <div className="absolute inset-0 z-0">
+      <section className="tp-hero">
+        <div className="tp-hero_bg">
           <Image
-            src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg"
+            src="https://images.pexels.com/photos/35042249/pexels-photo-35042249.jpeg"
             alt="MICE Corporate Events Background"
             fill
+            className="img-cover"
+            sizes="100vw"
             priority
-            className="object-cover object-center scale-102 transition-transform duration-1000"
-            style={{ filter: "brightness(0.15)" }}
           />
-          {/* Deep dark gradients */}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-slate-950/70 z-10" />
+          <div className="tp-hero_overlay"></div>
         </div>
-
-        <div className="container-large relative z-20 w-full px-4 md:px-8">
-          <div 
-            className="max-width-800 text-left flex flex-col items-start"
+        <div className="container-large tp-hero_content">
+          <p
+            className="text-size-eyebrow tp-hero_eyebrow"
             style={{
               opacity: loaded ? 1 : 0,
-              transform: loaded ? "translateY(0)" : "translateY(20px)",
-              transition: "opacity 0.8s ease-out, transform 0.8s ease-out",
+              transform: loaded ? "translateY(0)" : "translateY(1em)",
+              transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s",
             }}
           >
-            <span className="text-[#dfa447] text-xs font-black uppercase tracking-[0.25em] mb-4">
-              Corporate Travel & Events
-            </span>
-            <p 
-              className="text-white text-3xl md:text-8xl font-normal leading-[1.1] mb-6 tracking-tight"
-              style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-            >
-              MICE<br></br> Services
-            </p>
-            <p className="text-slate-300 mt-5 text-lg md:text-xl max-w-2xl leading-relaxed font-light mb-8">
-              Meetings, Incentives, Conferences, and Exhibitions custom-designed to inspire your team, showcase your brand, and elevate business connections.
-            </p>
+            Corporate Travel & Events
+          </p>
+          <h1
+            className="tp-hero_title"
+            style={{
+              opacity: loaded ? 1 : 0,
+              transform: loaded ? "translateY(0)" : "translateY(0.3em)",
+              transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s",
+            }}
+          >
+            MICE &amp; Events
+          </h1>
+          <p
+            className="tp-hero_desc"
+            style={{
+              opacity: loaded ? 1 : 0,
+              transform: loaded ? "translateY(0)" : "translateY(1em)",
+              transition: "opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s",
+            }}
+          >
+            Meetings, Incentives, Conferences, and Exhibitions custom-designed
+            to inspire your team, showcase your brand, and elevate business
+            connections.
+          </p>
+          <div
+            style={{
+              opacity: loaded ? 1 : 0,
+              transform: loaded ? "translateY(0)" : "translateY(1em)",
+              transition: "opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s",
+            }}
+          >
             <Link
               href="/contact"
               className="inline-flex items-center gap-2.5 mt-10 bg-white text-[#013b85] hover:bg-[#7ff74b] hover:text-black font-extrabold text-sm uppercase tracking-wider py-3.5 px-7 rounded-full shadow-lg transition-all duration-300 !no-underline"
@@ -138,18 +158,28 @@ export default function MiceSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Col: Creative Description */}
             <div className="flex flex-col gap-6 text-left">
-              <h2 
+              <h2
                 className="text-3xl md:text-4.5xl font-normal text-[#013b85] tracking-tight leading-tight"
                 style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
               >
                 Seamless Corporate Events, <br />
-                <span className="text-[#dfa447] italic">Tailored to Perfection</span>
+                <span className="text-[#dfa447] italic">
+                  Tailored to Perfection
+                </span>
               </h2>
               <p className="text-slate-600 text-base md:text-lg leading-relaxed font-light">
-                At U2 Travels & Tours, we understand that corporate events are a major investment in your people and partners. With over 23 years of experience, we deliver tailored logistics, premium accommodations, and bespoke itineraries that support your corporate objectives.
+                At U2 Travels & Tours, we understand that corporate events are a
+                major investment in your people and partners. With 18+ years of
+                experience, we deliver tailored logistics, premium
+                accommodations, and bespoke itineraries that support your
+                corporate objectives.
               </p>
               <p className="text-slate-500 text-sm md:text-base leading-relaxed">
-                Whether you need a confidential board session in a mountaintop resort or a high-capacity sales incentive for 500+ participants, our specialized events coordinators handle everything from flight arrangements and luxury coaches to staging, registration apps, and dining.
+                Whether you need a confidential board session in a mountaintop
+                resort or a high-capacity sales incentive for 500+ participants,
+                our specialized events coordinators handle everything from
+                flight arrangements and luxury coaches to staging, registration
+                apps, and dining.
               </p>
             </div>
 
@@ -157,23 +187,40 @@ export default function MiceSection() {
             <div className="grid grid-cols-2 gap-6">
               <div className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-100 hover:shadow-md transition-shadow flex flex-col gap-2">
                 <span className="text-4xl font-black text-[#013b85]">500+</span>
-                <span className="text-xs uppercase font-extrabold tracking-wider text-slate-400">Peak Delegate Capacity</span>
-                <p className="text-xs text-slate-500 mt-2">Flawlessly coordinated large-scale assemblies and charters.</p>
+                <span className="text-xs uppercase font-extrabold tracking-wider text-slate-400">
+                  Peak Delegate Capacity
+                </span>
+                <p className="text-xs text-slate-500 mt-2">
+                  Flawlessly coordinated large-scale assemblies and charters.
+                </p>
               </div>
               <div className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-100 hover:shadow-md transition-shadow flex flex-col gap-2">
-                <span className="text-4xl font-black text-[#013b85]">23+</span>
-                <span className="text-xs uppercase font-extrabold tracking-wider text-slate-400">Years Industry Standing</span>
-                <p className="text-xs text-slate-500 mt-2">Deep connections and trusted partnerships across hotels and venues.</p>
+                <span className="text-4xl font-black text-[#013b85]">18+</span>
+                <span className="text-xs uppercase font-extrabold tracking-wider text-slate-400">
+                  Years Industry Standing
+                </span>
+                <p className="text-xs text-slate-500 mt-2">
+                  Deep connections and trusted partnerships across hotels and
+                  venues.
+                </p>
               </div>
               <div className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-100 hover:shadow-md transition-shadow flex flex-col gap-2">
                 <span className="text-4xl font-black text-[#013b85]">100%</span>
-                <span className="text-xs uppercase font-extrabold tracking-wider text-slate-400">Custom Execution</span>
-                <p className="text-xs text-slate-500 mt-2">Every plan built from the ground up matching your criteria.</p>
+                <span className="text-xs uppercase font-extrabold tracking-wider text-slate-400">
+                  Custom Execution
+                </span>
+                <p className="text-xs text-slate-500 mt-2">
+                  Every plan built from the ground up matching your criteria.
+                </p>
               </div>
               <div className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-100 hover:shadow-md transition-shadow flex flex-col gap-2">
                 <span className="text-4xl font-black text-[#013b85]">24/7</span>
-                <span className="text-xs uppercase font-extrabold tracking-wider text-slate-400">On-Site Liaison</span>
-                <p className="text-xs text-slate-500 mt-2">Dedicated logistics managers and event teams at the site.</p>
+                <span className="text-xs uppercase font-extrabold tracking-wider text-slate-400">
+                  On-Site Liaison
+                </span>
+                <p className="text-xs text-slate-500 mt-2">
+                  Dedicated logistics managers and event teams at the site.
+                </p>
               </div>
             </div>
           </div>
@@ -187,21 +234,23 @@ export default function MiceSection() {
             <span className="text-[#dfa447] text-xs font-black uppercase tracking-[0.25em]">
               The Core Disciplines
             </span>
-            <h2 
+            <h2
               className="text-3xl md:text-5xl font-normal text-[#013b85] tracking-tight"
               style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
             >
               Our MICE Capabilities
             </h2>
             <p className="text-slate-500 text-sm md:text-base leading-relaxed">
-              We leverage an extensive network of luxury ground transports, hotels, and expert vendor partners to deliver outstanding results across all four core MICE segments.
+              We leverage an extensive network of luxury ground transports,
+              hotels, and expert vendor partners to deliver outstanding results
+              across all four core MICE segments.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {pillars.map((pillar, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 text-left flex flex-col justify-between"
               >
                 <div>
@@ -240,21 +289,22 @@ export default function MiceSection() {
             <span className="text-[#dfa447] text-xs font-black uppercase tracking-[0.25em]">
               Proven Track Record
             </span>
-            <h2 
+            <h2
               className="text-3xl md:text-5xl font-normal text-[#013b85] tracking-tight"
               style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
             >
               Events Successfully Managed
             </h2>
             <p className="text-slate-500 text-sm md:text-base">
-              A glimpse into a few corporate journeys planned and managed end-to-end by U2 Travels & Tours.
+              A glimpse into a few corporate journeys planned and managed
+              end-to-end by U2 Travels & Tours.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {caseStudies.map((study, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className="group bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full"
               >
                 {/* Image Container */}
@@ -298,7 +348,7 @@ export default function MiceSection() {
         </div>
         <div className="container-large relative z-10 px-4 md:px-8">
           <div className="max-w-3xl mx-auto text-center flex flex-col items-center gap-6">
-            <h2 
+            <h2
               className="text-3xl md:text-5.5xl font-normal tracking-tight leading-tight"
               style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
             >
@@ -306,7 +356,9 @@ export default function MiceSection() {
               <span className="text-[#dfa447] italic">Corporate Milestone</span>
             </h2>
             <p className="text-slate-200 text-base md:text-lg leading-relaxed font-light max-w-2xl">
-              Connect with our corporate events and MICE team to obtain a custom itinerary, cost estimation, and logistics breakdown for your upcoming event.
+              Connect with our corporate events and MICE team to obtain a custom
+              itinerary, cost estimation, and logistics breakdown for your
+              upcoming event.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-6">
               <Link

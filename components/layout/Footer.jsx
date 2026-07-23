@@ -7,7 +7,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
-  
+
   const handleSubscribe = (e) => {
     e.preventDefault();
     setStatus("submitting");
@@ -16,7 +16,7 @@ export default function Footer() {
       setEmail("");
     }, 1000);
   };
-  
+
   // Configure social media links here. Leave empty string to hide the icon.
   const socialLinks = {
     instagram: "https://instagram.com",
@@ -110,14 +110,20 @@ export default function Footer() {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
-                  <button type="submit" className="button" disabled={status === "submitting"}>
+                  <button
+                    type="submit"
+                    className="button"
+                    disabled={status === "submitting"}
+                  >
                     {status === "submitting" ? "Subscribing..." : "Subscribe"}
                   </button>
                 </form>
               )}
               {status === "error" && (
                 <div className="form-error" style={{ display: "block" }}>
-                  <div>Oops! Something went wrong while submitting the form.</div>
+                  <div>
+                    Oops! Something went wrong while submitting the form.
+                  </div>
                 </div>
               )}
             </div>

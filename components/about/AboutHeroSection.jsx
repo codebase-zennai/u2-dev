@@ -50,7 +50,7 @@ export default function AboutHeroSection() {
             <div className="video_box">
               <div className="video_bg">
                 <Image
-                  src="https://images.pexels.com/photos/2108845/pexels-photo-2108845.jpeg"
+                  src="https://images.pexels.com/photos/35431860/pexels-photo-35431860.jpeg"
                   alt="Beautiful Malaysia travel destination"
                   fill
                   className="parallax-img is-full"
@@ -79,7 +79,7 @@ export default function AboutHeroSection() {
                 }}
               >
                 Our main objective is to provide the most personalized service
-                to ensure maximum customer satisfaction. With over 25 years of
+                to ensure maximum customer satisfaction. With 18+ years of
                 experience in the travel industry, U2 Travels delivers
                 unforgettable tour experiences across Malaysia and the world.
               </p>
