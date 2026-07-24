@@ -20,10 +20,6 @@ export default function RegisterPage() {
     businessName: "",
     email: "",
     phone: "",
-    addressLine1: "",
-    addressLine2: "",
-    city: "",
-    zipCode: "",
     agreeToTerms: false,
   });
 
@@ -57,18 +53,7 @@ export default function RegisterPage() {
       setError("Phone number is required.");
       return;
     }
-    if (!formData.addressLine1.trim()) {
-      setError("Mailing Address is required.");
-      return;
-    }
-    if (!formData.city.trim()) {
-      setError("City is required.");
-      return;
-    }
-    if (!formData.zipCode.trim()) {
-      setError("Zip/Postal code is required.");
-      return;
-    }
+
     if (!formData.agreeToTerms) {
       setError("You must agree to the Terms of Service and Privacy Policy.");
       return;
@@ -90,10 +75,6 @@ export default function RegisterPage() {
         businessName: "",
         email: "",
         phone: "",
-        addressLine1: "",
-        addressLine2: "",
-        city: "",
-        zipCode: "",
         agreeToTerms: false,
       });
 
@@ -348,60 +329,7 @@ export default function RegisterPage() {
                 />
               </div>
 
-              {/* Mailing Address Fields */}
-              <div>
-                <label className="block text-[10px] font-black uppercase tracking-wider mb-2 text-slate-400">
-                  Mailing Address <span className="text-red-500">*</span>
-                </label>
-                <div className="flex flex-col gap-3">
-                  <input
-                    type="text"
-                    name="addressLine1"
-                    value={formData.addressLine1}
-                    onChange={handleInputChange}
-                    placeholder="Street address, P.O. Box, Company Name, C/O"
-                    className="w-full bg-slate-50 text-slate-900 text-xs px-4 py-3.5 rounded-xl border border-slate-200 focus:border-[#013b85] focus:bg-white focus:ring-1 focus:ring-[#013b85] outline-none transition-all"
-                  />
-                  <input
-                    type="text"
-                    name="addressLine2"
-                    value={formData.addressLine2}
-                    onChange={handleInputChange}
-                    placeholder="Apartment, Suite, Unit, Building, Floor, etc."
-                    className="w-full bg-slate-50 text-slate-900 text-xs px-4 py-3.5 rounded-xl border border-slate-200 focus:border-[#013b85] focus:bg-white focus:ring-1 focus:ring-[#013b85] outline-none transition-all"
-                  />
-                </div>
-              </div>
 
-              {/* City and Zip Code Fields Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-[10px] font-black uppercase tracking-wider mb-2 text-slate-400">
-                    City <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="city"
-                    value={formData.city}
-                    onChange={handleInputChange}
-                    placeholder="e.g. Kuala Lumpur"
-                    className="w-full bg-slate-50 text-slate-900 text-xs px-4 py-3.5 rounded-xl border border-slate-200 focus:border-[#013b85] focus:bg-white focus:ring-1 focus:ring-[#013b85] outline-none transition-all"
-                  />
-                </div>
-                <div>
-                  <label className="block text-[10px] font-black uppercase tracking-wider mb-2 text-slate-400">
-                    Zip/Postal code <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="zipCode"
-                    value={formData.zipCode}
-                    onChange={handleInputChange}
-                    placeholder="e.g. 50000"
-                    className="w-full bg-slate-50 text-slate-900 text-xs px-4 py-3.5 rounded-xl border border-slate-200 focus:border-[#013b85] focus:bg-white focus:ring-1 focus:ring-[#013b85] outline-none transition-all"
-                  />
-                </div>
-              </div>
 
               {/* Agreement Checkbox */}
               <div className="flex items-start gap-3 mt-2">

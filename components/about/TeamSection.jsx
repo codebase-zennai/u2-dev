@@ -9,13 +9,23 @@ const leaders = [
     role: "Founder & Executive Director",
     image: "/team/Jai Profile pic.jpg.jpeg",
   },
+  {
+    name: "Bhavani",
+    role: "Managing Director",
+    image: "/team/Bhavani Madam U2.png",
+  },
 ];
 
 const team = [
   {
-    name: "Madam Bhavani",
-    role: "General Manager",
-    image: "/team/Bhavani Madam U2.png",
+    name: "Thayaalan",
+    role: "Transport & Logistics Lead",
+    image: "/team/Thayaalan U2.png",
+  },
+  {
+    name: "Bhavika",
+    role: "Director of Sales and Marketing",
+    image: "/team/Bhavika U2.png",
   },
   {
     name: "Izwan",
@@ -23,19 +33,9 @@ const team = [
     image: "/team/Izwan U2.png",
   },
   {
-    name: "Thayaalan",
-    role: "Transport & Logistics Lead",
-    image: "/team/Thayaalan U2.png",
-  },
-  {
     name: "Bharathi",
-    role: "Senior Travel Consultant",
+    role: "Accounts Head",
     image: "/team/Bharathi U2.jpg",
-  },
-  {
-    name: "Poorni",
-    role: "Customer Relations Executive",
-    image: "/team/Poorni U2.png",
   },
   {
     name: "Danusha",
@@ -43,9 +43,9 @@ const team = [
     image: "/team/Danusha U2.png",
   },
   {
-    name: "Bhavika",
-    role: "Marketing Executive",
-    image: "/team/Bhavika U2.png",
+    name: "Poorni",
+    role: "Customer Relations Executive",
+    image: "/team/Poorni U2.png",
   },
   {
     name: "Bes",

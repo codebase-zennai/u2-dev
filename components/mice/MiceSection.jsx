@@ -348,13 +348,12 @@ export default function MiceSection() {
         </div>
         <div className="container-large relative z-10 px-4 md:px-8">
           <div className="max-w-3xl mx-auto text-center flex flex-col items-center gap-6">
-            <h2
-              className="text-3xl md:text-5.5xl font-normal tracking-tight leading-tight"
-              style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+            <p
+              className="text-3xl md:text-5.5xl text-[#dfa447]  font-normal tracking-tight leading-tight"
             >
               Let’s Plan Your Next <br />
-              <span className="text-[#dfa447] italic">Corporate Milestone</span>
-            </h2>
+              <span className="tp-hero_title">Corporate Milestone</span>
+            </p>
             <p className="text-slate-200 text-base md:text-lg leading-relaxed font-light max-w-2xl">
               Connect with our corporate events and MICE team to obtain a custom
               itinerary, cost estimation, and logistics breakdown for your
@@ -369,7 +368,7 @@ export default function MiceSection() {
               </Link>
               <a
                 href="mailto:mice@u2travels.com.my"
-                className="bg-transparent hover:bg-white/10 text-white font-extrabold text-xs uppercase tracking-wider py-4 px-8 rounded-full border-2 border-white transition-all !no-underline"
+                className="bg-[#7ff74b] hover:bg-[#7ff74b] !text-[#013b85] font-extrabold text-xs uppercase tracking-wider py-4 px-8 rounded-full transition-all !no-underline"
               >
                 Email Corporate Team
               </a>
