@@ -271,15 +271,39 @@ export default function TransportationSection() {
   // Execute Search
   const handleSearchClick = (e) => {
     e.preventDefault();
-    if (!selectedHub) {
-      alert("Please select a From origin.");
+
+    let currentHub = selectedHub;
+    if (!currentHub && fromInput) {
+      const matchedHub = HUBS.find(
+        (h) => h.toLowerCase() === fromInput.toLowerCase()
+      );
+      if (matchedHub) {
+        currentHub = matchedHub;
+        setSelectedHub(matchedHub);
+      }
+    }
+
+    let currentDest = selectedDestination;
+    if (currentHub && !currentDest && toInput) {
+      const dests = getDestinationsForHub(currentHub);
+      const matchedDest = dests.find(
+        (d) => d.toLowerCase() === toInput.toLowerCase()
+      );
+      if (matchedDest) {
+        currentDest = matchedDest;
+        setSelectedDestination(matchedDest);
+      }
+    }
+
+    if (!currentHub) {
+      alert("Please select a valid From origin from the options list.");
       return;
     }
-    if (!selectedDestination) {
-      alert("Please select a To destination.");
+    if (!currentDest) {
+      alert("Please select a valid To destination from the options list.");
       return;
     }
-    triggerSearch(selectedHub, selectedDestination);
+    triggerSearch(currentHub, currentDest);
   };
 
   const triggerSearch = (hub, destination) => {
@@ -415,7 +439,7 @@ Please confirm availability and booking. Thank you!`;
   const renderPriceOptions = (prices) => {
     if (!prices || Object.keys(prices).length === 0) {
       return (
-        <span className="text-gray-400 font-medium text-xs">
+        <span className="text-gray-500 font-medium text-xs">
           Contact for price
         </span>
       );
@@ -439,13 +463,13 @@ Please confirm availability and booking. Thank you!`;
           return (
             <div
               key={pax}
-              className="flex justify-between items-center text-sm border-b border-gray-800/20 pb-1 last:border-0 last:pb-0"
+              className="flex justify-between items-center text-sm border-b border-gray-200/60 pb-1 last:border-0 last:pb-0"
             >
-              <span className="text-gray-400 font-medium text-xs">{pax}</span>
+              <span className="text-gray-500 font-medium text-xs">{pax}</span>
               <div className="text-right">
-                <span className="text-white font-semibold block">{usdVal}</span>
+                <span className="text-gray-800 font-semibold block">{usdVal}</span>
                 {myrVal && (
-                  <span className="text-[10px] text-gray-500 block">
+                  <span className="text-[10px] text-gray-400 block">
                     {myrVal}
                   </span>
                 )}
@@ -514,13 +538,13 @@ Please confirm availability and booking. Thank you!`;
           <div className="tp-hero_overlay absolute inset-0 bg-black/60"></div>
         </div>
 
-        <div className="container mx-auto px-6 relative z-10 text-center -mt-10">
-          <span className="text-[#ceff65] font-semibold tracking-wider text-sm uppercase block mb-3 animate-fade-in">
+        <div className="container px-6 relative z-10 text-center">
+          <span className="font-semibold tp-hero_eyebrow tracking-wider text-sm uppercase block mb-3 animate-fade-in">
             Going Beyond Borders
           </span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
+          <p className="text-4xl md:text-6xl tp-hero_title font-bold mb-4 tracking-tight">
             Premium Transport Booker
-          </h1>
+          </p>
           <p className="text-gray-300 max-w-2xl mx-auto text-base md:text-lg">
             Compare transfer rates, private VIP sedans, executive vans, and
             coaches across Malaysia in real time.
@@ -529,7 +553,7 @@ Please confirm availability and booking. Thank you!`;
       </section>
 
       {/* Main Content Area */}
-      <section className="bg-[#080808] text-[#f5f1e5] pb-24 px-4 min-h-screen relative z-10">
+      <section className="text-gray-800 pb-24 px-4 min-h-screen relative z-10">
         {/* RedBus Floating Search Container */}
         <div className="max-w-6xl w-full mx-auto relative -mt-16 z-20">
           <form
@@ -544,7 +568,7 @@ Please confirm availability and booking. Thank you!`;
               {/* FROM field */}
               <div
                 ref={fromRef}
-                className="lg:col-span-3 relative border-b lg:border-b-0 lg:border-r border-gray-200 pb-3 lg:pb-0 lg:pr-4 flex items-center gap-3 cursor-pointer"
+                className="lg:col-span-4 relative border-b lg:border-b-0 lg:border-r border-gray-200 pb-3 lg:pb-0 lg:pr-4 flex items-center gap-3 cursor-pointer"
                 onClick={() => {
                   setShowFromDropdown(true);
                   setShowToDropdown(false);
@@ -559,10 +583,26 @@ Please confirm availability and booking. Thank you!`;
                   </label>
                   <input
                     type="text"
-                    className="w-full bg-transparent border-0 p-0 text-gray-800 text-sm font-bold focus:ring-0 focus:outline-none placeholder-gray-400"
+                    className="w-full bg-transparent border-0 p-0 text-gray-800 text-sm font-bold focus:ring-0 focus:outline-none placeholder-gray-400 cursor-text"
                     placeholder="Select Departure Origin"
                     value={fromInput}
-                    readOnly
+                    onChange={(e) => {
+                      setFromInput(e.target.value);
+                      setShowFromDropdown(true);
+                      const matchedHub = HUBS.find(
+                        (h) => h.toLowerCase() === e.target.value.toLowerCase()
+                      );
+                      if (matchedHub) {
+                        setSelectedHub(matchedHub);
+                      } else {
+                        setSelectedHub("");
+                      }
+                    }}
+                    onFocus={(e) => {
+                      e.target.select();
+                      setShowFromDropdown(true);
+                      setShowToDropdown(false);
+                    }}
                   />
                 </div>
 
@@ -572,32 +612,45 @@ Please confirm availability and booking. Thank you!`;
                     <p className="px-4 py-1.5 text-xs font-semibold text-gray-400 uppercase tracking-wider border-b border-gray-50">
                       Departure Hubs
                     </p>
-                    {HUBS.map((hub) => (
-                      <div
-                        key={hub}
-                        className="px-4 py-3 hover:bg-gray-50 font-bold text-sm text-gray-700 cursor-pointer flex items-center gap-2 border-b border-gray-50 last:border-0"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setFromInput(hub);
-                          setSelectedHub(hub);
-                          setShowFromDropdown(false);
-                          // Reset destination
-                          setToInput("");
-                          setSelectedDestination("");
-                          // Open To dropdown automatically
-                          setShowToDropdown(true);
-                        }}
-                      >
-                        <Bus className="w-4 h-4 text-gray-400" />
-                        {hub}
-                      </div>
-                    ))}
+                    {(() => {
+                      const hubsToShow = HUBS.filter((hub) => {
+                        if (!fromInput) return true;
+                        if (HUBS.includes(fromInput)) return true;
+                        return hub.toLowerCase().includes(fromInput.toLowerCase());
+                      });
+                      return hubsToShow.length === 0 ? (
+                        <div className="px-4 py-3 text-xs text-gray-400">
+                          No matching origins found
+                        </div>
+                      ) : (
+                        hubsToShow.map((hub) => (
+                          <div
+                            key={hub}
+                            className="px-4 py-3 hover:bg-gray-50 font-bold text-sm text-gray-700 cursor-pointer flex items-center gap-2 border-b border-gray-50 last:border-0"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setFromInput(hub);
+                              setSelectedHub(hub);
+                              setShowFromDropdown(false);
+                              // Reset destination
+                              setToInput("");
+                              setSelectedDestination("");
+                              // Open To dropdown automatically
+                              setShowToDropdown(true);
+                            }}
+                          >
+                            <Bus className="w-4 h-4 text-gray-400" />
+                            {hub}
+                          </div>
+                        ))
+                      );
+                    })()}
                   </div>
                 )}
               </div>
 
               {/* Swap Button */}
-              <div className="hidden lg:flex items-center justify-center">
+              <div className="hidden lg:flex lg:col-span-1 items-center justify-center">
                 <button
                   type="button"
                   onClick={handleSwap}
@@ -611,7 +664,7 @@ Please confirm availability and booking. Thank you!`;
               {/* TO field */}
               <div
                 ref={toRef}
-                className="lg:col-span-3 relative border-b lg:border-b-0 lg:border-r border-gray-200 pb-3 lg:pb-0 lg:pl-2 lg:pr-4 flex items-center gap-3 cursor-pointer"
+                className="lg:col-span-4 relative border-b lg:border-b-0 lg:border-r border-gray-200 pb-3 lg:pb-0 lg:pl-2 lg:pr-4 flex items-center gap-3 cursor-pointer"
                 onClick={() => {
                   if (!selectedHub) {
                     alert("Please select a 'From' origin first.");
@@ -630,14 +683,36 @@ Please confirm availability and booking. Thank you!`;
                   </label>
                   <input
                     type="text"
-                    className="w-full bg-transparent border-0 p-0 text-gray-800 text-sm font-bold focus:ring-0 focus:outline-none placeholder-gray-400"
+                    className="w-full bg-transparent border-0 p-0 text-gray-800 text-sm font-bold focus:ring-0 focus:outline-none placeholder-gray-400 cursor-text"
                     placeholder={
                       selectedHub
                         ? "Where are you going?"
                         : "Select From origin first"
                     }
                     value={toInput}
-                    readOnly
+                    onChange={(e) => {
+                      setToInput(e.target.value);
+                      setShowToDropdown(true);
+                      const dests = getDestinationsForHub(selectedHub);
+                      const matchedDest = dests.find(
+                        (d) => d.toLowerCase() === e.target.value.toLowerCase()
+                      );
+                      if (matchedDest) {
+                        setSelectedDestination(matchedDest);
+                      } else {
+                        setSelectedDestination("");
+                      }
+                    }}
+                    onFocus={(e) => {
+                      if (!selectedHub) {
+                        alert("Please select a 'From' origin first.");
+                        return;
+                      }
+                      e.target.select();
+                      setShowToDropdown(true);
+                      setShowFromDropdown(false);
+                    }}
+                    disabled={!selectedHub}
                   />
                 </div>
 
@@ -647,88 +722,79 @@ Please confirm availability and booking. Thank you!`;
                     <p className="px-4 py-1.5 text-xs font-semibold text-gray-400 uppercase tracking-wider border-b border-gray-50">
                       Popular Destinations
                     </p>
-                    {getDestinationsForHub(selectedHub).map((dest) => (
-                      <div
-                        key={dest}
-                        className="px-4 py-3 hover:bg-gray-50 text-sm font-bold text-gray-700 cursor-pointer flex items-center gap-2 border-b border-gray-50 last:border-0"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setToInput(dest);
-                          setSelectedDestination(dest);
-                          setShowToDropdown(false);
-                        }}
-                      >
-                        <MapPin className="w-4 h-4 text-gray-400" />
-                        {dest}
-                      </div>
-                    ))}
+                    {(() => {
+                      const allDests = getDestinationsForHub(selectedHub);
+                      const destsToShow = allDests.filter((dest) => {
+                        if (!toInput) return true;
+                        if (allDests.includes(toInput)) return true;
+                        return dest.toLowerCase().includes(toInput.toLowerCase());
+                      });
+                      return destsToShow.length === 0 ? (
+                        <div className="px-4 py-3 text-xs text-gray-400">
+                          No matching destinations found
+                        </div>
+                      ) : (
+                        destsToShow.map((dest) => (
+                          <div
+                            key={dest}
+                            className="px-4 py-3 hover:bg-gray-50 text-sm font-bold text-gray-700 cursor-pointer flex items-center gap-2 border-b border-gray-50 last:border-0"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setToInput(dest);
+                              setSelectedDestination(dest);
+                              setShowToDropdown(false);
+                            }}
+                          >
+                            <MapPin className="w-4 h-4 text-gray-400" />
+                            {dest}
+                          </div>
+                        ))
+                      );
+                    })()}
                   </div>
                 )}
               </div>
 
-              {/* Date of Journey */}
-              <div className="lg:col-span-3 relative border-b lg:border-b-0 lg:border-r border-gray-200 pb-3 lg:pb-0 lg:pl-2 lg:pr-4 flex items-center gap-3 cursor-pointer">
-                <div className="p-2 bg-gray-100 rounded-full">
-                  <Calendar className="text-gray-600 w-5 h-5 flex-shrink-0" />
-                </div>
-                <div className="flex-grow relative">
-                  <label className="text-xs text-gray-500 block font-semibold uppercase tracking-wider">
-                    Date of Journey
-                  </label>
-                  <div className="text-gray-800 text-sm font-bold">
-                    {dateFormatted}{" "}
-                    <span className="text-xs text-gray-400 font-normal ml-1">
-                      {dateRelative}
-                    </span>
-                  </div>
-                  <input
-                    type="date"
-                    value={journeyDate}
-                    onChange={(e) => setJourneyDate(e.target.value)}
-                    className="absolute inset-0 opacity-0 w-full cursor-pointer z-10"
-                  />
-                </div>
-              </div>
-
-              {/* Booking for Women Toggle */}
-              <div className="lg:col-span-2 lg:pl-2 flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2">
-                  <div className="relative w-8 h-8 rounded-full overflow-hidden border border-pink-200 bg-pink-50 flex items-center justify-center flex-shrink-0">
-                    <span className="text-base">👩</span>
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold text-gray-800 block leading-tight">
-                      Booking for women
-                    </span>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        alert(
-                          "Women Safety Mode: Highlighting direct routes with verified travel details, reserved premium front seating rows, and optional female-driver matching support.",
-                        );
-                      }}
-                      className="text-[10px] text-pink-500 hover:text-pink-600 font-bold underline"
-                    >
-                      Know more
-                    </a>
-                  </div>
-                </div>
-
-                {/* Switch Slider */}
-                <button
-                  type="button"
-                  onClick={() => setForWomen(!forWomen)}
-                  className={`w-11 h-6 rounded-full transition-colors relative flex items-center ${
-                    forWomen ? "bg-pink-500" : "bg-gray-300"
-                  }`}
-                >
-                  <span
-                    className={`w-4 h-4 rounded-full bg-white shadow-md absolute transition-transform ${
-                      forWomen ? "translate-x-6" : "translate-x-1"
+              {/* Category Selector field */}
+              <div className="lg:col-span-3 relative pb-3 lg:pb-0 lg:pl-2 flex flex-col justify-center">
+                <label className="text-xs text-gray-500 block font-semibold uppercase tracking-wider mb-1.5">
+                  Vehicle Type
+                </label>
+                <div className="flex gap-1 bg-gray-100 p-1 rounded-xl text-xs w-full">
+                  <button
+                    type="button"
+                    onClick={() => setActiveCategoryFilter("ALL")}
+                    className={`flex-1 py-1.5 rounded-lg font-bold transition-all text-center cursor-pointer ${
+                      activeCategoryFilter === "ALL"
+                        ? "bg-[#013b85] text-white shadow-sm"
+                        : "text-gray-600 hover:text-gray-900"
                     }`}
-                  />
-                </button>
+                  >
+                    All
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveCategoryFilter("FIT")}
+                    className={`flex-1 py-1.5 rounded-lg font-bold transition-all text-center cursor-pointer ${
+                      activeCategoryFilter === "FIT"
+                        ? "bg-[#013b85] text-white shadow-sm"
+                        : "text-gray-600 hover:text-gray-900"
+                    }`}
+                  >
+                    Private Car
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveCategoryFilter("COACH")}
+                    className={`flex-1 py-1.5 rounded-lg font-bold transition-all text-center cursor-pointer ${
+                      activeCategoryFilter === "COACH"
+                        ? "bg-[#013b85] text-white shadow-sm"
+                        : "text-gray-600 hover:text-gray-900"
+                    }`}
+                  >
+                    Coach/Bus
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -738,17 +804,17 @@ Please confirm availability and booking. Thank you!`;
               className="absolute left-1/2 -translate-x-1/2 -bottom-6 bg-[#d82c34] text-white hover:bg-[#b02228] px-8 py-3 rounded-full flex items-center gap-2 font-bold shadow-lg transition duration-200 z-20 cursor-pointer text-sm tracking-wider uppercase"
             >
               <Search className="w-4 h-4" />
-              Search buses
+              Search Transfers
             </button>
           </form>
         </div>
 
         {/* Dynamic Women safety Banner */}
         {forWomen && (
-          <div className="max-w-6xl mx-auto mt-12 bg-pink-950/30 border border-pink-500/30 rounded-2xl p-4 flex items-center gap-3 text-pink-200 animate-fade-in shadow-md">
-            <Heart className="w-5 h-5 text-pink-400 fill-pink-400 flex-shrink-0" />
+          <div className="max-w-6xl mx-auto mt-12 bg-pink-50 border border-pink-200 rounded-2xl p-4 flex items-center gap-3 text-pink-700 animate-fade-in shadow-md">
+            <Heart className="w-5 h-5 text-pink-500 fill-pink-500 flex-shrink-0" />
             <p className="text-sm font-semibold">
-              <strong className="text-pink-300">
+              <strong className="text-pink-800">
                 Women Safety Mode Active:
               </strong>{" "}
               Showing prioritized direct family transfers. Safe check-ins, front
@@ -762,12 +828,12 @@ Please confirm availability and booking. Thank you!`;
           <span
             className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${
               isUsingSupabase
-                ? "bg-green-500/10 text-green-400 border border-green-500/20"
-                : "bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                ? "bg-green-100 text-green-700 border border-green-200"
+                : "bg-amber-100 text-amber-700 border border-amber-200"
             }`}
           >
             <span
-              className={`w-2 h-2 rounded-full ${isUsingSupabase ? "bg-green-400" : "bg-amber-400"} animate-pulse`}
+              className={`w-2 h-2 rounded-full ${isUsingSupabase ? "bg-green-500" : "bg-amber-500"} animate-pulse`}
             ></span>
             {isUsingSupabase ? "Supabase Connected" : "Local Data Fallback"}
           </span>
@@ -778,57 +844,22 @@ Please confirm availability and booking. Thank you!`;
           {/* LEFT: Search Results Ticket List */}
           <div className="lg:col-span-8 space-y-6">
             {searched && (
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-800 pb-4">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-200 pb-4">
                 <div>
-                  <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white">
+                  <h2 className="text-xl md:text-2xl font-bold tracking-tight text-[#013b85]">
                     {selectedHub} to {selectedDestination}
                   </h2>
-                  <p className="text-xs text-gray-400 mt-1">
-                    Found {filteredResults.length} transfer services for{" "}
-                    {dateFormatted}
+                  <p className="text-xs text-gray-500 mt-1">
+                    Found {filteredResults.length} available transfer services
                   </p>
-                </div>
-
-                {/* Filter Tabs */}
-                <div className="flex gap-2 bg-zinc-900 p-1.5 rounded-xl border border-zinc-800 text-xs">
-                  <button
-                    onClick={() => setActiveCategoryFilter("ALL")}
-                    className={`px-3 py-1.5 rounded-lg font-bold transition-all ${
-                      activeCategoryFilter === "ALL"
-                        ? "bg-[#ceff65] text-black"
-                        : "text-gray-400 hover:text-white"
-                    }`}
-                  >
-                    All
-                  </button>
-                  <button
-                    onClick={() => setActiveCategoryFilter("FIT")}
-                    className={`px-3 py-1.5 rounded-lg font-bold transition-all ${
-                      activeCategoryFilter === "FIT"
-                        ? "bg-[#ceff65] text-black"
-                        : "text-gray-400 hover:text-white"
-                    }`}
-                  >
-                    Private Car (FIT)
-                  </button>
-                  <button
-                    onClick={() => setActiveCategoryFilter("COACH")}
-                    className={`px-3 py-1.5 rounded-lg font-bold transition-all ${
-                      activeCategoryFilter === "COACH"
-                        ? "bg-[#ceff65] text-black"
-                        : "text-gray-400 hover:text-white"
-                    }`}
-                  >
-                    Coach Bus
-                  </button>
                 </div>
               </div>
             )}
 
             {loading ? (
-              <div className="text-center py-20 bg-zinc-950/40 rounded-3xl border border-zinc-900">
-                <div className="w-10 h-10 border-4 border-t-[#ceff65] border-zinc-800 rounded-full animate-spin mx-auto mb-4"></div>
-                <p className="text-gray-400 font-medium">
+              <div className="text-center py-20 bg-white rounded-3xl border border-gray-200 shadow-sm">
+                <div className="w-10 h-10 border-4 border-t-[#013b85] border-gray-200 rounded-full animate-spin mx-auto mb-4"></div>
+                <p className="text-gray-500 font-medium">
                   Scanning transportation databases...
                 </p>
               </div>
@@ -838,10 +869,10 @@ Please confirm availability and booking. Thank you!`;
                 return (
                   <div
                     key={ticket.id || `ticket-${index}`}
-                    className={`bg-zinc-950/40 border transition-all duration-300 rounded-[20px] overflow-hidden group ${
+                    className={`bg-white border transition-all duration-300 rounded-[20px] overflow-hidden group ${
                       forWomen
-                        ? "border-pink-500/20 hover:border-pink-400/50 shadow-md shadow-pink-950/5"
-                        : "border-zinc-900 hover:border-zinc-800/80 shadow-lg hover:shadow-black/40"
+                        ? "border-pink-200 hover:border-pink-300 shadow-md shadow-pink-950/5"
+                        : "border-gray-200 hover:border-gray-300 shadow-md hover:shadow-lg hover:shadow-black/5"
                     }`}
                     style={{
                       animationDelay: `${index * 50}ms`,
@@ -855,8 +886,8 @@ Please confirm availability and booking. Thank you!`;
                           <span
                             className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
                               ticket.category === "FIT"
-                                ? "bg-blue-500/10 text-blue-400 border border-blue-500/20"
-                                : "bg-[#ceff65]/10 text-[#ceff65] border border-[#ceff65]/20"
+                                ? "bg-blue-50 text-blue-700 border border-blue-100"
+                                : "bg-[#013b85]/10 text-[#013b85] border border-[#013b85]/20"
                             }`}
                           >
                             {ticket.category === "FIT"
@@ -865,25 +896,25 @@ Please confirm availability and booking. Thank you!`;
                           </span>
 
                           {forWomen && (
-                            <span className="bg-pink-500/10 text-pink-400 border border-pink-500/20 px-2 py-0.5 rounded-full text-[10px] font-bold flex items-center gap-1">
+                            <span className="bg-pink-50 text-pink-700 border border-pink-100 px-2 py-0.5 rounded-full text-[10px] font-bold flex items-center gap-1">
                               👩 Safety Approved
                             </span>
                           )}
                         </div>
 
-                        <h3 className="text-lg font-bold text-white group-hover:text-[#ceff65] transition-colors leading-tight">
+                        <h3 className="text-lg font-bold text-gray-800 group-hover:text-[#013b85] transition-colors leading-tight">
                           {ticket.route_raw}
                         </h3>
 
-                        <div className="flex flex-wrap gap-1.5 pt-1 text-[11px] text-gray-400 font-medium">
-                          <span className="bg-zinc-900/80 px-2 py-1 rounded">
+                        <div className="flex flex-wrap gap-1.5 pt-1 text-[11px] font-medium text-gray-600">
+                          <span className="bg-gray-100 px-2 py-1 rounded">
                             24/7 Support
                           </span>
-                          <span className="bg-zinc-900/80 px-2 py-1 rounded">
+                          <span className="bg-gray-100 px-2 py-1 rounded">
                             Instant Confirmation
                           </span>
                           {ticket.notes && (
-                            <span className="bg-zinc-900/80 text-gray-300 px-2 py-1 rounded border border-zinc-800">
+                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded border border-gray-200">
                               ℹ️ {ticket.notes}
                             </span>
                           )}
@@ -891,36 +922,36 @@ Please confirm availability and booking. Thank you!`;
                       </div>
 
                       {/* Timeline/Journey details */}
-                      <div className="md:col-span-4 flex items-center justify-center py-2 border-y md:border-y-0 md:border-x border-zinc-900/60 px-4">
+                      <div className="md:col-span-4 flex items-center justify-center py-2 border-y md:border-y-0 md:border-x border-gray-200/60 px-4">
                         <div className="flex items-center gap-3 w-full max-w-[200px]">
-                          <div className="w-2 h-2 rounded-full bg-gray-400 flex-shrink-0"></div>
+                          <div className="w-2 h-2 rounded-full bg-gray-300 flex-shrink-0"></div>
                           <div className="flex-grow flex flex-col items-center relative py-1">
                             <span className="text-[10px] text-gray-500 font-semibold block mb-1">
                               {ticket.category === "FIT"
                                 ? "Flexible Schedule"
                                 : "Standard Route"}
                             </span>
-                            <div className="w-full border-t border-dashed border-zinc-800 relative">
-                              <Bus className="w-4 h-4 text-zinc-700 absolute left-1/2 -translate-x-1/2 -top-2 bg-[#080808] px-0.5" />
+                            <div className="w-full border-t border-dashed border-gray-200 relative">
+                              <Bus className="w-4 h-4 text-gray-400 absolute left-1/2 -translate-x-1/2 -top-2 bg-white px-0.5" />
                             </div>
-                            <span className="text-[10px] text-gray-400 font-bold block mt-1 flex items-center gap-1">
-                              <Clock className="w-3 h-3 text-[#ceff65]" />
+                            <span className="text-[10px] text-gray-600 font-bold block mt-1 flex items-center gap-1">
+                              <Clock className="w-3 h-3 text-[#013b85]" />
                               Direct Transfer
                             </span>
                           </div>
-                          <div className="w-2 h-2 rounded-full bg-[#ceff65] flex-shrink-0"></div>
+                          <div className="w-2 h-2 rounded-full bg-[#013b85] flex-shrink-0"></div>
                         </div>
                       </div>
 
                       {/* Pricing grid & Booking Button */}
                       <div className="md:col-span-4 space-y-4">
-                        <div className="bg-zinc-900/40 p-3.5 rounded-xl border border-zinc-900">
+                        <div className="bg-gray-50 p-3.5 rounded-xl border border-gray-100">
                           <p className="text-[10px] text-gray-500 font-semibold uppercase tracking-wider mb-2">
                             Available Capacity Rates
                           </p>
                           {renderPriceOptions(ticket.prices)}
                           {ticket.tipping && (
-                            <div className="mt-2 text-[10px] text-[#ceff65]/90 bg-[#ceff65]/5 px-2 py-1 rounded border border-[#ceff65]/10 flex items-center justify-between">
+                            <div className="mt-2 text-[10px] text-gray-700 bg-gray-100 px-2 py-1 rounded border border-gray-200 flex items-center justify-between">
                               <span>Driver Tipping:</span>
                               <strong>{ticket.tipping}</strong>
                             </div>
@@ -929,7 +960,7 @@ Please confirm availability and booking. Thank you!`;
 
                         <button
                           onClick={() => openBooking(ticket)}
-                          className="w-full py-2.5 bg-[#ceff65] hover:bg-[#b5eb45] text-black font-bold rounded-xl transition-all shadow-md active:scale-95 flex items-center justify-center gap-2 text-sm cursor-pointer"
+                          className="w-full py-2.5 bg-[#013b85] hover:bg-[#012f6a] text-white font-bold rounded-xl transition-all shadow-md active:scale-95 flex items-center justify-center gap-2 text-sm cursor-pointer"
                         >
                           Book Transfer
                         </button>
@@ -937,13 +968,13 @@ Please confirm availability and booking. Thank you!`;
                     </div>
 
                     {/* Expandable Tabs footer (Inclusions, Exclusions, Policies) */}
-                    <div className="bg-zinc-950/90 border-t border-zinc-900/60 px-5 py-2.5 flex flex-wrap gap-4 text-xs">
+                    <div className="bg-gray-50 border-t border-gray-100 px-5 py-2.5 flex flex-wrap gap-4 text-xs">
                       <button
                         onClick={() => toggleDetails(ticket.id, "inc")}
                         className={`flex items-center gap-1 font-bold ${
                           isExpanded && isExpanded.tab === "inc"
-                            ? "text-[#ceff65]"
-                            : "text-gray-400 hover:text-white"
+                            ? "text-[#013b85]"
+                            : "text-gray-500 hover:text-gray-800"
                         }`}
                       >
                         Inclusions & Info
@@ -956,8 +987,8 @@ Please confirm availability and booking. Thank you!`;
                         onClick={() => toggleDetails(ticket.id, "rules")}
                         className={`flex items-center gap-1 font-bold ${
                           isExpanded && isExpanded.tab === "rules"
-                            ? "text-[#ceff65]"
-                            : "text-gray-400 hover:text-white"
+                            ? "text-[#013b85]"
+                            : "text-gray-500 hover:text-gray-800"
                         }`}
                       >
                         Policies & Surcharges
@@ -969,16 +1000,16 @@ Please confirm availability and booking. Thank you!`;
 
                     {/* Expandable Panel Body */}
                     {isExpanded && (
-                      <div className="bg-zinc-950 border-t border-zinc-900 p-5 text-sm text-gray-300 space-y-3 animate-slide-down">
+                      <div className="bg-white border-t border-gray-100 p-5 text-sm text-gray-600 space-y-3 animate-slide-down">
                         {isExpanded.tab === "inc" && (
                           <div className="space-y-3">
                             <div className="flex gap-2">
-                              <ShieldCheck className="w-4 h-4 text-[#ceff65] flex-shrink-0 mt-0.5" />
+                              <ShieldCheck className="w-4 h-4 text-[#013b85] flex-shrink-0 mt-0.5" />
                               <div>
-                                <h4 className="font-bold text-white text-xs uppercase tracking-wide">
+                                <h4 className="font-bold text-gray-800 text-xs uppercase tracking-wide">
                                   Rate Includes
                                 </h4>
-                                <p className="text-xs text-gray-400 mt-1">
+                                <p className="text-xs text-gray-500 mt-1">
                                   {ticket.sheet_name.includes("COACH")
                                     ? "Driver, toll & fuel fee, and Professional Tour Guide Fee."
                                     : "Private dedicated vehicle, experienced local driver, toll charges, and fuel fees."}
@@ -987,7 +1018,7 @@ Please confirm availability and booking. Thank you!`;
                             </div>
 
                             {forWomen && (
-                              <div className="bg-pink-950/20 border border-pink-500/20 p-2.5 rounded-lg flex items-center gap-2 text-pink-300 text-xs">
+                              <div className="bg-pink-50 border border-pink-100 p-2.5 rounded-lg flex items-center gap-2 text-pink-700 text-xs">
                                 <span>🌸</span>
                                 <div>
                                   <strong>Women Safety Preference:</strong>{" "}
@@ -1003,20 +1034,20 @@ Please confirm availability and booking. Thank you!`;
                         {isExpanded.tab === "rules" && (
                           <div className="space-y-3 text-xs">
                             <div>
-                              <h4 className="font-bold text-white uppercase tracking-wide text-[10px] mb-1">
+                              <h4 className="font-bold text-gray-800 uppercase tracking-wide text-[10px] mb-1">
                                 Exclusions
                               </h4>
-                              <p className="text-gray-400">
+                              <p className="text-gray-500">
                                 Accommodation for overland transfers & guide
                                 services (unless explicitly stated otherwise).
                               </p>
                             </div>
 
                             <div>
-                              <h4 className="font-bold text-white uppercase tracking-wide text-[10px] mb-1">
+                              <h4 className="font-bold text-gray-800 uppercase tracking-wide text-[10px] mb-1">
                                 Peak Surcharges
                               </h4>
-                              <ul className="list-disc pl-4 space-y-1 text-gray-400">
+                              <ul className="list-disc pl-4 space-y-1 text-gray-500">
                                 <li>
                                   <strong>Midnight Surcharge:</strong>{" "}
                                   {ticket.sheet_name.includes("COACH")
@@ -1040,12 +1071,12 @@ Please confirm availability and booking. Thank you!`;
                 );
               })
             ) : (
-              <div className="text-center py-16 bg-zinc-950/40 rounded-3xl border border-zinc-900 p-6">
-                <AlertCircle className="w-12 h-12 text-[#ceff65] mx-auto mb-4" />
-                <h3 className="text-lg font-bold text-white mb-2">
+              <div className="text-center py-16 bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+                <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
+                <h3 className="text-lg font-bold text-gray-800 mb-2">
                   No Direct Transfers Found
                 </h3>
-                <p className="text-gray-400 max-w-md mx-auto text-sm">
+                <p className="text-gray-500 max-w-md mx-auto text-sm">
                   We couldn&apos;t find direct database listings for &quot;
                   {fromInput}&quot; to &quot;{toInput}&quot;. Please try
                   selecting alternate hub points (Kuala Lumpur, Penang, or
@@ -1057,15 +1088,15 @@ Please confirm availability and booking. Thank you!`;
 
           {/* RIGHT: Recommendations Side Section */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="bg-zinc-950/40 border border-zinc-900 rounded-[20px] p-5 md:p-6 space-y-5">
+            <div className="bg-white border border-gray-200 rounded-[20px] p-5 md:p-6 space-y-5 shadow-sm">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-[#ceff65]" />
-                <h3 className="text-lg font-bold text-white">
+                <Sparkles className="w-5 h-5 text-[#013b85]" />
+                <h3 className="text-lg font-bold text-[#013b85]">
                   Recommended Tours
                 </h3>
               </div>
 
-              <p className="text-xs text-gray-400">
+              <p className="text-xs text-gray-500">
                 Enhance your travel with local sightseeing packages and overland
                 tours managed by our own fleet.
               </p>
@@ -1077,29 +1108,29 @@ Please confirm availability and booking. Thank you!`;
                   return (
                     <div
                       key={tour.id || `tour-${index}`}
-                      className="group border border-zinc-900 hover:border-zinc-800 p-3.5 rounded-xl bg-zinc-950/60 transition-colors flex items-start justify-between gap-3"
+                      className="group border border-gray-100 p-3.5 rounded-xl bg-gray-50/50 hover:bg-gray-50 hover:border-gray-200 transition-colors flex items-start justify-between gap-3 shadow-sm"
                     >
                       <div className="space-y-1.5">
-                        <span className="text-[9px] font-bold text-gray-500 uppercase tracking-widest block">
+                        <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest block">
                           {tour.category} •{" "}
                           {tour.sheet_name.replace("2026", "").trim()}
                         </span>
-                        <h4 className="text-sm font-bold text-gray-200 group-hover:text-[#ceff65] transition-colors leading-tight">
+                        <h4 className="text-sm font-bold text-gray-700 group-hover:text-[#013b85] transition-colors leading-tight">
                           {tour.route_raw}
                         </h4>
                         {tour.notes && (
-                          <p className="text-[10px] text-gray-400">
+                          <p className="text-[10px] text-gray-500">
                             {tour.notes}
                           </p>
                         )}
                       </div>
                       <div className="text-right flex-shrink-0">
-                        <span className="text-xs text-[#ceff65] font-bold block">
+                        <span className="text-xs text-[#013b85] font-bold block">
                           {entryPrice}
                         </span>
                         <button
                           onClick={() => openBooking(tour)}
-                          className="mt-2 text-[10px] bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-800 px-2.5 py-1 rounded-md transition-colors"
+                          className="mt-2 text-[10px] bg-[#013b85] hover:bg-[#012f6a] text-white px-2.5 py-1 rounded-md transition-colors cursor-pointer"
                         >
                           Book
                         </button>
@@ -1109,13 +1140,13 @@ Please confirm availability and booking. Thank you!`;
                 })}
               </div>
 
-              <div className="pt-2 border-t border-zinc-900 text-center">
+              <div className="pt-2 border-t border-gray-100 text-center">
                 <span className="text-xs text-gray-500 font-medium">
                   Looking for customized itineraries?
                 </span>
                 <Link
                   href="/contact"
-                  className="block mt-2 text-xs text-[#ceff65] font-bold underline hover:text-[#b5eb45]"
+                  className="block mt-2 text-xs text-[#013b85] font-bold underline hover:text-[#012f6a]"
                 >
                   Contact our consultants
                 </Link>
@@ -1128,7 +1159,7 @@ Please confirm availability and booking. Thank you!`;
       {/* Booking Form Dialog Modal */}
       {bookingModalOpen && selectedTicket && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 overflow-y-auto backdrop-blur-sm animate-fade-in">
-          <div className="bg-white text-black max-w-lg w-full rounded-3xl p-6 md:p-8 relative shadow-2xl space-y-5 my-8">
+          <div className="bg-white text-black max-w-lg w-full rounded-3xl p-6 md:p-8 relative shadow-2xl space-y-5 my-8 max-h-[90vh] flex flex-col">
             {/* Close Button */}
             <button
               onClick={() => setBookingModalOpen(false)}
@@ -1158,7 +1189,7 @@ Please confirm availability and booking. Thank you!`;
                 {successMessage}
               </div>
             ) : (
-              <form onSubmit={handleBookingSubmit} className="space-y-4">
+              <form onSubmit={handleBookingSubmit} className="space-y-4 overflow-y-auto flex-grow pr-1">
                 {/* Inputs grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
