@@ -143,7 +143,8 @@ export default function AboutUsSection() {
                 Official Recognition
               </h3>
               <p className="text-sm text-white/60 font-light leading-relaxed">
-                Proudly affiliated with the Ministry of Tourism Malaysia, PATA, MATTA, MITA, and other trusted tourism organizations.
+                Proudly affiliated with the Ministry of Tourism Malaysia, PATA,
+                MATTA, MITA, and other trusted tourism organizations.
               </p>
             </div>
 
