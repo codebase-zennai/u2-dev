@@ -243,7 +243,7 @@ export default function Header2({ isSolid = false }) {
                           <div className="link_line"></div>
                         </NavigationMenuTrigger>
                         <NavigationMenuContent>
-                          <div className="w-[580px] p-6 bg-white rounded-2xl shadow-2xl border border-slate-100 grid grid-cols-2 gap-6">
+                          <div className="w-[580px] p-6 grid grid-cols-2 gap-6">
                             {/* Left Column: Malaysian Tours */}
                             <div>
                               <h4 className="text-xs font-black tracking-widest text-[#013b85] uppercase mb-4 pb-2 border-b border-slate-100 flex items-center justify-between">

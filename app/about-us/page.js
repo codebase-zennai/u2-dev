@@ -21,7 +21,7 @@ export default function AboutPage() {
         <AboutHeroSection />
         <HistorySection />
         <TeamSection />
-        <GallerySection />
+        {/* <GallerySection /> */}
         <StaffSection />
         <BottomCTASection />
       </main>
