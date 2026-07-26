@@ -34,17 +34,43 @@ export default function ContactSection() {
     e.preventDefault();
     setFormStatus("submitting");
 
-    // Simulate form submission
-    setTimeout(() => {
-      setFormStatus("success");
-      setFormData({
-        first_name: "",
-        last_name: "",
-        email: "",
-        phone: "",
-        message: "",
+    try {
+      const accessKey = "575b3a59-be72-4f05-898a-fd202acc9c60";
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New Contact Inquiry: ${formData.first_name} ${formData.last_name}`,
+          from_name: "U2 Travels Contact Form",
+          replyto: formData.email,
+          name: `${formData.first_name} ${formData.last_name}`,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+        }),
       });
-    }, 1000);
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setFormStatus("success");
+        setFormData({
+          first_name: "",
+          last_name: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+      } else {
+        setFormStatus("error");
+      }
+    } catch (err) {
+      console.error("Contact submit error:", err);
+      setFormStatus("error");
+    }
   };
 
   return (

@@ -198,7 +198,7 @@ export default function ToursPage({
   );
 
   return (
-    <section className="section is-location-hero">
+    <section className="section is-location-hero mb-10">
       <div className="container-large">
         {/* Hero Header */}
         <div className="margin-bottom-48">
