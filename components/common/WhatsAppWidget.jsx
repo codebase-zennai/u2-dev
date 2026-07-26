@@ -14,7 +14,8 @@ export default function WhatsAppWidget() {
 
   if (!mounted) return null;
 
-  const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "601111666872";
+  const rawWaNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "601111666872";
+  const waNumber = rawWaNumber.replace(/[^0-9]/g, "");
   const defaultMsg = encodeURIComponent(
     "Hello U2 Travels & Tours! 👋 I would like to inquire about your tour packages and transportation services.",
   );

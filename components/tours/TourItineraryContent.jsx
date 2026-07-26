@@ -43,7 +43,8 @@ export default function TourItineraryContent({ tour }) {
   const handleBookingSubmit = (e) => {
     e.preventDefault();
 
-    const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "601111666872"; // WhatsApp support number
+    const rawWaNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "601111666872";
+    const waNumber = rawWaNumber.replace(/[^0-9]/g, "");
 
     let formattedDate = "Not specified";
     if (bookingDate) {

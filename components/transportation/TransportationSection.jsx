@@ -394,7 +394,8 @@ export default function TransportationSection() {
     }
 
     // Build WhatsApp Message redirect
-    const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "601111666872";
+    const rawWaNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "601111666872";
+    const waNumber = rawWaNumber.replace(/[^0-9]/g, "");
     const formattedDate = formatDateLabel(bookingDate).formatted;
     const isWomenModeText = forWomen
       ? "✅ WOMEN SAFETY PREFERENCE MODE (Request Female Driver/Guide & Reserved Front Seats)"
