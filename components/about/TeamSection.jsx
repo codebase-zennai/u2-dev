@@ -5,14 +5,14 @@ import { useEffect, useRef, useState } from "react";
 
 const leaders = [
   {
-    name: "K. Jai Kishen",
-    role: "Founder & Executive Director",
-    image: "/team/Jai Profile pic.jpg.jpeg",
+    name: "Bhavani",
+    role: "Founder & Managing Director",
+    image: "/team/Bhavani Madam U2.png",
   },
   {
-    name: "Bhavani",
-    role: "Managing Director",
-    image: "/team/Bhavani Madam U2.png",
+    name: "K. Jai Kishan",
+    role: "Executive Director",
+    image: "/team/Jai Profile pic.jpg.jpeg",
   },
 ];
 

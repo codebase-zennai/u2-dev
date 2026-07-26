@@ -485,35 +485,40 @@ Please confirm availability and booking. Thank you!`;
 
   // Recommendations side list
   const getSidebarRecommendations = () => {
-    // If Langkawi is chosen, show Langkawi activities
+    if (!rates || rates.length === 0) return [];
+
     if (selectedHub === HUB_LANGKAWI) {
-      return rates
-        .filter(
-          (r) =>
-            r.sheet_name === "2026 LGK FIT" &&
-            r.section_header === "Langkawi Activities" &&
-            Object.keys(r.prices).length > 0,
-        )
-        .slice(0, 5);
-    }
-    // If Penang is chosen, show Penang local tours
-    if (selectedHub === HUB_PENANG) {
-      return rates
-        .filter(
-          (r) =>
-            r.sheet_name === "2026 PNG FIT" &&
-            r.to_location.toLowerCase().includes("tour"),
-        )
-        .slice(0, 5);
-    }
-    // Fallback: KUL tours
-    return rates
-      .filter(
+      const lgkMatches = rates.filter(
         (r) =>
-          r.sheet_name === "2026 KUL FIT" &&
-          r.section_header === "KUL/GEN/MELAKA Tours",
-      )
-      .slice(0, 5);
+          (r.sheet_name?.includes("LGK") ||
+            r.section_header?.toLowerCase().includes("langkawi") ||
+            r.to_location?.toLowerCase().includes("langkawi")) &&
+          r.prices &&
+          Object.keys(r.prices).length > 0,
+      );
+      if (lgkMatches.length > 0) return lgkMatches.slice(0, 5);
+    }
+    if (selectedHub === HUB_PENANG) {
+      const pngMatches = rates.filter(
+        (r) =>
+          (r.sheet_name?.includes("PNG") ||
+            r.section_header?.toLowerCase().includes("penang") ||
+            r.to_location?.toLowerCase().includes("tour")) &&
+          r.prices &&
+          Object.keys(r.prices).length > 0,
+      );
+      if (pngMatches.length > 0) return pngMatches.slice(0, 5);
+    }
+    // Fallback: KUL tours or general sightseeing
+    const kulMatches = rates.filter(
+      (r) =>
+        (r.section_header?.includes("Tours") ||
+          r.to_location?.toLowerCase().includes("tour") ||
+          r.sheet_name?.includes("KUL FIT")) &&
+        r.prices &&
+        Object.keys(r.prices).length > 0,
+    );
+    return (kulMatches.length > 0 ? kulMatches : rates).slice(0, 5);
   };
 
   const recommendedTours = getSidebarRecommendations();
@@ -835,21 +840,7 @@ Please confirm availability and booking. Thank you!`;
           </div>
         )}
 
-        {/* Database Status Indicator */}
-        <div className="max-w-6xl mx-auto mt-4 text-right">
-          <span
-            className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${
-              isUsingSupabase
-                ? "bg-green-100 text-green-700 border border-green-200"
-                : "bg-amber-100 text-amber-700 border border-amber-200"
-            }`}
-          >
-            <span
-              className={`w-2 h-2 rounded-full ${isUsingSupabase ? "bg-green-500" : "bg-amber-500"} animate-pulse`}
-            ></span>
-            {isUsingSupabase ? "Supabase Connected" : "Local Data Fallback"}
-          </span>
-        </div>
+
 
         {/* Main Grid: Listings + Recommendations */}
         <div className="max-w-6xl mx-auto mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -1110,36 +1101,63 @@ Please confirm availability and booking. Thank you!`;
                 tours managed by our own fleet.
               </p>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {recommendedTours.map((tour, index) => {
                   const prices = tour.prices || {};
-                  const entryPrice = Object.values(prices)[0] || "Contact Us";
+                  let rawPrice = "Contact Us";
+                  if (typeof prices === "object" && Object.keys(prices).length > 0) {
+                    rawPrice = Object.values(prices)[0];
+                  } else if (typeof prices === "string") {
+                    rawPrice = prices;
+                  }
+
+                  let entryPrice = String(rawPrice || "Contact Us").trim();
+                  if (entryPrice.length > 16) {
+                    const match = entryPrice.match(/(?:USD|MYR|\$|RM)?\s*\d+(?:\.\d+)?/i);
+                    entryPrice = match ? match[0] : entryPrice.slice(0, 12) + "...";
+                  }
+
+                  const cleanCategory = (tour.category || "FIT").toUpperCase();
+                  let cleanTag = "";
+                  if (tour.section_header && !tour.section_header.includes("USD") && tour.section_header.length < 30) {
+                    cleanTag = tour.section_header;
+                  } else if (tour.sheet_name && !tour.sheet_name.includes("USD")) {
+                    cleanTag = tour.sheet_name.replace(/2026|FIT|COACH/gi, "").trim();
+                  }
+
                   return (
                     <div
                       key={tour.id || `tour-${index}`}
-                      className="group border border-gray-100 p-3.5 rounded-xl bg-gray-50/50 hover:bg-gray-50 hover:border-gray-200 transition-colors flex items-start justify-between gap-3 shadow-sm"
+                      className="group border border-gray-100 p-3.5 rounded-2xl bg-gray-50/60 hover:bg-white hover:border-[#013b85]/30 hover:shadow-md transition-all flex items-center justify-between gap-3 overflow-hidden"
                     >
-                      <div className="space-y-1.5">
-                        <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest block">
-                          {tour.category} •{" "}
-                          {tour.sheet_name.replace("2026", "").trim()}
-                        </span>
-                        <h4 className="text-sm font-bold text-gray-700 group-hover:text-[#013b85] transition-colors leading-tight">
+                      <div className="min-w-0 flex-1 space-y-1">
+                        <div className="flex items-center gap-1.5 min-w-0">
+                          <span className="inline-block text-[9px] font-extrabold text-[#013b85] bg-blue-50 px-2 py-0.5 rounded uppercase tracking-wider shrink-0">
+                            {cleanCategory}
+                          </span>
+                          {cleanTag && (
+                            <span className="text-[10px] font-medium text-gray-400 truncate max-w-[130px]">
+                              • {cleanTag}
+                            </span>
+                          )}
+                        </div>
+                        <h4 className="text-xs md:text-sm font-bold text-gray-800 group-hover:text-[#013b85] transition-colors leading-tight line-clamp-2 break-words">
                           {tour.route_raw}
                         </h4>
                         {tour.notes && (
-                          <p className="text-[10px] text-gray-500">
+                          <p className="text-[10px] text-gray-500 truncate max-w-[180px]">
                             {tour.notes}
                           </p>
                         )}
                       </div>
-                      <div className="text-right flex-shrink-0">
-                        <span className="text-xs text-[#013b85] font-bold block">
+                      <div className="text-right shrink-0 flex flex-col items-end justify-center pl-2.5 border-l border-gray-100 min-w-[75px]">
+                        <span className="text-[9px] text-gray-400 uppercase font-semibold block">From</span>
+                        <span className="text-xs text-[#013b85] font-extrabold block whitespace-nowrap">
                           {entryPrice}
                         </span>
                         <button
                           onClick={() => openBooking(tour)}
-                          className="mt-2 text-[10px] bg-[#013b85] hover:bg-[#012f6a] text-white px-2.5 py-1 rounded-md transition-colors cursor-pointer"
+                          className="mt-1.5 text-[10px] font-bold bg-[#013b85] hover:bg-[#012f6a] text-white px-3 py-1 rounded-lg transition-all shadow-sm hover:shadow cursor-pointer active:scale-95"
                         >
                           Book
                         </button>
