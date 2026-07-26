@@ -1,50 +1,67 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
-export default function PreloaderWrapper({ children }) {
+function PreloaderContent({ children }) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
 
+  // Instant trigger when user clicks any internal navigation link (like View Itinerary)
   useEffect(() => {
-    // Fade out function with a slight delay for smooth visual transition
-    const fadeOut = () => {
-      setTimeout(() => setIsLoading(false), 650);
+    const handleAnchorClick = (e) => {
+      const target = e.target.closest("a");
+      if (target) {
+        const href = target.getAttribute("href");
+        if (
+          href?.startsWith("/") &&
+          !href.startsWith("#") &&
+          target.getAttribute("target") !== "_blank"
+        ) {
+          setIsLoading(true);
+        }
+      }
     };
 
-    // If document is already fully loaded on client mount
-    if (document.readyState === "complete") {
-      fadeOut();
-      return;
-    }
-
-    const handleLoad = () => {
-      fadeOut();
-    };
-
-    window.addEventListener("load", handleLoad);
-
-    // Safety timeout: never block the user for more than 4 seconds
-    const safetyTimer = setTimeout(() => {
-      setIsLoading(false);
-    }, 4000);
-
+    document.addEventListener("click", handleAnchorClick, { capture: true });
     return () => {
-      window.removeEventListener("load", handleLoad);
-      clearTimeout(safetyTimer);
+      document.removeEventListener("click", handleAnchorClick, {
+        capture: true,
+      });
     };
   }, []);
+
+  // Fade out screen on route change complete
+  // biome-ignore lint/correctness/useExhaustiveDependencies: trigger loading transition on route/search changes
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [pathname, searchParams]);
 
   return (
     <>
       {isLoading && <LoadingSpinner fullScreen={true} />}
       <div
-        className={`transition-opacity duration-700 ease-out ${
+        className={`transition-opacity duration-500 ease-out ${
           isLoading ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
         {children}
       </div>
     </>
+  );
+}
+
+export default function PreloaderWrapper({ children }) {
+  return (
+    <Suspense fallback={<LoadingSpinner fullScreen={true} />}>
+      <PreloaderContent>{children}</PreloaderContent>
+    </Suspense>
   );
 }

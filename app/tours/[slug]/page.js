@@ -52,7 +52,7 @@ export default async function TourItineraryPage({ params }) {
     <>
       <Header2 isSolid={true} />
       <main className="main-wrapper bg-slate-50 pt-24 pb-16">
-        <div className="container-large">
+        <div className="container-large mt-10">
           {/* Back Link */}
           <div className="mb-6">
             <Link

@@ -9,10 +9,8 @@ import {
   X,
 } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { tours } from "@/data/tours";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -66,6 +64,18 @@ export default function Header() {
       window.removeEventListener("agentLoginStatusChange", handleLoginChange);
     };
   }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
