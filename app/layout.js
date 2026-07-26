@@ -1,5 +1,6 @@
 import { Caveat, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import WhatsAppWidget from "@/components/common/WhatsAppWidget";
 import PreloaderWrapper from "@/components/layout/PreloaderWrapper";
 
 const caveat = Caveat({
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${caveat.variable} ${playfair.variable}`}>
         <PreloaderWrapper>{children}</PreloaderWrapper>
+        <WhatsAppWidget />
       </body>
     </html>
   );
