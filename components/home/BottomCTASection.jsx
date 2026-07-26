@@ -2,92 +2,50 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { ArrowRight, Calendar, Sparkles } from "lucide-react";
 
 export default function BottomCTASection() {
-  const sectionRef = useRef(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-
-      const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // Calculate scroll progress - starts when section enters viewport
-      // Progress goes from 0 to 1 as we scroll through the section
-      const sectionTop = rect.top;
-      const triggerPoint = windowHeight * 0.8;
-
-      if (sectionTop < triggerPoint) {
-        const scrolled = triggerPoint - sectionTop;
-        const maxScroll = windowHeight * 0.8;
-        const progress = Math.min(1, scrolled / maxScroll);
-        setScrollProgress(progress);
-      } else {
-        setScrollProgress(0);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // INVERSE of hero animation:
-  // Image starts LARGE (filling the section) and SHRINKS to normal size on scroll
-  // Initial scale: 1.15 (fills the section edge-to-edge)
-  // Final scale: 0.85 (shows the image at proper size with rounded corners)
-  const imageScale = 1.8 - scrollProgress * 0.75; // 1.15 -> 0.85
-
-  // Border radius INCREASES as we scroll (opposite of hero)
-  const borderRadius = scrollProgress * 50; // 0px -> 50px
-
   return (
-    <section className="section is-bottom-cta" ref={sectionRef}>
-      <div className="container-large">
-        <div className="bottom-cta_wrap">
-          <div className="max-width-700">
-            <h2 className="heading-style-h1">
-              <span className="is-word is-1">Ready</span>{" "}
-              <span className="is-word is-2">to</span>
-              <br />
-              <span className="is-word is-3">Travel?</span>
+    <section className="section is-bottom-cta relative py-12 sm:py-16 md:py-20 bg-slate-50/80">
+      <div className="container-large max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="bottom-cta_wrap flex flex-col items-center text-center space-y-6 sm:space-y-8">
+          
+          {/* Header Section */}
+          <div className="max-w-2xl mx-auto space-y-3">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#013b85]/10 text-[#013b85] text-xs font-bold uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-[#013b85]" />
+              Start Your Journey
+            </span>
+            <h2 className="heading-style-h1 text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#013b85] tracking-tight leading-tight">
+              Ready to <span className="text-[#013b85] underline decoration-[#7ff74b] decoration-4">Travel?</span>
             </h2>
+            <p className="text-slate-600 pt-10 text-sm sm:text-base md:text-lg max-w-xl mx-auto font-light leading-relaxed">
+              Book your custom tour package, airport transfer, or corporate travel with U2 Travels &amp; Tours today.
+            </p>
           </div>
-          <div
-            className="bottom-cta_box"
-            style={{
-              transform: `scale(${imageScale})`,
-              borderRadius: `${borderRadius}px`,
-              overflow: "hidden",
-            }}
-          >
-            <div className="video_bg">
-              <div className="video_bg_overlay"></div>
-              <Image
+
+          {/* Clean White Poster Card - 100% visible, natural aspect ratio, NO black bars */}
+          <div className="w-full max-w-4xl mx-auto bg-white border border-slate-200/80 rounded-2xl md:rounded-3xl p-2 sm:p-3 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+            <div className="w-full relative overflow-hidden rounded-xl md:rounded-2xl">
+              <img
                 src="/images/backgrounds/bg-cta-3.png"
-                alt="Tennis player"
-                fill
-                className="img-cover"
-                sizes="90vw"
-                priority
+                alt="U2 Travels Special Promotional Tour Package Poster"
+                className="w-full h-auto block rounded-xl md:rounded-2xl"
               />
             </div>
           </div>
-          <div className="max-width-full">
-            <Link href="/contact" className="button is-secondary">
-              <p>Book Now</p>
-              <Image
-                src="/icons/icon-arrow-light.svg"
-                alt="Arrow"
-                width={16}
-                height={16}
-                className="icon-16"
-              />
+
+          {/* CTA Button */}
+          <div className="flex items-center justify-center pt-2 w-full max-w-xs mx-auto">
+            <Link
+              href="/contact"
+              className="w-full inline-flex items-center justify-center gap-2.5 px-9 py-4 bg-[#7ff74b] hover:bg-[#6ee23d] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer !no-underline"
+            >
+              <span>Book Now</span>
+              <ArrowRight className="w-4 h-4 text-white" />
             </Link>
           </div>
+
         </div>
       </div>
     </section>

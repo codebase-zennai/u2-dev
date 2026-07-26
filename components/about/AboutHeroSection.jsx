@@ -9,7 +9,7 @@ export default function AboutHeroSection() {
     return () => clearTimeout(timer);
   }, []);
   return (
-    <section className="section is-about-hero">
+    <section className="section is-about-hero mt-10">
       <div className="container-large">
         <div className="about-hero_wrap">
           <div className="about-hero_title-wrapper">
