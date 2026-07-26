@@ -3,12 +3,26 @@
 import { ArrowUpDown, Search, SlidersHorizontal } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
-import { tours } from "@/data/tours";
+import { tours as localTours } from "@/data/tours";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function ToursPage({ initialCategory = "all" }) {
+  const [toursData, setToursData] = useState(localTours);
   const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (initialCategory && initialCategory !== "all" && sectionRef.current) {
+      setTimeout(() => {
+        sectionRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 300);
+    }
+  }, [initialCategory]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
 
@@ -22,9 +36,35 @@ export default function ToursPage({ initialCategory = "all" }) {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    async function fetchTours() {
+      try {
+        const { data, error } = await supabase
+          .from("tours")
+          .select("*")
+          .order("id", { ascending: true });
+
+        if (!error && data && data.length > 0) {
+          setToursData(data);
+          console.log(`Loaded ${data.length} tours from Supabase!`);
+        } else {
+          console.log(
+            "Supabase tours table empty or not found, using local fallback.",
+          );
+        }
+      } catch (err) {
+        console.warn(
+          "Error checking Supabase tours, using local fallback:",
+          err,
+        );
+      }
+    }
+    fetchTours();
+  }, []);
+
   // Filter and Sort Logic
   const filteredPackages = useMemo(() => {
-    let result = tours.filter((item) => {
+    let result = toursData.filter((item) => {
       const matchesSearch =
         item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -43,32 +83,44 @@ export default function ToursPage({ initialCategory = "all" }) {
     });
 
     return result;
-  }, [searchTerm, selectedCategory, sortBy]);
+  }, [searchTerm, selectedCategory, sortBy, toursData]);
+
+  // Helper for image src fallback
+  const getTourImage = (img) => {
+    if (!img) return "/images/locations/locations-1.jpg";
+    if (
+      img.startsWith("/images/") ||
+      img.startsWith("http://") ||
+      img.startsWith("https://")
+    )
+      return img;
+    return "/images/locations/locations-1.jpg";
+  };
 
   // Render package grid
   const renderGrid = () => (
     <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-      {filteredPackages.map((tour) => (
+      {filteredPackages.map((tour, idx) => (
         <li
-          key={tour.id}
+          key={`${tour.id}-${tour.slug || idx}`}
           className="group bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full animate-fade-in"
         >
           {/* Visual Container */}
           <div className="aspect-[1.5] w-full relative overflow-hidden bg-slate-100">
             <Image
-              src={tour.image}
+              src={getTourImage(tour.image)}
               alt={tour.name}
               fill
               sizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover group-hover:scale-105 transition-transform duration-500"
-              priority={tour.id <= 3}
+              priority={idx < 3}
             />
             {/* Category badge */}
             <div className="absolute left-4 top-4 bg-white/90 backdrop-blur-sm border border-slate-100 rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-wider text-[#013b85] shadow-sm">
               {tour.category === "malaysian"
                 ? "Local Tour"
                 : tour.category === "sightseeing"
-                  ? "Sightseeing"
+                  ? "Day Tour"
                   : "International"}
             </div>
             {/* Duration overlay tag */}
@@ -190,6 +242,7 @@ export default function ToursPage({ initialCategory = "all" }) {
         </div>
 
         <div
+          ref={sectionRef}
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0)" : "translateY(0.5em)",
@@ -255,7 +308,7 @@ export default function ToursPage({ initialCategory = "all" }) {
                     : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100"
                 }`}
               >
-                Sightseeing
+                Day Tours
               </button>
             </div>
 

@@ -1,18 +1,52 @@
-import { tours } from "@/data/tours";
 import { Bed, Calendar, Car, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Footer from "@/components/layout/Footer";
 import Header2 from "@/components/layout/Header2";
+import { tours as localTours } from "@/data/tours";
+import { supabase } from "@/lib/supabaseClient";
 
 export default async function TourItineraryPage({ params }) {
   const { slug } = await params;
-  const tour = tours.find((t) => t.slug === slug);
+
+  let tour = null;
+  try {
+    const { data, error } = await supabase
+      .from("tours")
+      .select("*")
+      .eq("slug", slug)
+      .maybeSingle();
+
+    if (!error && data) {
+      tour = data;
+    }
+  } catch (err) {
+    console.warn(
+      "Failed to fetch tour from Supabase, falling back to local data:",
+      err,
+    );
+  }
+
+  // Fallback
+  if (!tour) {
+    tour = localTours.find((t) => t.slug === slug);
+  }
 
   if (!tour) {
     notFound();
   }
+
+  const getTourImage = (img) => {
+    if (!img) return "/images/locations/locations-1.jpg";
+    if (
+      img.startsWith("/images/") ||
+      img.startsWith("http://") ||
+      img.startsWith("https://")
+    )
+      return img;
+    return "/images/locations/locations-1.jpg";
+  };
 
   return (
     <>
@@ -34,7 +68,7 @@ export default async function TourItineraryPage({ params }) {
             {/* Cover Image */}
             <div className="relative aspect-[1.6] md:aspect-auto w-full min-h-[300px] bg-slate-100">
               <Image
-                src={tour.image}
+                src={getTourImage(tour.image)}
                 alt={tour.name}
                 fill
                 className="object-cover"

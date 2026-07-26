@@ -6,7 +6,8 @@ export const tours = [
     category: "malaysian",
     price: 399,
     duration: "3 Days, 2 Nights",
-    image: "/images/locations/genting.jpg",
+    image:
+      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1200&q=80",
     description:
       "Escape to the cooling mountain resort of Genting Highlands. Experience theme parks, shopping, and high-altitude entertainment.",
     featured: true,
@@ -39,7 +40,8 @@ export const tours = [
     category: "malaysian",
     price: 899,
     duration: "5 Days, 4 Nights",
-    image: "/images/locations/mulu.jpg",
+    image:
+      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80",
     description:
       "Explore the UNESCO World Heritage Mulu Caves. Walk through massive chambers and hike the spectacular razor-sharp pinnacles.",
     featured: true,
@@ -82,7 +84,8 @@ export const tours = [
     category: "malaysian",
     price: 499,
     duration: "4 Days, 3 Nights",
-    image: "/images/locations/johor.jpg",
+    image:
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
     description:
       "Perfect family fun at Legoland and Desaru Coast. Discover historical heritage and delicious southern culinary delights.",
     featured: false,
@@ -120,7 +123,8 @@ export const tours = [
     category: "malaysian",
     price: 1199,
     duration: "5 Days, 4 Nights",
-    image: "/images/locations/kinabalu.jpg",
+    image:
+      "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=80",
     description:
       "Climb Mount Kinabalu, witness breathtaking peak sunrises, and relax on beautiful sandy islands of Sabah.",
     featured: false,
@@ -163,7 +167,8 @@ export const tours = [
     category: "malaysian",
     price: 450,
     duration: "4 Days, 3 Nights",
-    image: "/images/locations/kl.jpg",
+    image:
+      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1200&q=80",
     description:
       "Marvel at the Petronas Twin Towers, explore ancient Batu Caves, and experience vibrant street food and shopping.",
     featured: true,
@@ -201,7 +206,8 @@ export const tours = [
     category: "malaysian",
     price: 299,
     duration: "3 Days, 2 Nights",
-    image: "/images/locations/kuantan.jpg",
+    image:
+      "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80",
     description:
       "Relax on Cherating Beach, see the rainbow waterfalls of Sungai Lembing, and enjoy authentic seaside dining.",
     featured: false,
@@ -234,7 +240,8 @@ export const tours = [
     category: "malaysian",
     price: 350,
     duration: "3 Days, 2 Nights",
-    image: "/images/locations/langkawi.jpg",
+    image:
+      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80",
     description:
       "Duty-free shopping, cable car skybridge rides, and gorgeous sun-drenched beaches at this legendary archipelago.",
     featured: true,
@@ -267,7 +274,8 @@ export const tours = [
     category: "malaysian",
     price: 299,
     duration: "3 Days, 2 Nights",
-    image: "/images/locations/melaka.jpg",
+    image:
+      "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80",
     description:
       "Take a trishaw ride through historical Dutch Square, cruise Melaka River, and enjoy unique Nyonya cuisine.",
     featured: false,
@@ -300,7 +308,8 @@ export const tours = [
     category: "malaysian",
     price: 699,
     duration: "4 Days, 3 Nights",
-    image: "/images/locations/pahang.jpg",
+    image:
+      "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1200&q=80",
     description:
       "Journey deep into Taman Negara, walk the canopy bridge, and witness rich tropical rainforest flora and fauna.",
     featured: false,
@@ -338,7 +347,8 @@ export const tours = [
     category: "malaysian",
     price: 399,
     duration: "4 Days, 3 Nights",
-    image: "/images/locations/penang.jpg",
+    image:
+      "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1200&q=80",
     description:
       "Voted top food city globally. Walk down historic Georgetown streets, visit Kek Lok Si Temple, and indulge in street food.",
     featured: true,
@@ -376,7 +386,8 @@ export const tours = [
     category: "malaysian",
     price: 299,
     duration: "3 Days, 2 Nights",
-    image: "/images/locations/perak.jpg",
+    image:
+      "https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=1200&q=80",
     description:
       "Discover cave temples, historical colonial structures, and sample famous Ipoh white coffee and local desserts.",
     featured: false,
@@ -409,7 +420,8 @@ export const tours = [
     category: "malaysian",
     price: 250,
     duration: "3 Days, 2 Nights",
-    image: "/images/locations/selangor.jpg",
+    image:
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
     description:
       "Witness magical fireflies in Kuala Selangor, try white-water rafting, and explore the theme parks of Sunway Lagoon.",
     featured: false,
@@ -442,7 +454,8 @@ export const tours = [
     category: "malaysian",
     price: 199,
     duration: "3 Days, 2 Nights",
-    image: "/images/locations/tasik.jpg",
+    image:
+      "https://images.unsplash.com/photo-1439853949127-fa647821eba0?auto=format&fit=crop&w=1200&q=80",
     description:
       "Unwind at the serene lakeside resort of Tasik Widuri. Great for boat tours, fishing, and peaceful retreats.",
     featured: false,
@@ -475,7 +488,8 @@ export const tours = [
     category: "world",
     price: 1499,
     duration: "5 Days, 4 Nights",
-    image: "/images/locations/dubai.jpg",
+    image:
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80",
     description:
       "Ride camels in the Arabian desert, visit the Burj Khalifa observation deck, and explore grand shopping malls.",
     featured: true,
@@ -518,7 +532,8 @@ export const tours = [
     category: "world",
     price: 3499,
     duration: "10 Days, 9 Nights",
-    image: "/images/locations/europe.jpg",
+    image:
+      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80",
     description:
       "Experience the romance of Paris, the historic Colosseum of Rome, and the spectacular snowcapped Swiss Alps.",
     featured: true,
@@ -586,7 +601,8 @@ export const tours = [
     category: "world",
     price: 1299,
     duration: "7 Days, 6 Nights",
-    image: "/images/locations/india.jpg",
+    image:
+      "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80",
     description:
       "Marvel at the majestic Taj Mahal in Agra, explore Jaipur's Pink City palaces, and experience bustling Old Delhi.",
     featured: false,
@@ -639,7 +655,8 @@ export const tours = [
     category: "world",
     price: 799,
     duration: "6 Days, 5 Nights",
-    image: "/images/locations/bali.jpg",
+    image:
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80",
     description:
       "Tour historic temples in Ubud, walk on volcanic black beaches, and witness stunning seaside cliff sunsets.",
     featured: true,
@@ -687,7 +704,8 @@ export const tours = [
     category: "world",
     price: 1599,
     duration: "6 Days, 5 Nights",
-    image: "/images/locations/korea.jpg",
+    image:
+      "https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=1200&q=80",
     description:
       "Explore historic palaces in Seoul, shop in Myeongdong, and experience the beautiful cherry blossoms of Jeju Island.",
     featured: false,
@@ -735,7 +753,8 @@ export const tours = [
     category: "world",
     price: 1099,
     duration: "7 Days, 6 Nights",
-    image: "/images/locations/nepal.jpg",
+    image:
+      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80",
     description:
       "Hike near Pokhara lake, see Mount Everest ranges, and tour ancient temples in the historic city of Kathmandu.",
     featured: true,
@@ -788,7 +807,8 @@ export const tours = [
     category: "world",
     price: 2499,
     duration: "8 Days, 7 Nights",
-    image: "/images/locations/southafrica.jpg",
+    image:
+      "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1200&q=80",
     description:
       "Go on big-game safaris at Kruger National Park and ride the cableway to the summit of Table Mountain.",
     featured: false,
@@ -846,7 +866,8 @@ export const tours = [
     category: "world",
     price: 699,
     duration: "5 Days, 4 Nights",
-    image: "/images/locations/thailand.jpg",
+    image:
+      "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=1200&q=80",
     description:
       "Explore Bangkok's grand palaces and reclining Buddhas, then relax on the world-class beaches of Phuket.",
     featured: true,
@@ -889,7 +910,8 @@ export const tours = [
     category: "world",
     price: 599,
     duration: "5 Days, 4 Nights",
-    image: "/images/locations/vietnam.jpg",
+    image:
+      "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80",
     description:
       "Cruise through thousands of limestone islands in Halong Bay and walk heritage streets of Hanoi.",
     featured: false,
@@ -926,13 +948,14 @@ export const tours = [
     ],
   },
   {
-    id: 16,
+    id: 23,
     slug: "genting-tours",
     name: "Genting Tours",
     category: "sightseeing",
     price: 68,
     duration: "8 Hrs",
-    image: "/images/transport/tour-1.jpg",
+    image:
+      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1200&q=80",
     description:
       "Full day tour to Genting Highlands with flexible free time at the resort.",
     featured: false,
@@ -949,13 +972,14 @@ export const tours = [
     ],
   },
   {
-    id: 17,
+    id: 24,
     slug: "kuala-lumpur-night-tour",
     name: "Kuala Lumpur Night Tour",
     category: "sightseeing",
     price: 34,
     duration: "3 Hrs",
-    image: "/images/transport/tour-2.jpg",
+    image:
+      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1200&q=80",
     description:
       "Experience the dazzling lights and vibrant nightlife of Kuala Lumpur.",
     featured: false,
@@ -972,13 +996,14 @@ export const tours = [
     ],
   },
   {
-    id: 18,
+    id: 25,
     slug: "kuala-lumpur-city-tour",
     name: "Kuala Lumpur City Tour",
     category: "sightseeing",
     price: 34,
     duration: "3.5 Hrs",
-    image: "/images/transport/tour-3.jpg",
+    image:
+      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1200&q=80",
     description:
       "Discover iconic KL landmarks including Petronas Towers and Batu Caves.",
     featured: false,
@@ -995,13 +1020,14 @@ export const tours = [
     ],
   },
   {
-    id: 19,
+    id: 26,
     slug: "kl-country-tour",
     name: "KL Country Tour",
     category: "sightseeing",
     price: 34,
     duration: "4 Hrs",
-    image: "/images/transport/tour-4.jpg",
+    image:
+      "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1200&q=80",
     description:
       "Explore the natural beauty and rural charm surrounding Kuala Lumpur.",
     featured: false,
@@ -1018,13 +1044,14 @@ export const tours = [
     ],
   },
   {
-    id: 20,
+    id: 27,
     slug: "melaka-tour",
     name: "Melaka Tour",
     category: "sightseeing",
     price: 113,
     duration: "8 Hrs",
-    image: "/images/transport/tour-5.jpg",
+    image:
+      "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80",
     description:
       "Full day tour of Melaka covering Dutch Square, A Famosa, and Jonker Street.",
     featured: false,
@@ -1041,13 +1068,14 @@ export const tours = [
     ],
   },
   {
-    id: 21,
+    id: 28,
     slug: "dinner-transfer",
     name: "Dinner Transfer",
     category: "sightseeing",
     price: 27,
     duration: "Evening",
-    image: "/images/transport/tour-6.jpg",
+    image:
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
     description: "Round-trip transfer to popular dining destinations in KL.",
     featured: false,
     destination: "Malaysia",

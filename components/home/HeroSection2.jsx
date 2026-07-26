@@ -1,16 +1,49 @@
 "use client";
 
-import Image from "next/image";
 import { Sparkle } from "lucide-react";
-import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
+
+// Default values — shown immediately on load and used as fallback
+const DEFAULTS = {
+  hero_badge: "18+ Years of Curated Journeys",
+  hero_subtitle:
+    "Handcrafted Malaysian experiences and world tours designed to be affordable, effortless, and unforgettable.",
+  hero_cta_primary: "View All Tours",
+  hero_cta_secondary: "Contact Us",
+};
 
 export default function HeroSection2() {
   const router = useRouter();
   const [loaded, setLoaded] = useState(false);
+  const [settings, setSettings] = useState(DEFAULTS);
 
   useEffect(() => {
     setLoaded(true);
+
+    // Fetch site settings from Supabase (graceful fallback)
+    async function fetchSettings() {
+      try {
+        const { data, error } = await supabase
+          .from("site_settings")
+          .select("key, value");
+
+        if (!error && data && data.length > 0) {
+          const map = {};
+          data.forEach((row) => {
+            map[row.key] = row.value;
+          });
+          // Merge fetched settings with defaults (keeps defaults for any missing keys)
+          setSettings((prev) => ({ ...prev, ...map }));
+        }
+      } catch {
+        // Keep defaults silently
+      }
+    }
+
+    fetchSettings();
   }, []);
 
   return (
@@ -44,11 +77,11 @@ export default function HeroSection2() {
           <div className="inline-flex items-center gap-2 px-4 py-2 border border-white/20 bg-white/5 backdrop-blur-md rounded-full mb-8 hover:bg-white/10 hover:border-white/35 transition-all duration-300">
             <Sparkle className="h-4 w-4 text-[#dfa447] animate-pulse" />
             <span className="text-[10px] md:text-xs font-medium uppercase tracking-[0.25em] text-white/90">
-              18+ Years of Curated Journeys
+              {settings.hero_badge}
             </span>
           </div>
 
-          {/* Large Serif Title with Cursive Accent */}
+          {/* Large Serif Title with Cursive Accent — design is preserved */}
           <p
             className="text-white font-normal text-7xl leading-[1.1] mb-6 tracking-tight select-none"
             style={{
@@ -74,24 +107,26 @@ export default function HeroSection2() {
 
           {/* Subtitle Description */}
           <p className="text-white/80 text-base sm:text-lg md:text-xl max-w-xl leading-relaxed font-light tracking-wide mb-10">
-            Handcrafted Malaysian experiences and world tours designed to be
-            affordable, effortless, and unforgettable.
+            {settings.hero_subtitle}
           </p>
 
           {/* Call-to-action buttons */}
           <div className="flex mt-10 flex-col sm:flex-row items-start sm:items-center gap-4">
             <button
+              type="button"
               onClick={() => router.push("/tours")}
               className="group relative inline-flex items-center px-6 py-3 rounded-full overflow-hidden bg-white/90 text-[#013b85] font-bold text-base md:text-lg shadow-lg hover:shadow-xl transition-all duration-300 border-none cursor-pointer"
             >
               <span className="relative flex items-center gap-2">
-                View All Tours
+                {settings.hero_cta_primary}
                 <svg
                   className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
+                  <title>Arrow right</title>
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -103,10 +138,11 @@ export default function HeroSection2() {
             </button>
 
             <button
+              type="button"
               onClick={() => router.push("/contact")}
               className="inline-flex items-center px-6 py-3 rounded-full bg-transparent border-2 border-white text-white font-bold text-base md:text-lg hover:bg-white hover:text-[#013b85] transition-all duration-300 cursor-pointer"
             >
-              Contact Us
+              {settings.hero_cta_secondary}
             </button>
           </div>
         </div>

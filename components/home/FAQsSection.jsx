@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
 
-const faqs = [
+// Hardcoded fallback data used if the Supabase table is not yet created
+const DEFAULT_FAQS = [
   {
     id: 1,
     question: "How do I book a tour package?",
@@ -42,7 +44,28 @@ const faqs = [
 ];
 
 export default function FAQsSection() {
+  const [faqs, setFaqs] = useState(DEFAULT_FAQS);
   const [openId, setOpenId] = useState(null);
+
+  useEffect(() => {
+    async function fetchFaqs() {
+      try {
+        const { data, error } = await supabase
+          .from("faqs")
+          .select("*")
+          .order("sort_order", { ascending: true });
+
+        // Only replace defaults if the fetch was successful and returned data
+        if (!error && data && data.length > 0) {
+          setFaqs(data);
+        }
+      } catch {
+        // Keep fallback defaults silently
+      }
+    }
+
+    fetchFaqs();
+  }, []);
 
   const toggleFAQ = (id) => {
     setOpenId(openId === id ? null : id);
@@ -70,6 +93,9 @@ export default function FAQsSection() {
                 key={faq.id}
                 className={`faqs_item ${openId === faq.id ? "is-open" : ""}`}
                 onClick={() => toggleFAQ(faq.id)}
+                onKeyDown={(e) =>
+                  (e.key === "Enter" || e.key === " ") && toggleFAQ(faq.id)
+                }
               >
                 <div className="faqs_head">
                   <h5 className="heading-style-h5">{faq.question}</h5>
@@ -80,7 +106,10 @@ export default function FAQsSection() {
                       viewBox="0 0 24 24"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                      role="presentation"
                     >
+                      <title>Toggle FAQ</title>
                       <path
                         d="M6 9L12 15L18 9"
                         stroke="currentColor"

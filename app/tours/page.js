@@ -9,8 +9,9 @@ export const metadata = {
     "Discover our premium tour packages in Malaysia and around the world. Find your perfect travel gateway with U2 Travels & Tours.",
 };
 
-export default function ToursListingPage({ searchParams }) {
-  const category = searchParams?.category || "all";
+export default async function ToursListingPage({ searchParams }) {
+  const resolvedParams = await searchParams;
+  const category = resolvedParams?.category || "all";
   return (
     <>
       <Header2 isSolid={true} />

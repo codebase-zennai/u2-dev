@@ -528,12 +528,13 @@ Please confirm availability and booking. Thank you!`;
       <section className="tp-hero relative h-[450px] flex items-center justify-center overflow-hidden">
         <div className="tp-hero_bg absolute inset-0 z-0">
           <Image
-            src="https://images.pexels.com/photos/24531550/pexels-photo-24531550.jpeg"
+            src="https://images.pexels.com/photos/12700835/pexels-photo-12700835.jpeg"
             alt="Malaysia highway aerial view"
             fill
             className="object-cover"
             sizes="100vw"
             priority
+            unoptimized
           />
           <div className="tp-hero_overlay absolute inset-0 bg-black/60"></div>
         </div>

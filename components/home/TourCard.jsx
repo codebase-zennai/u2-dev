@@ -4,11 +4,22 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function TourCard({ tour, imageScale }) {
+  const getTourImage = (img) => {
+    if (!img) return "/images/locations/locations-1.jpg";
+    if (
+      img.startsWith("/images/") ||
+      img.startsWith("http://") ||
+      img.startsWith("https://")
+    )
+      return img;
+    return "/images/locations/locations-1.jpg";
+  };
+
   return (
     <li className="tours_item">
       <div className="tours_visual shadow-card">
         <Image
-          src={tour.image}
+          src={getTourImage(tour.image)}
           alt={tour.name}
           fill
           className="img-cover"
