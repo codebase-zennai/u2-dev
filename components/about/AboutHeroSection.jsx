@@ -50,7 +50,7 @@ export default function AboutHeroSection() {
             <div className="video_box">
               <div className="video_bg">
                 <Image
-                  src="https://images.pexels.com/photos/35431860/pexels-photo-35431860.jpeg"
+                  src="https://images.pexels.com/photos/7688326/pexels-photo-7688326.jpeg"
                   alt="Beautiful Malaysia travel destination"
                   fill
                   className="parallax-img is-full"

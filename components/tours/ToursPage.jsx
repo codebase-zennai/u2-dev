@@ -8,13 +8,19 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { tours as localTours } from "@/data/tours";
 import { supabase } from "@/lib/supabaseClient";
 
-export default function ToursPage({ initialCategory = "all" }) {
+export default function ToursPage({
+  initialCategory = "all",
+  initialSearch = "",
+}) {
   const [toursData, setToursData] = useState(localTours);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    if (initialCategory && initialCategory !== "all" && sectionRef.current) {
+    if (
+      ((initialCategory && initialCategory !== "all") || initialSearch) &&
+      sectionRef.current
+    ) {
       setTimeout(() => {
         sectionRef.current.scrollIntoView({
           behavior: "smooth",
@@ -22,13 +28,20 @@ export default function ToursPage({ initialCategory = "all" }) {
         });
       }, 300);
     }
-  }, [initialCategory]);
-  const [searchTerm, setSearchTerm] = useState("");
+  }, [initialCategory, initialSearch]);
+
+  const [searchTerm, setSearchTerm] = useState(initialSearch);
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
 
   useEffect(() => {
     setSelectedCategory(initialCategory);
   }, [initialCategory]);
+
+  useEffect(() => {
+    if (initialSearch !== undefined) {
+      setSearchTerm(initialSearch);
+    }
+  }, [initialSearch]);
   const [sortBy, setSortBy] = useState("name-asc");
 
   useEffect(() => {

@@ -83,14 +83,14 @@ export default function HeroSection2() {
 
           {/* Large Serif Title with Cursive Accent — design is preserved */}
           <p
-            className="text-white font-normal text-7xl leading-[1.1] mb-6 tracking-tight select-none"
+            className="text-white font-normal text-6xl leading-[1.1] mb-6 tracking-tight select-none"
             style={{
               fontFamily: "var(--font-playfair), Georgia, serif",
               textTransform: "none",
               letterSpacing: "-0.01em",
             }}
           >
-            Wander{" "}
+            Going Beyond{" "}
             <span
               className="text-[#dfa447] px-2 italic font-normal inline-block relative"
               style={{
@@ -99,10 +99,10 @@ export default function HeroSection2() {
                 transform: "rotate(-2deg)",
               }}
             >
-              where
+              Borders
             </span>{" "}
             <br />
-            the world calls you.
+            Building Partnerships
           </p>
 
           {/* Subtitle Description */}

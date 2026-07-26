@@ -11,12 +11,14 @@ export const metadata = {
 
 export default async function ToursListingPage({ searchParams }) {
   const resolvedParams = await searchParams;
-  const category = resolvedParams?.category || "all";
+  const category = resolvedParams?.category || resolvedParams?.type || "all";
+  const search = resolvedParams?.search || resolvedParams?.destination || "";
+
   return (
     <>
       <Header2 isSolid={true} />
       <main className="main-wrapper">
-        <ToursPage initialCategory={category} />
+        <ToursPage initialCategory={category} initialSearch={search} />
         <BottomCTASection />
       </main>
       <Footer />

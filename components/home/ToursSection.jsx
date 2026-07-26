@@ -3,13 +3,36 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { tours } from "@/data/tours";
+import { tours as localTours } from "@/data/tours";
+import { supabase } from "@/lib/supabaseClient";
 import TourCard from "./TourCard";
 
 export default function ToursSection() {
   const sectionRef = useRef(null);
   const [titleVisible, setTitleVisible] = useState(false);
   const [activeCategory, setActiveCategory] = useState("malaysian"); // malaysian, world
+  const [toursData, setToursData] = useState(localTours);
+
+  useEffect(() => {
+    async function fetchToursFromSupabase() {
+      try {
+        const { data, error } = await supabase
+          .from("tours")
+          .select("*")
+          .order("id", { ascending: true });
+
+        if (!error && data && data.length > 0) {
+          setToursData(data);
+        }
+      } catch (err) {
+        console.warn(
+          "Could not fetch tours from Supabase, using local fallback:",
+          err,
+        );
+      }
+    }
+    fetchToursFromSupabase();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,7 +52,7 @@ export default function ToursSection() {
   }, []);
 
   // Filter tours by the active tab category
-  const filteredTours = tours.filter((t) => t.category === activeCategory);
+  const filteredTours = toursData.filter((t) => t.category === activeCategory);
 
   return (
     <section
@@ -39,6 +62,7 @@ export default function ToursSection() {
     >
       {/* Scoped CSS for Horizontal Scroll Row and Card layouts */}
       <style
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: static CSS rules
         dangerouslySetInnerHTML={{
           __html: `
         .tours_list {
@@ -184,6 +208,7 @@ export default function ToursSection() {
         {/* Tab Buttons (Malaysian / World) */}
         <div className="flex gap-4 mb-8">
           <button
+            type="button"
             onClick={() => setActiveCategory("malaysian")}
             className={`px-6 py-2.5 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-300 cursor-pointer border-none ${
               activeCategory === "malaysian"
@@ -194,6 +219,7 @@ export default function ToursSection() {
             Malaysian Tours
           </button>
           <button
+            type="button"
             onClick={() => setActiveCategory("world")}
             className={`px-6 py-2.5 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-300 cursor-pointer border-none ${
               activeCategory === "world"

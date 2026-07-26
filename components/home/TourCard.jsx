@@ -41,7 +41,7 @@ export default function TourCard({ tour, imageScale }) {
         </div>
         <div className="mt-auto">
           <Link
-            href="/about-us"
+            href={`/tours/${tour.slug || tour.id}`}
             className="button is-secondary w-full text-center"
           >
             <p>View Itinerary</p>

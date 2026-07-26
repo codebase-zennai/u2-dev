@@ -197,7 +197,7 @@ export default function HistorySection() {
                           className="history_item bg-white/4 border border-white/8 rounded-[1.5rem] p-5 md:p-6 backdrop-blur-md hover:bg-white/8 hover:border-[#7ff74b]/35 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-default"
                         >
                           <div className="text-color-white flex items-center">
-                            <div className="heading-style-h4 font-bold text-white">
+                            <div className="font-bold text-white">
                               {item.year}
                             </div>
                           </div>

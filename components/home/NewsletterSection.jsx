@@ -1,40 +1,90 @@
 "use client";
 
-import { Sparkle, MapPin, Calendar, Search, ChevronDown } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Check, ChevronDown, MapPin, Search, Sparkle } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 export default function NewsletterSection() {
   const router = useRouter();
 
   // Search state
-  const [destination, setDestination] = useState("Where to?");
-  const [packageType, setPackageType] = useState("Any type");
-  const [travelDate, setTravelDate] = useState("");
+  const [destination, setDestination] = useState("All Locations");
+  const [packageType, setPackageType] = useState("All Packages");
 
   const [isDestOpen, setIsDestOpen] = useState(false);
   const [isTypeOpen, setIsTypeOpen] = useState(false);
 
-  // Close dropdowns on outer click
+  const destRef = useRef(null);
+  const typeRef = useRef(null);
+
+  // Close dropdowns on click outside
   useEffect(() => {
-    const closeDropdowns = () => {
-      setIsDestOpen(false);
-      setIsTypeOpen(false);
+    const handleClickOutside = (e) => {
+      if (destRef.current && !destRef.current.contains(e.target)) {
+        setIsDestOpen(false);
+      }
+      if (typeRef.current && !typeRef.current.contains(e.target)) {
+        setIsTypeOpen(false);
+      }
     };
-    document.addEventListener("click", closeDropdowns);
-    return () => document.removeEventListener("click", closeDropdowns);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
     const params = new URLSearchParams();
-    if (destination && destination !== "Where to?")
-      params.set("destination", destination);
-    if (packageType && packageType !== "Any type")
-      params.set("type", packageType);
-    if (travelDate) params.set("date", travelDate);
+
+    // Package Type mapping
+    if (packageType === "Day Tours") {
+      params.set("category", "sightseeing");
+    } else if (packageType === "Malaysian Tours") {
+      params.set("category", "malaysian");
+    } else if (packageType === "World Tours") {
+      params.set("category", "world");
+    } else {
+      params.set("category", "all");
+    }
+
+    // Destination mapping
+    if (
+      destination &&
+      destination !== "All Locations" &&
+      destination !== "Where to?"
+    ) {
+      const searchVal =
+        destination === "Sabah & Sarawak" ? "Sabah" : destination;
+      params.set("search", searchVal);
+    }
+
     router.push(`/tours?${params.toString()}`);
   };
+
+  const DESTINATIONS = [
+    "All Locations",
+    "Kuala Lumpur",
+    "Genting Highlands",
+    "Langkawi",
+    "Penang",
+    "Melaka",
+    "Kuantan",
+    "Sabah & Sarawak",
+    "Dubai",
+    "Europe",
+    "India",
+    "Bali",
+    "Korea",
+    "Nepal",
+    "Thailand",
+    "Vietnam",
+  ];
+
+  const PACKAGE_TYPES = [
+    "All Packages",
+    "Day Tours",
+    "Malaysian Tours",
+    "World Tours",
+  ];
 
   return (
     <section className="section background-color-black">
@@ -49,51 +99,62 @@ export default function NewsletterSection() {
           </h2>
         </div>
 
-        {/* Dynamic Search Bar (Following Corporate Color Scheme) */}
-        <div className="w-full max-w-4xl bg-white rounded-3xl p-2 md:p-3 shadow-2xl flex flex-col md:flex-row items-stretch gap-2 z-30">
+        {/* Dynamic Search Bar (Restored Original White Card Aesthetics) */}
+        <div className="w-full max-w-3xl bg-white rounded-3xl p-2 md:p-3 shadow-2xl flex flex-col md:flex-row items-stretch gap-2 z-30 relative">
           {/* Destination Selector */}
-          <div
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsDestOpen(!isDestOpen);
-              setIsTypeOpen(false);
-            }}
-            className="relative flex-1 flex items-center gap-4 px-5 py-3 cursor-pointer hover:bg-slate-50 rounded-2xl md:rounded-l-2xl transition-colors group"
-          >
-            <MapPin className="h-5 w-5 text-[#dfa447] shrink-0" />
-            <div className="flex flex-col flex-1">
-              <span className="text-[9px] font-bold tracking-[0.15em] text-[#013b85] uppercase leading-none mb-1.5">
-                Destination
-              </span>
-              <span className="text-sm font-semibold text-slate-800 leading-none">
-                {destination}
-              </span>
+          <div ref={destRef} className="relative flex-1">
+            {/* biome-ignore lint/a11y/noStaticElementInteractions: click toggle */}
+            {/* biome-ignore lint/a11y/useKeyWithClickEvents: click toggle */}
+            <div
+              onClick={() => {
+                setIsDestOpen(!isDestOpen);
+                setIsTypeOpen(false);
+              }}
+              className="flex items-center gap-4 px-5 py-3 cursor-pointer hover:bg-slate-50 rounded-2xl transition-colors group text-left"
+            >
+              <MapPin className="h-5 w-5 text-[#dfa447] shrink-0" />
+              <div className="flex flex-col flex-1 min-w-0">
+                <span className="text-[9px] font-bold tracking-[0.15em] text-[#013b85] uppercase leading-none mb-1.5">
+                  Location / Destination
+                </span>
+                <span className="text-sm font-semibold text-slate-800 leading-none truncate">
+                  {destination}
+                </span>
+              </div>
+              <ChevronDown
+                className={`h-4 w-4 text-slate-400 group-hover:text-slate-600 transition-transform duration-300 ${
+                  isDestOpen ? "rotate-180 text-[#013b85]" : ""
+                }`}
+              />
             </div>
-            <ChevronDown className="h-4 w-4 text-slate-400 group-hover:text-slate-600 transition-colors" />
 
-            {/* Dropdown Menu */}
+            {/* Custom Clean White Dropdown Menu */}
             {isDestOpen && (
-              <div className="absolute left-0 right-0 top-full mt-2 bg-white rounded-xl shadow-xl border border-slate-100 py-1.5 z-40">
-                {[
-                  "Kuala Lumpur",
-                  "Penang",
-                  "Langkawi",
-                  "Sabah & Sarawak",
-                  "World Tour",
-                ].map((dest) => (
-                  <button
-                    type="button"
-                    key={dest}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setDestination(dest);
-                      setIsDestOpen(false);
-                    }}
-                    className="w-full text-left px-5 py-2 hover:bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600 hover:text-[#013b85] border-none bg-transparent cursor-pointer"
-                  >
-                    {dest}
-                  </button>
-                ))}
+              <div className="absolute left-0 right-0 top-full mt-2 bg-white rounded-2xl shadow-2xl border border-slate-100 p-2 z-50 max-h-60 overflow-y-auto">
+                {DESTINATIONS.map((dest) => {
+                  const isSelected = destination === dest;
+                  return (
+                    // biome-ignore lint/a11y/noStaticElementInteractions: option select
+                    // biome-ignore lint/a11y/useKeyWithClickEvents: option select
+                    <div
+                      key={dest}
+                      onClick={() => {
+                        setDestination(dest);
+                        setIsDestOpen(false);
+                      }}
+                      className={`px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-between cursor-pointer ${
+                        isSelected
+                          ? "bg-[#013b85] text-white shadow-sm"
+                          : "text-slate-600 hover:bg-slate-50 hover:text-[#013b85]"
+                      }`}
+                    >
+                      <span>{dest}</span>
+                      {isSelected && (
+                        <Check className="w-3.5 h-3.5 text-[#7ff74b]" />
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
@@ -102,84 +163,66 @@ export default function NewsletterSection() {
           <div className="hidden md:block w-px bg-slate-100 self-stretch my-2"></div>
 
           {/* Package Type Selector */}
-          <div
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsTypeOpen(!isTypeOpen);
-              setIsDestOpen(false);
-            }}
-            className="relative flex-1 flex items-center gap-4 px-5 py-3 cursor-pointer hover:bg-slate-50 rounded-2xl transition-colors group"
-          >
-            <Sparkle className="h-5 w-5 text-[#dfa447] shrink-0" />
-            <div className="flex flex-col flex-1">
-              <span className="text-[9px] font-bold tracking-[0.15em] text-[#013b85] uppercase leading-none mb-1.5">
-                Package Type
-              </span>
-              <span className="text-sm font-semibold text-slate-800 leading-none">
-                {packageType}
-              </span>
+          <div ref={typeRef} className="relative flex-1">
+            {/* biome-ignore lint/a11y/noStaticElementInteractions: click toggle */}
+            {/* biome-ignore lint/a11y/useKeyWithClickEvents: click toggle */}
+            <div
+              onClick={() => {
+                setIsTypeOpen(!isTypeOpen);
+                setIsDestOpen(false);
+              }}
+              className="flex items-center gap-4 px-5 py-3 cursor-pointer hover:bg-slate-50 rounded-2xl transition-colors group text-left"
+            >
+              <Sparkle className="h-5 w-5 text-[#dfa447] shrink-0" />
+              <div className="flex flex-col flex-1 min-w-0">
+                <span className="text-[9px] font-bold tracking-[0.15em] text-[#013b85] uppercase leading-none mb-1.5">
+                  Package Type
+                </span>
+                <span className="text-sm font-semibold text-slate-800 leading-none truncate">
+                  {packageType}
+                </span>
+              </div>
+              <ChevronDown
+                className={`h-4 w-4 text-slate-400 group-hover:text-slate-600 transition-transform duration-300 ${
+                  isTypeOpen ? "rotate-180 text-[#013b85]" : ""
+                }`}
+              />
             </div>
-            <ChevronDown className="h-4 w-4 text-slate-400 group-hover:text-slate-600 transition-colors" />
 
-            {/* Dropdown Menu */}
+            {/* Custom Clean White Dropdown Menu */}
             {isTypeOpen && (
-              <div className="absolute left-0 right-0 top-full mt-2 bg-white rounded-xl shadow-xl border border-slate-100 py-1.5 z-40">
-                {[
-                  "Malaysian Tours",
-                  "World Tours",
-                  "Sightseeing Tours",
-                  "Any Type",
-                ].map((type) => (
-                  <button
-                    type="button"
-                    key={type}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setPackageType(type);
-                      setIsTypeOpen(false);
-                    }}
-                    className="w-full text-left px-5 py-2 hover:bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600 hover:text-[#013b85] border-none bg-transparent cursor-pointer"
-                  >
-                    {type}
-                  </button>
-                ))}
+              <div className="absolute left-0 right-0 top-full mt-2 bg-white rounded-2xl shadow-2xl border border-slate-100 p-2 z-50">
+                {PACKAGE_TYPES.map((type) => {
+                  const isSelected = packageType === type;
+                  return (
+                    // biome-ignore lint/a11y/noStaticElementInteractions: option select
+                    // biome-ignore lint/a11y/useKeyWithClickEvents: option select
+                    <div
+                      key={type}
+                      onClick={() => {
+                        setPackageType(type);
+                        setIsTypeOpen(false);
+                      }}
+                      className={`px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-between cursor-pointer ${
+                        isSelected
+                          ? "bg-[#013b85] text-white shadow-sm"
+                          : "text-slate-600 hover:bg-slate-50 hover:text-[#013b85]"
+                      }`}
+                    >
+                      <span>{type}</span>
+                      {isSelected && (
+                        <Check className="w-3.5 h-3.5 text-[#7ff74b]" />
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
 
-          {/* Divider on Desktop */}
-          <div className="hidden md:block w-px bg-slate-100 self-stretch my-2"></div>
-
-          {/* Travel Date Selector */}
-          <div className="relative flex-1 flex items-center gap-4 px-5 py-3 cursor-pointer hover:bg-slate-50 rounded-2xl md:rounded-r-none transition-colors group">
-            <Calendar className="h-5 w-5 text-[#dfa447] shrink-0" />
-            <div className="flex flex-col flex-1">
-              <span className="text-[9px] font-bold tracking-[0.15em] text-[#013b85] uppercase leading-none mb-1.5">
-                Travel Date
-              </span>
-              <span className="text-sm font-semibold text-slate-800 leading-none">
-                {travelDate || "dd/mm/yyyy"}
-              </span>
-            </div>
-            <Calendar className="h-4 w-4 text-slate-400 group-hover:text-slate-600 transition-colors" />
-
-            {/* Hidden Native Date Input Overlay */}
-            <input
-              type="date"
-              onClick={(e) => e.stopPropagation()}
-              onChange={(e) => {
-                const dateVal = e.target.value; // yyyy-mm-dd
-                if (dateVal) {
-                  const [yy, mm, dd] = dateVal.split("-");
-                  setTravelDate(`${dd}/${mm}/${yy}`);
-                }
-              }}
-              className="absolute inset-0 opacity-0 cursor-pointer z-10 w-full h-full"
-            />
-          </div>
-
-          {/* Search Button (Using Corporate Green Accent) */}
+          {/* Search Button (Original Corporate Green Accent) */}
           <button
+            type="button"
             onClick={handleSearch}
             className="bg-[#7ff74b] hover:bg-[#60d930] text-[#080808] rounded-2xl md:rounded-full px-8 py-3.5 flex items-center justify-center gap-2 font-bold text-xs tracking-[0.15em] uppercase transition-all duration-300 hover:shadow-lg shrink-0 cursor-pointer border-none"
           >

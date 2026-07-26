@@ -544,11 +544,10 @@ Please confirm availability and booking. Thank you!`;
             Going Beyond Borders
           </span>
           <p className="text-4xl md:text-6xl tp-hero_title font-bold mb-4 tracking-tight">
-            Premium Transport Booker
+            Reliable Transfers, Exceptional Experiences
           </p>
           <p className="text-gray-300 max-w-2xl mx-auto text-base md:text-lg">
-            Compare transfer rates, private VIP sedans, executive vans, and
-            coaches across Malaysia in real time.
+            Compare transfer rates of our fleet services across Malaysia.
           </p>
         </div>
       </section>

@@ -7,7 +7,7 @@ export const tours = [
     price: 399,
     duration: "3 Days, 2 Nights",
     image:
-      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80",
     description:
       "Escape to the cooling mountain resort of Genting Highlands. Experience theme parks, shopping, and high-altitude entertainment.",
     featured: true,
@@ -168,7 +168,7 @@ export const tours = [
     price: 450,
     duration: "4 Days, 3 Nights",
     image:
-      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1200&q=80",
     description:
       "Marvel at the Petronas Twin Towers, explore ancient Batu Caves, and experience vibrant street food and shopping.",
     featured: true,
@@ -309,7 +309,7 @@ export const tours = [
     price: 699,
     duration: "4 Days, 3 Nights",
     image:
-      "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80",
     description:
       "Journey deep into Taman Negara, walk the canopy bridge, and witness rich tropical rainforest flora and fauna.",
     featured: false,
@@ -955,7 +955,7 @@ export const tours = [
     price: 68,
     duration: "8 Hrs",
     image:
-      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80",
     description:
       "Full day tour to Genting Highlands with flexible free time at the resort.",
     featured: false,
@@ -979,7 +979,7 @@ export const tours = [
     price: 34,
     duration: "3 Hrs",
     image:
-      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1200&q=80",
     description:
       "Experience the dazzling lights and vibrant nightlife of Kuala Lumpur.",
     featured: false,
@@ -1003,7 +1003,7 @@ export const tours = [
     price: 34,
     duration: "3.5 Hrs",
     image:
-      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1200&q=80",
     description:
       "Discover iconic KL landmarks including Petronas Towers and Batu Caves.",
     featured: false,
@@ -1027,7 +1027,7 @@ export const tours = [
     price: 34,
     duration: "4 Hrs",
     image:
-      "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80",
     description:
       "Explore the natural beauty and rural charm surrounding Kuala Lumpur.",
     featured: false,
