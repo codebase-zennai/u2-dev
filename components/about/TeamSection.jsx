@@ -34,7 +34,7 @@ const team = [
   },
   {
     name: "Bharathi",
-    role: "Accounts Head",
+    role: "Operations Support",
     image: "/team/Bharathi U2.jpg",
   },
   {
@@ -49,7 +49,7 @@ const team = [
   },
   {
     name: "Bes",
-    role: "Operations Support",
+    role: "Accounts Head",
     image: "/team/Bes U2.png",
   },
 ];
