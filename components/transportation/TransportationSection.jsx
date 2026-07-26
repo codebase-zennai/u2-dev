@@ -394,7 +394,7 @@ export default function TransportationSection() {
     }
 
     // Build WhatsApp Message redirect
-    const waNumber = "60377814180"; // U2 Travels office prefix / phone
+    const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "601111666872";
     const formattedDate = formatDateLabel(bookingDate).formatted;
     const isWomenModeText = forWomen
       ? "✅ WOMEN SAFETY PREFERENCE MODE (Request Female Driver/Guide & Reserved Front Seats)"
