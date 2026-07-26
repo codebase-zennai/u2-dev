@@ -3,8 +3,12 @@ import Header2 from "@/components/layout/Header2";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Privacy Policy | U2 Travels & Tours",
-  description: "Privacy policy for U2 Travels & Tours.",
+  title: "Privacy Policy",
+  description:
+    "Privacy Policy for U2 Travels & Tours. Learn how we collect, handle, and protect your personal data.",
+  alternates: {
+    canonical: "https://u2travels.com.my/privacy-policy",
+  },
 };
 
 export default function PrivacyPolicyPage() {

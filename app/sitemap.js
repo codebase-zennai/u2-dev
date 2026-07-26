@@ -5,10 +5,11 @@ export default function sitemap() {
 
   const staticRoutes = [
     "",
+    "/tours",
+    "/transportation",
+    "/mice",
     "/about-us",
     "/contact",
-    "/locations",
-    "/transportation",
     "/privacy-policy",
     "/terms",
   ].map((route) => ({

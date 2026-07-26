@@ -3,8 +3,12 @@ import Header2 from "@/components/layout/Header2";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Terms & Conditions | U2 Travels & Tours",
-  description: "Terms and conditions for U2 Travels & Tours.",
+  title: "Terms & Conditions",
+  description:
+    "Terms & Conditions for U2 Travels & Tours. Review booking policies, payments, and cancellation terms.",
+  alternates: {
+    canonical: "https://u2travels.com.my/terms",
+  },
 };
 
 export default function TermsPage() {

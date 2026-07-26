@@ -3,7 +3,7 @@ export default function robots() {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/agent-login", "/agent/"],
+      disallow: ["/agent-login", "/agent/", "/admin", "/admin/"],
     },
     sitemap: "https://u2travels.com.my/sitemap.xml",
   };
