@@ -1987,7 +1987,7 @@ strong {
 }
 
 .tp-hero_bg .img-cover {
-  filter: brightness(0.15) saturate(1.1);
+  filter: brightness(0.65) saturate(1.1);
 }
 
 .tp-hero_overlay {

@@ -101,6 +101,41 @@ export default function TeamSection() {
           </p>
         </div>
 
+
+        {/* Regular Team Members Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 ">
+          {team.map((member, index) => (
+            <div
+              key={member.name}
+              className="bg-white border border-slate-100 rounded-[2rem] p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col group text-center"
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "translateY(0)" : "translateY(2rem)",
+                transition: `opacity 0.6s ease ${(index + leaders.length) * 0.05}s, transform 0.6s ease ${(index + leaders.length) * 0.05}s, box-transform 0.3s ease`,
+              }}
+            >
+              <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden mb-4">
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 250px"
+                />
+              </div>
+              <h4 className="text-base font-bold text-slate-800 mb-1">
+                {member.name}
+              </h4>
+              <p className="text-xs font-semibold text-[#013b85] uppercase tracking-wider mt-auto">
+                {member.role}
+              </p>
+            </div>
+          ))}
+        </div>
+
+                {/* Divider */}
+        <div className="w-16 h-1 bg-[#013b85]/10 mx-auto mb-16 rounded-full mt-16" />
+
         {/* Leaders Grid (Founder & GM) */}
         <div className="flex flex-col md:flex-row justify-center items-center gap-8 mb-16">
           {leaders.map((leader, index) => (
@@ -133,39 +168,6 @@ export default function TeamSection() {
           ))}
         </div>
 
-        {/* Divider */}
-        <div className="w-16 h-1 bg-[#013b85]/10 mx-auto mb-16 rounded-full" />
-
-        {/* Regular Team Members Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {team.map((member, index) => (
-            <div
-              key={member.name}
-              className="bg-white border border-slate-100 rounded-[2rem] p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col group text-center"
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateY(0)" : "translateY(2rem)",
-                transition: `opacity 0.6s ease ${(index + leaders.length) * 0.05}s, transform 0.6s ease ${(index + leaders.length) * 0.05}s, box-transform 0.3s ease`,
-              }}
-            >
-              <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden mb-4">
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 250px"
-                />
-              </div>
-              <h4 className="text-base font-bold text-slate-800 mb-1">
-                {member.name}
-              </h4>
-              <p className="text-xs font-semibold text-[#013b85] uppercase tracking-wider mt-auto">
-                {member.role}
-              </p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
