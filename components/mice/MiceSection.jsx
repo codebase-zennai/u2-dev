@@ -283,7 +283,7 @@ export default function MiceSection() {
       </section>
 
       {/* Case Studies / Showcase Section */}
-      <section className="py-20 bg-white">
+      {/* <section className="py-20 bg-white">
         <div className="container-large px-4 md:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16 flex flex-col gap-4">
             <span className="text-[#dfa447] text-xs font-black uppercase tracking-[0.25em]">
@@ -307,7 +307,6 @@ export default function MiceSection() {
                 key={study.title}
                 className="group bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full"
               >
-                {/* Image Container */}
                 <div className="aspect-[1.5] w-full relative overflow-hidden bg-slate-100">
                   <Image
                     src={study.image}
@@ -321,7 +320,6 @@ export default function MiceSection() {
                   </div>
                 </div>
 
-                {/* Content */}
                 <div className="p-6 flex flex-col flex-grow text-left">
                   <h3 className="font-extrabold text-[#013b85] text-lg mb-3 uppercase tracking-wide group-hover:text-[#dfa447] transition-colors leading-snug">
                     {study.title}
@@ -334,7 +332,7 @@ export default function MiceSection() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Corporate Call To Action */}
       <section className="py-24 bg-[#013b85] text-white relative overflow-hidden">
