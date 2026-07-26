@@ -112,7 +112,7 @@ export default function ToursPage({
 
   // Render package grid
   const renderGrid = () => (
-    <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+    <ul className="grid grid-ul grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 sm:p-0">
       {filteredPackages.map((tour, idx) => (
         <li
           key={`${tour.id}-${tour.slug || idx}`}
@@ -206,7 +206,7 @@ export default function ToursPage({
             <div className="margin-bottom-16">
               <h1 className="heading-style-h1">
                 <span
-                  className="is-word is-1"
+                  className="is-word is-1 mt-10"
                   style={{
                     opacity: isVisible ? 1 : 0,
                     transform: isVisible

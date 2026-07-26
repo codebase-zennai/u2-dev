@@ -1,9 +1,9 @@
 "use client";
 
+import { Award, Briefcase, Calendar, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Award, Briefcase, Calendar, Users } from "lucide-react";
 
 export default function MiceSection() {
   const [loaded, setLoaded] = useState(false);
@@ -88,7 +88,7 @@ export default function MiceSection() {
   ];
 
   return (
-    <div className="mice-page">
+    <div className="mice-page w-full overflow-x-hidden max-w-full">
       {/* Hero Banner Section */}
       <section className="tp-hero">
         <div className="tp-hero_bg">
@@ -111,10 +111,10 @@ export default function MiceSection() {
               transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s",
             }}
           >
-            Corporate Travel & Events
+            Corporate Travel &amp; Events
           </p>
-          <h1
-            className="tp-hero_title"
+          <p
+            className="text-4xl sm:text-6xl md:text-7xl tp-hero_title font-extrabold text-white uppercase tracking-tight leading-none mb-4 max-w-full"
             style={{
               opacity: loaded ? 1 : 0,
               transform: loaded ? "translateY(0)" : "translateY(0.3em)",
@@ -122,7 +122,7 @@ export default function MiceSection() {
             }}
           >
             MICE &amp; Events
-          </h1>
+          </p>
           <p
             className="tp-hero_desc"
             style={{
@@ -158,19 +158,19 @@ export default function MiceSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Col: Creative Description */}
             <div className="flex flex-col gap-6 text-left">
-              <h2
-                className="text-3xl md:text-4.5xl font-normal text-[#013b85] tracking-tight leading-tight"
+              <p
+                className="text-xl sm:text-3xl md:text-5xl font-normal text-[#013b85] tracking-tight leading-tight max-w-full"
                 style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
               >
                 Seamless Corporate Events, <br />
                 <span className="text-[#dfa447] italic">
                   Tailored to Perfection
                 </span>
-              </h2>
+              </p>
               <p className="text-slate-600 text-base md:text-lg leading-relaxed font-light">
-                At U2 Travels & Tours, we understand that corporate events are a
-                major investment in your people and partners. With 18+ years of
-                experience, we deliver tailored logistics, premium
+                At U2 Travels &amp; Tours, we understand that corporate events
+                are a major investment in your people and partners. With 18+
+                years of experience, we deliver tailored logistics, premium
                 accommodations, and bespoke itineraries that support your
                 corporate objectives.
               </p>
@@ -184,7 +184,7 @@ export default function MiceSection() {
             </div>
 
             {/* Right Col: Metric Cards */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-100 hover:shadow-md transition-shadow flex flex-col gap-2">
                 <span className="text-4xl font-black text-[#013b85]">500+</span>
                 <span className="text-xs uppercase font-extrabold tracking-wider text-slate-400">
@@ -234,12 +234,12 @@ export default function MiceSection() {
             <span className="text-[#dfa447] text-xs font-black uppercase tracking-[0.25em]">
               The Core Disciplines
             </span>
-            <h2
-              className="text-3xl md:text-5xl font-normal text-[#013b85] tracking-tight"
+            <p
+              className="text-xl sm:text-3xl md:text-5xl font-normal text-[#013b85] tracking-tight"
               style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
             >
               Our MICE Capabilities
-            </h2>
+            </p>
             <p className="text-slate-500 text-sm md:text-base leading-relaxed">
               We leverage an extensive network of luxury ground transports,
               hotels, and expert vendor partners to deliver outstanding results
@@ -248,9 +248,9 @@ export default function MiceSection() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {pillars.map((pillar, idx) => (
+            {pillars.map((pillar) => (
               <div
-                key={idx}
+                key={pillar.title}
                 className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 text-left flex flex-col justify-between"
               >
                 <div>
@@ -268,8 +268,8 @@ export default function MiceSection() {
                 </div>
                 <div className="border-t border-slate-100 pt-6">
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-semibold text-slate-500">
-                    {pillar.bullets.map((bullet, bidx) => (
-                      <li key={bidx} className="flex items-center gap-2">
+                    {pillar.bullets.map((bullet) => (
+                      <li key={bullet} className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 bg-[#dfa447] rounded-full shrink-0" />
                         <span>{bullet}</span>
                       </li>
@@ -289,22 +289,22 @@ export default function MiceSection() {
             <span className="text-[#dfa447] text-xs font-black uppercase tracking-[0.25em]">
               Proven Track Record
             </span>
-            <h2
-              className="text-3xl md:text-5xl font-normal text-[#013b85] tracking-tight"
+            <p
+              className="text-xl sm:text-3xl md:text-5xl font-normal text-[#013b85] tracking-tight"
               style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
             >
               Events Successfully Managed
-            </h2>
+            </p>
             <p className="text-slate-500 text-sm md:text-base">
               A glimpse into a few corporate journeys planned and managed
-              end-to-end by U2 Travels & Tours.
+              end-to-end by U2 Travels &amp; Tours.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {caseStudies.map((study, idx) => (
+            {caseStudies.map((study) => (
               <div
-                key={idx}
+                key={study.title}
                 className="group bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full"
               >
                 {/* Image Container */}
@@ -348,11 +348,11 @@ export default function MiceSection() {
         </div>
         <div className="container-large relative z-10 px-4 md:px-8">
           <div className="max-w-3xl mx-auto text-center flex flex-col items-center gap-6">
-            <p
-              className="text-3xl md:text-5.5xl text-[#dfa447]  font-normal tracking-tight leading-tight"
-            >
-              Let’s Plan Your Next <br />
-              <span className="tp-hero_title">Corporate Milestone</span>
+            <p className="text-xl sm:text-3xl md:text-5.5xl text-[#dfa447] font-normal tracking-tight leading-tight max-w-full">
+              Let's Plan Your Next <br />
+              <span className="text-white block mt-2 font-bold tracking-wide">
+                Corporate Milestone
+              </span>
             </p>
             <p className="text-slate-200 text-base md:text-lg leading-relaxed font-light max-w-2xl">
               Connect with our corporate events and MICE team to obtain a custom

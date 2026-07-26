@@ -134,6 +134,10 @@ ol {
   padding-left: 2.5rem;
 }
 
+.grid-ul{
+  padding-left: 0 !important;
+}
+
 img {
   max-width: 100%;
   display: inline-block;

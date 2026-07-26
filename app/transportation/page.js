@@ -11,7 +11,7 @@ export const metadata = {
 export default function TransportationPage() {
   return (
     <>
-      <Header2 isSolid={true} />
+      <Header2/>
       <main className="main-wrapper">
         <TransportationSection />
       </main>

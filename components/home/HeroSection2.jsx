@@ -83,7 +83,7 @@ export default function HeroSection2() {
 
           {/* Large Serif Title with Cursive Accent — design is preserved */}
           <p
-            className="text-white font-normal text-6xl leading-[1.1] mb-6 tracking-tight select-none"
+            className="text-white font-normal text-3xl md:text-6xl leading-[1.1] mb-6 tracking-tight select-none"
             style={{
               fontFamily: "var(--font-playfair), Georgia, serif",
               textTransform: "none",

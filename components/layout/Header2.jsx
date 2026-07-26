@@ -2,13 +2,15 @@
 
 import {
   ChevronDown,
+  Compass,
+  Globe,
   LayoutDashboard,
   LogOut,
+  MapPin,
   Menu,
   User,
   X,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -128,10 +130,10 @@ export default function Header2({ isSolid = false }) {
           color: white !important;
         }
         .header2-nav .nav_wrapper.is-at-top .nav_link:hover {
-          color: #dfa447 !important;
+          color: #7ff74b !important;
         }
         .header2-nav .nav_wrapper.is-at-top .link_line {
-          background-color: #dfa447 !important;
+          background-color: #7ff74b !important;
         }
         .header2-nav .nav_wrapper.is-at-top .nav_brand {
           color: white !important;
@@ -155,12 +157,17 @@ export default function Header2({ isSolid = false }) {
           color: #013b85 !important;
         }
         .header2-nav .nav_wrapper.is-scrolled .nav_link:hover {
-          color: #dfa447 !important;
+          color: #7ff74b !important;
         }
         .header2-nav .nav_wrapper.is-scrolled .link_line {
-          background-color: var(--green) !important;
+          background-color: #7ff74b !important;
         }
-        .header2-nav .nav_wrapper.is-scrolled .nav_brand {
+        .header2-nav .nav_wrapper.is-scrolled .nav_brand,
+        .header2-nav .nav_wrapper.is-scrolled .nav_brand-label-top2,
+        .header2-nav .nav_wrapper.is-scrolled .nav_brand-label-bottom2,
+        .header2-nav .nav_wrapper.is-scrolled .nav_brand-label-top,
+        .header2-nav .nav_wrapper.is-scrolled .nav_brand-label-bottom,
+        .header2-nav .nav_wrapper.is-scrolled .nav_brand-label {
           color: #013b85 !important;
         }
         .header2-nav .nav_wrapper.is-scrolled button {
@@ -231,8 +238,9 @@ export default function Header2({ isSolid = false }) {
                   <NavigationMenu>
                     <NavigationMenuList>
                       <NavigationMenuItem>
-                        <NavigationMenuTrigger className="nav_link border-none bg-transparent outline-none shadow-none focus:bg-transparent hover:bg-transparent font-bold text-sm tracking-wide uppercase p-0 h-auto cursor-pointer">
-                          Tours
+                        <NavigationMenuTrigger className="nav_link inline-flex border-none bg-transparent outline-none shadow-none focus:bg-transparent hover:bg-transparent p-0 h-auto cursor-pointer">
+                          <div className="z-index-2">Tours</div>
+                          <div className="link_line"></div>
                         </NavigationMenuTrigger>
                         <NavigationMenuContent>
                           <div className="w-[580px] p-6 bg-white rounded-2xl shadow-2xl border border-slate-100 grid grid-cols-2 gap-6">
@@ -240,7 +248,7 @@ export default function Header2({ isSolid = false }) {
                             <div>
                               <h4 className="text-xs font-black tracking-widest text-[#013b85] uppercase mb-4 pb-2 border-b border-slate-100 flex items-center justify-between">
                                 <span>Malaysian Tours</span>
-                                <span className="text-[10px] bg-[#dfa447]/15 text-[#dfa447] px-2 py-0.5 rounded-full font-bold">
+                                <span className="text-[10px] bg-[#7ff74b]/20 text-[#013b85] px-2 py-0.5 rounded-full font-bold">
                                   Local
                                 </span>
                               </h4>
@@ -249,14 +257,8 @@ export default function Header2({ isSolid = false }) {
                                   href="/tours?category=sightseeing"
                                   className="p-2.5 rounded-xl hover:bg-slate-50 transition-colors group flex items-start gap-3 !no-underline"
                                 >
-                                  <div className="w-8 h-8 rounded-lg bg-[#dfa447]/10 flex items-center justify-center shrink-0 group-hover:bg-[#dfa447] transition-colors">
-                                    <Image
-                                      src="/icons/icon-location.svg"
-                                      alt="Day Tours"
-                                      width={16}
-                                      height={16}
-                                      className="icon-16 opacity-70 group-hover:opacity-100 group-hover:brightness-200 transition-all"
-                                    />
+                                  <div className="w-8 h-8 rounded-lg bg-[#7ff74b]/15 flex items-center justify-center shrink-0 group-hover:bg-[#7ff74b] transition-colors">
+                                    <MapPin className="h-4 w-4 text-[#013b85] group-hover:text-black transition-colors" />
                                   </div>
                                   <div>
                                     <div className="text-xs font-bold text-slate-800 group-hover:text-[#013b85] transition-colors">
@@ -273,13 +275,7 @@ export default function Header2({ isSolid = false }) {
                                   className="p-2.5 rounded-xl hover:bg-slate-50 transition-colors group flex items-start gap-3 !no-underline"
                                 >
                                   <div className="w-8 h-8 rounded-lg bg-[#013b85]/10 flex items-center justify-center shrink-0 group-hover:bg-[#013b85] transition-colors">
-                                    <Image
-                                      src="/icons/icon-location.svg"
-                                      alt="Malaysian Packages"
-                                      width={16}
-                                      height={16}
-                                      className="icon-16 opacity-70 group-hover:opacity-100 group-hover:brightness-200 transition-all"
-                                    />
+                                    <Compass className="h-4 w-4 text-[#013b85] group-hover:text-white transition-colors" />
                                   </div>
                                   <div>
                                     <div className="text-xs font-bold text-[#013b85] group-hover:text-[#013b85] transition-colors">
@@ -307,13 +303,7 @@ export default function Header2({ isSolid = false }) {
                                   className="p-2.5 rounded-xl hover:bg-slate-50 transition-colors group flex items-start gap-3 !no-underline"
                                 >
                                   <div className="w-8 h-8 rounded-lg bg-[#7ff74b]/20 flex items-center justify-center shrink-0 group-hover:bg-[#013b85] transition-colors">
-                                    <Image
-                                      src="/icons/icon-location.svg"
-                                      alt="International Destinations"
-                                      width={16}
-                                      height={16}
-                                      className="icon-16 opacity-70 group-hover:opacity-100 group-hover:brightness-200 transition-all"
-                                    />
+                                    <Globe className="h-4 w-4 text-[#013b85] group-hover:text-white transition-colors" />
                                   </div>
                                   <div>
                                     <div className="text-xs font-bold text-slate-800 group-hover:text-[#013b85] transition-colors">
@@ -328,11 +318,11 @@ export default function Header2({ isSolid = false }) {
 
                               <div className="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-between">
                                 <span className="text-[11px] font-bold text-slate-600">
-                                  Explore all 150+ packages
+                                  Explore all packages
                                 </span>
                                 <Link
                                   href="/tours"
-                                  className="text-[11px] font-black text-[#013b85] hover:text-[#dfa447] uppercase tracking-wider no-underline"
+                                  className="text-[11px] font-black text-[#013b85] hover:text-[#7ff74b] uppercase tracking-wider no-underline"
                                 >
                                   View All →
                                 </Link>
@@ -372,7 +362,7 @@ export default function Header2({ isSolid = false }) {
               {!isAgent && (
                 <Link
                   href="/register"
-                  className="hidden sm:inline-block bg-[#dfa447] hover:bg-[#013b85] text-white px-5 py-2 rounded-full font-bold text-xs tracking-wider uppercase transition-all shadow-sm hover:shadow-md !no-underline"
+                  className="hidden sm:inline-block bg-[#7ff74b] hover:bg-[#013b85] text-white px-5 py-2 rounded-full font-bold text-xs tracking-wider uppercase transition-all shadow-sm hover:shadow-md !no-underline"
                 >
                   Sign Up
                 </Link>
@@ -563,14 +553,14 @@ export default function Header2({ isSolid = false }) {
                       >
                         <span>Tours &amp; Packages</span>
                         <ChevronDown
-                          className={`h-5 w-5 text-[#dfa447] transition-transform duration-200 ${
+                          className={`h-5 w-5 text-[#7ff74b] transition-transform duration-200 ${
                             isMobileToursOpen ? "rotate-180" : ""
                           }`}
                         />
                       </button>
 
                       {isMobileToursOpen && (
-                        <div className="pl-4 mt-2 flex flex-col gap-2.5 border-l-2 border-[#dfa447]/40 pb-2">
+                        <div className="pl-4 mt-2 flex flex-col gap-2.5 border-l-2 border-[#7ff74b]/40 pb-2">
                           <Link
                             href="/tours"
                             onClick={toggleMenu}
@@ -644,7 +634,7 @@ export default function Header2({ isSolid = false }) {
                       <Link
                         href="/register"
                         onClick={toggleMenu}
-                        className="bg-[#dfa447] hover:bg-[#013b85] text-white text-center w-full py-4 rounded-xl font-extrabold tracking-wider text-xs uppercase transition-all shadow-md !no-underline block"
+                        className="bg-[#7ff74b] hover:bg-[#013b85] text-white text-center w-full py-4 rounded-xl font-extrabold tracking-wider text-xs uppercase transition-all shadow-md !no-underline block"
                       >
                         Sign Up
                       </Link>

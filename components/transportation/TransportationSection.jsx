@@ -53,6 +53,7 @@ export default function TransportationSection() {
   const [searchResults, setSearchResults] = useState([]);
   const [searched, setSearched] = useState(false);
   const [activeCategoryFilter, setActiveCategoryFilter] = useState("ALL");
+  const [selectedVehicleType, setSelectedVehicleType] = useState("ALL");
 
   // Accordion details states (index based)
   const [expandedDetails, setExpandedDetails] = useState({});
@@ -116,24 +117,25 @@ export default function TransportationSection() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Set default values initially
+  // Set default values initially (Any to Any and All)
   useEffect(() => {
-    // Set default date to today or next day
+    // Set default date to today
     const today = new Date();
     const yyyy = today.getFullYear();
     const mm = String(today.getMonth() + 1).padStart(2, "0");
     const dd = String(today.getDate()).padStart(2, "0");
     setJourneyDate(`${yyyy}-${mm}-${dd}`);
 
-    // Pre-populate popular transfer route initially
-    setFromInput(HUB_KUALA_LUMPUR);
-    setSelectedHub(HUB_KUALA_LUMPUR);
-    setToInput("Genting Highlands");
-    setSelectedDestination("Genting Highlands");
+    // Default: Any to Any and All
+    setFromInput("");
+    setSelectedHub("");
+    setToInput("");
+    setSelectedDestination("");
+    setSelectedVehicleType("ALL");
 
-    // Auto trigger initial load of popular route
+    // Auto trigger initial search showing all transfer packages
     setTimeout(() => {
-      triggerSearch(HUB_KUALA_LUMPUR, "Genting Highlands");
+      triggerSearch("", "", "ALL");
     }, 100);
   }, [rates]);
 
@@ -210,38 +212,30 @@ export default function TransportationSection() {
   };
 
   // Get available destinations for the currently selected hub
+  // Return available destination options
   const getDestinationsForHub = (hub) => {
-    if (!hub) return [];
-
-    // Query matching records
-    const matchingRecords = rates.filter((r) => recordMatchesHub(r, hub));
-
-    // Group and clean names
+    let hubRecords = rates;
+    if (hub && hub !== "" && hub !== "ANY") {
+      hubRecords = rates.filter((r) => recordMatchesHub(r, hub));
+    }
     const destSet = new Set();
-    matchingRecords.forEach((r) => {
+    hubRecords.forEach((r) => {
       const cleaned = cleanDestination(r.to_location);
-      // Filter out raw values that correspond to activity details or invalid destination headers
       if (
         cleaned &&
         cleaned.length > 2 &&
         !cleaned.includes("RATE INCLUSIVE") &&
         !cleaned.includes("EXCLUDES OF") &&
-        !cleaned.includes("USD") &&
-        !cleaned.includes("TILL DINNER") &&
-        !cleaned.includes("ACTIVITY") &&
-        !cleaned.includes("ADULT") &&
-        !cleaned.includes("SHARING BASIS")
+        !cleaned.includes("USD")
       ) {
         destSet.add(cleaned);
       }
     });
-
     return Array.from(destSet).sort();
   };
 
-  // Swap From & To logic
+  // Swap From & To logic (updates form fields only)
   const handleSwap = () => {
-    // If To corresponds to a Hub (e.g. Penang), swap them.
     const toLower = toInput.toLowerCase();
     let matchedHub = "";
     if (toLower.includes("penang")) matchedHub = HUB_PENANG;
@@ -251,31 +245,24 @@ export default function TransportationSection() {
 
     if (matchedHub) {
       const prevHub = selectedHub;
-      const prevDest = selectedDestination;
 
       setSelectedHub(matchedHub);
       setFromInput(matchedHub);
 
-      setSelectedDestination(
-        prevHub === HUB_KUALA_LUMPUR ? "Kuala Lumpur" : prevHub,
-      );
-      setToInput(prevHub === HUB_KUALA_LUMPUR ? "Kuala Lumpur" : prevHub);
-
-      triggerSearch(
-        matchedHub,
-        prevHub === HUB_KUALA_LUMPUR ? "Kuala Lumpur" : prevHub,
-      );
+      const newDest = prevHub === HUB_KUALA_LUMPUR ? "Kuala Lumpur" : prevHub;
+      setSelectedDestination(newDest);
+      setToInput(newDest);
     }
   };
 
-  // Execute Search
+  // Execute Search strictly on Search button click
   const handleSearchClick = (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
 
     let currentHub = selectedHub;
     if (!currentHub && fromInput) {
       const matchedHub = HUBS.find(
-        (h) => h.toLowerCase() === fromInput.toLowerCase()
+        (h) => h.toLowerCase() === fromInput.toLowerCase(),
       );
       if (matchedHub) {
         currentHub = matchedHub;
@@ -287,7 +274,7 @@ export default function TransportationSection() {
     if (currentHub && !currentDest && toInput) {
       const dests = getDestinationsForHub(currentHub);
       const matchedDest = dests.find(
-        (d) => d.toLowerCase() === toInput.toLowerCase()
+        (d) => d.toLowerCase() === toInput.toLowerCase(),
       );
       if (matchedDest) {
         currentDest = matchedDest;
@@ -295,30 +282,42 @@ export default function TransportationSection() {
       }
     }
 
-    if (!currentHub) {
-      alert("Please select a valid From origin from the options list.");
-      return;
-    }
-    if (!currentDest) {
-      alert("Please select a valid To destination from the options list.");
-      return;
-    }
-    triggerSearch(currentHub, currentDest);
+    triggerSearch(currentHub || "", currentDest || "", selectedVehicleType);
   };
 
-  const triggerSearch = (hub, destination) => {
-    // Find all records under the selected hub
-    const hubRecords = rates.filter((r) => recordMatchesHub(r, hub));
+  const triggerSearch = (
+    hub = selectedHub,
+    destination = selectedDestination,
+    vehicleType = selectedVehicleType,
+  ) => {
+    setLoading(true);
 
-    // Filter to those matching the selected destination
-    const matched = hubRecords.filter((r) => {
-      const cleaned = cleanDestination(r.to_location);
-      return cleaned.toLowerCase() === destination.toLowerCase();
-    });
+    setTimeout(() => {
+      // Find all records matching selected hub (or all if empty/ANY)
+      const hubRecords = rates.filter((r) => {
+        if (!hub || hub === "" || hub === "ANY") return true;
+        return recordMatchesHub(r, hub);
+      });
 
-    setSearchResults(matched);
-    setSearched(true);
-    setActiveCategoryFilter("ALL");
+      // Filter to those matching selected destination (or all if empty/ANY)
+      const matched = hubRecords.filter((r) => {
+        if (!destination || destination === "" || destination === "ANY")
+          return true;
+        const cleaned = cleanDestination(r.to_location);
+        return cleaned.toLowerCase().includes(destination.toLowerCase());
+      });
+
+      // Filter by vehicle type (ALL, FIT, COACH)
+      const finalResults = matched.filter((r) => {
+        if (!vehicleType || vehicleType === "ALL") return true;
+        return r.category.toUpperCase() === vehicleType.toUpperCase();
+      });
+
+      setSearchResults(finalResults);
+      setActiveCategoryFilter(vehicleType);
+      setSearched(true);
+      setLoading(false);
+    }, 200);
   };
 
   // Format date display (RedBus style)
@@ -467,7 +466,9 @@ Please confirm availability and booking. Thank you!`;
             >
               <span className="text-gray-500 font-medium text-xs">{pax}</span>
               <div className="text-right">
-                <span className="text-gray-800 font-semibold block">{usdVal}</span>
+                <span className="text-gray-800 font-semibold block">
+                  {usdVal}
+                </span>
                 {myrVal && (
                   <span className="text-[10px] text-gray-400 block">
                     {myrVal}
@@ -516,11 +517,8 @@ Please confirm availability and booking. Thank you!`;
 
   const recommendedTours = getSidebarRecommendations();
 
-  // Filtered ticket listings
-  const filteredResults = searchResults.filter((r) => {
-    if (activeCategoryFilter === "ALL") return true;
-    return r.category.toUpperCase() === activeCategoryFilter;
-  });
+  // Searched ticket listings
+  const filteredResults = searchResults;
 
   return (
     <>
@@ -536,17 +534,18 @@ Please confirm availability and booking. Thank you!`;
             priority
             unoptimized
           />
-          <div className="tp-hero_overlay absolute inset-0 bg-black/60"></div>
+          {/* Black overlay for maximum text legibility */}
+          <div className="absolute inset-0 bg-slate-950/75 backdrop-brightness-75 z-[1]" />
         </div>
 
         <div className="container px-6 relative z-10 text-center">
-          <span className="font-semibold tp-hero_eyebrow tracking-wider text-sm uppercase block mb-3 animate-fade-in">
+          <span className="font-extrabold text-[#7ff74b] tracking-[0.2em] text-xs sm:text-sm uppercase block mb-3 animate-fade-in drop-shadow-md">
             Going Beyond Borders
           </span>
-          <p className="text-4xl md:text-6xl tp-hero_title font-bold mb-4 tracking-tight">
+          <p className="tp-hero_title text-3xl md:text-6xl text-white font-bold mb-4 tracking-tight leading-tight">
             Reliable Transfers, Exceptional Experiences
           </p>
-          <p className="text-gray-300 max-w-2xl mx-auto text-base md:text-lg">
+          <p className="text-gray-200 max-w-2xl mx-auto text-sm md:text-lg font-light">
             Compare transfer rates of our fleet services across Malaysia.
           </p>
         </div>
@@ -584,13 +583,13 @@ Please confirm availability and booking. Thank you!`;
                   <input
                     type="text"
                     className="w-full bg-transparent border-0 p-0 text-gray-800 text-sm font-bold focus:ring-0 focus:outline-none placeholder-gray-400 cursor-text"
-                    placeholder="Select Departure Origin"
+                    placeholder="Any Origin (All Malaysia)"
                     value={fromInput}
                     onChange={(e) => {
                       setFromInput(e.target.value);
                       setShowFromDropdown(true);
                       const matchedHub = HUBS.find(
-                        (h) => h.toLowerCase() === e.target.value.toLowerCase()
+                        (h) => h.toLowerCase() === e.target.value.toLowerCase(),
                       );
                       if (matchedHub) {
                         setSelectedHub(matchedHub);
@@ -612,11 +611,25 @@ Please confirm availability and booking. Thank you!`;
                     <p className="px-4 py-1.5 text-xs font-semibold text-gray-400 uppercase tracking-wider border-b border-gray-50">
                       Departure Hubs
                     </p>
+                    <div
+                      className="px-4 py-2.5 hover:bg-gray-50 font-bold text-sm text-[#013b85] cursor-pointer flex items-center gap-2 border-b border-gray-100"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setFromInput("");
+                        setSelectedHub("");
+                        setShowFromDropdown(false);
+                      }}
+                    >
+                      <Bus className="w-4 h-4 text-[#013b85]" />
+                      Any Origin (All Malaysia)
+                    </div>
                     {(() => {
                       const hubsToShow = HUBS.filter((hub) => {
                         if (!fromInput) return true;
                         if (HUBS.includes(fromInput)) return true;
-                        return hub.toLowerCase().includes(fromInput.toLowerCase());
+                        return hub
+                          .toLowerCase()
+                          .includes(fromInput.toLowerCase());
                       });
                       return hubsToShow.length === 0 ? (
                         <div className="px-4 py-3 text-xs text-gray-400">
@@ -632,11 +645,6 @@ Please confirm availability and booking. Thank you!`;
                               setFromInput(hub);
                               setSelectedHub(hub);
                               setShowFromDropdown(false);
-                              // Reset destination
-                              setToInput("");
-                              setSelectedDestination("");
-                              // Open To dropdown automatically
-                              setShowToDropdown(true);
                             }}
                           >
                             <Bus className="w-4 h-4 text-gray-400" />
@@ -666,10 +674,6 @@ Please confirm availability and booking. Thank you!`;
                 ref={toRef}
                 className="lg:col-span-4 relative border-b lg:border-b-0 lg:border-r border-gray-200 pb-3 lg:pb-0 lg:pl-2 lg:pr-4 flex items-center gap-3 cursor-pointer"
                 onClick={() => {
-                  if (!selectedHub) {
-                    alert("Please select a 'From' origin first.");
-                    return;
-                  }
                   setShowToDropdown(true);
                   setShowFromDropdown(false);
                 }}
@@ -684,18 +688,14 @@ Please confirm availability and booking. Thank you!`;
                   <input
                     type="text"
                     className="w-full bg-transparent border-0 p-0 text-gray-800 text-sm font-bold focus:ring-0 focus:outline-none placeholder-gray-400 cursor-text"
-                    placeholder={
-                      selectedHub
-                        ? "Where are you going?"
-                        : "Select From origin first"
-                    }
+                    placeholder="Any Destination"
                     value={toInput}
                     onChange={(e) => {
                       setToInput(e.target.value);
                       setShowToDropdown(true);
                       const dests = getDestinationsForHub(selectedHub);
                       const matchedDest = dests.find(
-                        (d) => d.toLowerCase() === e.target.value.toLowerCase()
+                        (d) => d.toLowerCase() === e.target.value.toLowerCase(),
                       );
                       if (matchedDest) {
                         setSelectedDestination(matchedDest);
@@ -704,30 +704,39 @@ Please confirm availability and booking. Thank you!`;
                       }
                     }}
                     onFocus={(e) => {
-                      if (!selectedHub) {
-                        alert("Please select a 'From' origin first.");
-                        return;
-                      }
                       e.target.select();
                       setShowToDropdown(true);
                       setShowFromDropdown(false);
                     }}
-                    disabled={!selectedHub}
                   />
                 </div>
 
                 {/* Destinations Dropdown */}
-                {showToDropdown && selectedHub && (
+                {showToDropdown && (
                   <div className="absolute left-0 top-full mt-3 bg-white w-full max-h-72 overflow-y-auto border border-gray-100 rounded-2xl shadow-xl z-30 py-2 animate-slide-down">
                     <p className="px-4 py-1.5 text-xs font-semibold text-gray-400 uppercase tracking-wider border-b border-gray-50">
                       Popular Destinations
                     </p>
+                    <div
+                      className="px-4 py-2.5 hover:bg-gray-50 font-bold text-sm text-[#013b85] cursor-pointer flex items-center gap-2 border-b border-gray-100"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setToInput("");
+                        setSelectedDestination("");
+                        setShowToDropdown(false);
+                      }}
+                    >
+                      <MapPin className="w-4 h-4 text-[#013b85]" />
+                      Any Destination
+                    </div>
                     {(() => {
                       const allDests = getDestinationsForHub(selectedHub);
                       const destsToShow = allDests.filter((dest) => {
                         if (!toInput) return true;
                         if (allDests.includes(toInput)) return true;
-                        return dest.toLowerCase().includes(toInput.toLowerCase());
+                        return dest
+                          .toLowerCase()
+                          .includes(toInput.toLowerCase());
                       });
                       return destsToShow.length === 0 ? (
                         <div className="px-4 py-3 text-xs text-gray-400">
@@ -763,9 +772,9 @@ Please confirm availability and booking. Thank you!`;
                 <div className="flex gap-1 bg-gray-100 p-1 rounded-xl text-xs w-full">
                   <button
                     type="button"
-                    onClick={() => setActiveCategoryFilter("ALL")}
-                    className={`flex-1 py-1.5 rounded-lg font-bold transition-all text-center cursor-pointer ${
-                      activeCategoryFilter === "ALL"
+                    onClick={() => setSelectedVehicleType("ALL")}
+                    className={`flex-1 py-2 lg:py-1.5 rounded-lg font-bold transition-all text-center cursor-pointer ${
+                      selectedVehicleType === "ALL"
                         ? "bg-[#013b85] text-white shadow-sm"
                         : "text-gray-600 hover:text-gray-900"
                     }`}
@@ -774,9 +783,9 @@ Please confirm availability and booking. Thank you!`;
                   </button>
                   <button
                     type="button"
-                    onClick={() => setActiveCategoryFilter("FIT")}
-                    className={`flex-1 py-1.5 rounded-lg font-bold transition-all text-center cursor-pointer ${
-                      activeCategoryFilter === "FIT"
+                    onClick={() => setSelectedVehicleType("FIT")}
+                    className={`flex-1 py-2 lg:py-1.5 rounded-lg font-bold transition-all text-center cursor-pointer ${
+                      selectedVehicleType === "FIT"
                         ? "bg-[#013b85] text-white shadow-sm"
                         : "text-gray-600 hover:text-gray-900"
                     }`}
@@ -785,9 +794,9 @@ Please confirm availability and booking. Thank you!`;
                   </button>
                   <button
                     type="button"
-                    onClick={() => setActiveCategoryFilter("COACH")}
-                    className={`flex-1 py-1.5 rounded-lg font-bold transition-all text-center cursor-pointer ${
-                      activeCategoryFilter === "COACH"
+                    onClick={() => setSelectedVehicleType("COACH")}
+                    className={`flex-1 py-2 lg:py-1.5 rounded-lg font-bold transition-all text-center cursor-pointer ${
+                      selectedVehicleType === "COACH"
                         ? "bg-[#013b85] text-white shadow-sm"
                         : "text-gray-600 hover:text-gray-900"
                     }`}
@@ -798,14 +807,16 @@ Please confirm availability and booking. Thank you!`;
               </div>
             </div>
 
-            {/* Overlapping Red Search Button */}
-            <button
-              type="submit"
-              className="absolute left-1/2 -translate-x-1/2 -bottom-6 bg-[#d82c34] text-white hover:bg-[#b02228] px-8 py-3 rounded-full flex items-center gap-2 font-bold shadow-lg transition duration-200 z-20 cursor-pointer text-sm tracking-wider uppercase"
-            >
-              <Search className="w-4 h-4" />
-              Search Transfers
-            </button>
+            {/* Responsive Search Button */}
+            <div className="mt-4 lg:mt-0 flex justify-center w-full lg:w-auto">
+              <button
+                type="submit"
+                className="w-full lg:w-auto lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:-bottom-6 bg-[#d82c34] text-white hover:bg-[#b02228] px-8 py-3.5 lg:py-3 rounded-2xl lg:rounded-full flex items-center justify-center gap-2 font-bold shadow-lg transition duration-200 z-20 cursor-pointer text-sm tracking-wider uppercase"
+              >
+                <Search className="w-4 h-4" />
+                Search Transfers
+              </button>
+            </div>
           </form>
         </div>
 
@@ -846,9 +857,6 @@ Please confirm availability and booking. Thank you!`;
             {searched && (
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-200 pb-4">
                 <div>
-                  <h2 className="text-xl md:text-2xl font-bold tracking-tight text-[#013b85]">
-                    {selectedHub} to {selectedDestination}
-                  </h2>
                   <p className="text-xs text-gray-500 mt-1">
                     Found {filteredResults.length} available transfer services
                   </p>
@@ -1189,7 +1197,10 @@ Please confirm availability and booking. Thank you!`;
                 {successMessage}
               </div>
             ) : (
-              <form onSubmit={handleBookingSubmit} className="space-y-4 overflow-y-auto flex-grow pr-1">
+              <form
+                onSubmit={handleBookingSubmit}
+                className="space-y-4 overflow-y-auto flex-grow pr-1"
+              >
                 {/* Inputs grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>

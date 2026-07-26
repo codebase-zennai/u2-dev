@@ -12,7 +12,7 @@ export const metadata = {
 export default function MicePage() {
   return (
     <>
-      <Header2 isSolid={true} />
+      <Header2/>
       <main className="main-wrapper">
         <MiceSection />
         <BottomCTASection />
