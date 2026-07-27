@@ -64,7 +64,6 @@ export default function RegisterPage() {
     setIsLoading(true);
 
     try {
-<<<<<<< HEAD
       const { error: subErr } = await supabase
         .from("agent_registrations")
         .insert([
@@ -86,9 +85,6 @@ export default function RegisterPage() {
       setSuccess(
         "Registration successful! Our agent verification team will contact you shortly.",
       );
-=======
-      const accessKey = "575b3a59-be72-4f05-898a-fd202acc9c60";
->>>>>>> d2a11ec9677d1436f1b12cddb4cb266b0eb27944
 
       // 1. Submit directly from client browser to Web3Forms API to prevent Cloudflare server block
       const web3Res = await fetch("https://api.web3forms.com/submit", {
@@ -110,7 +106,6 @@ export default function RegisterPage() {
         }),
       });
 
-<<<<<<< HEAD
       // Redirect home after delay
       setTimeout(() => {
         router.push("/");
@@ -119,39 +114,6 @@ export default function RegisterPage() {
       console.error("Registration error:", err);
       setIsLoading(false);
       setError("An unexpected error occurred. Please try again.");
-=======
-      const web3Data = await web3Res.json();
-      console.log("Web3Forms client submission response:", web3Data);
-
-      // 2. Also notify our backend API route
-      await fetch("/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      }).catch(e => console.log("Backend notification sent"));
-
-      setIsLoading(false);
-
-      if (web3Res.ok && web3Data.success) {
-        setSuccess("Registration submitted successfully!");
-        setShowSuccessModal(true);
-
-        // Clear form
-        setFormData({
-          firstName: "",
-          lastName: "",
-          businessName: "",
-          email: "",
-          phone: "",
-          agreeToTerms: false,
-        });
-      } else {
-        setError(web3Data.message || "Failed to submit registration. Please try again.");
-      }
-    } catch (err) {
-      setIsLoading(false);
-      setError("An error occurred while submitting your registration.");
->>>>>>> d2a11ec9677d1436f1b12cddb4cb266b0eb27944
     }
   };
 
