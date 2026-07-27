@@ -85,26 +85,7 @@ export default function RegisterPage() {
       setSuccess(
         "Registration successful! Our agent verification team will contact you shortly.",
       );
-
-      // 1. Submit directly from client browser to Web3Forms API to prevent Cloudflare server block
-      const web3Res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: accessKey,
-          subject: `New B2B Agent Sign-Up: ${formData.businessName} (${formData.firstName} ${formData.lastName})`,
-          from_name: "U2 Travels B2B Portal",
-          replyto: formData.email,
-          name: `${formData.firstName} ${formData.lastName}`,
-          email: formData.email,
-          phone: formData.phone,
-          business_name: formData.businessName,
-          message: `New B2B Agent Registration Received!\n\nName: ${formData.firstName} ${formData.lastName}\nBusiness Name: ${formData.businessName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nPlease review and approve this agency in the U2 Travels dashboard.`,
-        }),
-      });
+      setShowSuccessModal(true);
 
       // Redirect home after delay
       setTimeout(() => {
