@@ -8,13 +8,32 @@ export default function Footer() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
     setStatus("submitting");
-    setTimeout(() => {
+    try {
+      const accessKey = "575b3a59-be72-4f05-898a-fd202acc9c60";
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New Newsletter Subscriber: ${email}`,
+          from_name: "U2 Travels Newsletter",
+          replyto: email,
+          email: email,
+          message: `New user subscribed to the U2 Travels newsletter: ${email}`,
+        }),
+      });
       setStatus("success");
       setEmail("");
-    }, 1000);
+    } catch (err) {
+      console.error("Subscribe error:", err);
+      setStatus("error");
+    }
   };
 
   // Configure social media links here. Leave empty string to hide the icon.

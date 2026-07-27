@@ -153,14 +153,14 @@ export default function ToursPage({
 
             {/* Footer action bar inside card */}
             <div className="flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
-              <div>
+              {/* <div>
                 <span className="text-[10px] text-slate-400 uppercase font-black tracking-wider block">
                   Price From
                 </span>
                 <span className="text-xl font-black text-[#013b85]">
                   MYR {tour.price}
                 </span>
-              </div>
+              </div> */}
               <Link
                 href={`/tours/${tour.slug}`}
                 className="bg-[#013b85] hover:bg-[#7ff74b] !text-white hover:!text-black font-extrabold text-[11px] uppercase tracking-wider py-2.5 px-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 !no-underline"
@@ -198,7 +198,7 @@ export default function ToursPage({
   );
 
   return (
-    <section className="section is-location-hero">
+    <section className="section is-location-hero mb-10">
       <div className="container-large">
         {/* Hero Header */}
         <div className="margin-bottom-48">

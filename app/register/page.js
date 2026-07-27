@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertCircle, CheckCircle2, ArrowLeft } from "lucide-react";
+import { AlertCircle, CheckCircle2, ArrowLeft, Download, FileText } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -13,6 +13,7 @@ export default function RegisterPage() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   // Form Fields
   const [formData, setFormData] = useState({
@@ -63,6 +64,7 @@ export default function RegisterPage() {
     setIsLoading(true);
 
     try {
+<<<<<<< HEAD
       const { error: subErr } = await supabase
         .from("agent_registrations")
         .insert([
@@ -84,17 +86,31 @@ export default function RegisterPage() {
       setSuccess(
         "Registration successful! Our agent verification team will contact you shortly.",
       );
+=======
+      const accessKey = "575b3a59-be72-4f05-898a-fd202acc9c60";
+>>>>>>> d2a11ec9677d1436f1b12cddb4cb266b0eb27944
 
-      // Clear form
-      setFormData({
-        firstName: "",
-        lastName: "",
-        businessName: "",
-        email: "",
-        phone: "",
-        agreeToTerms: false,
+      // 1. Submit directly from client browser to Web3Forms API to prevent Cloudflare server block
+      const web3Res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New B2B Agent Sign-Up: ${formData.businessName} (${formData.firstName} ${formData.lastName})`,
+          from_name: "U2 Travels B2B Portal",
+          replyto: formData.email,
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          phone: formData.phone,
+          business_name: formData.businessName,
+          message: `New B2B Agent Registration Received!\n\nName: ${formData.firstName} ${formData.lastName}\nBusiness Name: ${formData.businessName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nPlease review and approve this agency in the U2 Travels dashboard.`,
+        }),
       });
 
+<<<<<<< HEAD
       // Redirect home after delay
       setTimeout(() => {
         router.push("/");
@@ -103,12 +119,92 @@ export default function RegisterPage() {
       console.error("Registration error:", err);
       setIsLoading(false);
       setError("An unexpected error occurred. Please try again.");
+=======
+      const web3Data = await web3Res.json();
+      console.log("Web3Forms client submission response:", web3Data);
+
+      // 2. Also notify our backend API route
+      await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      }).catch(e => console.log("Backend notification sent"));
+
+      setIsLoading(false);
+
+      if (web3Res.ok && web3Data.success) {
+        setSuccess("Registration submitted successfully!");
+        setShowSuccessModal(true);
+
+        // Clear form
+        setFormData({
+          firstName: "",
+          lastName: "",
+          businessName: "",
+          email: "",
+          phone: "",
+          agreeToTerms: false,
+        });
+      } else {
+        setError(web3Data.message || "Failed to submit registration. Please try again.");
+      }
+    } catch (err) {
+      setIsLoading(false);
+      setError("An error occurred while submitting your registration.");
+>>>>>>> d2a11ec9677d1436f1b12cddb4cb266b0eb27944
     }
   };
 
   return (
     <>
       {isLoading && <LoadingSpinner fullScreen={true} />}
+      {showSuccessModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fade-in">
+          <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl border border-slate-100 flex flex-col items-center text-center relative overflow-hidden animate-scale-up">
+            <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#013b85] via-[#dfa447] to-[#7ff74b]" />
+            <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-5 mt-2">
+              <CheckCircle2 className="h-9 w-9 text-green-600 animate-bounce" />
+            </div>
+            <h3 className="text-2xl font-extrabold text-[#013b85] mb-2 tracking-tight">
+              Sign Up Successful!
+            </h3>
+            <p className="text-slate-600 text-sm leading-relaxed mb-6">
+              We will get back to u shortly with your approved wholesale login credentials. A confirmation email has been dispatched to your email address.
+            </p>
+            <div className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 mb-6 flex flex-col gap-3">
+              <div className="flex items-center gap-3 text-left">
+                <div className="p-2.5 bg-[#013b85]/10 rounded-xl text-[#013b85]">
+                  <FileText className="h-6 w-6" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-xs text-slate-800 uppercase tracking-wide">
+                    2026 Wholesale Cost Sheet
+                  </h4>
+                  <p className="text-[11px] text-slate-500">
+                    PDF Document • B2B Confidential Rates
+                  </p>
+                </div>
+              </div>
+              <a
+                href="/download/cost%20sheet.pdf"
+                download="U2_Travels_2026_Cost_Sheet.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-[#013b85] hover:bg-[#7ff74b] !text-white hover:!text-slate-950 font-extrabold text-xs uppercase tracking-wider py-3 px-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 !no-underline"
+              >
+                <Download className="h-4 w-4" />
+                Download Cost Sheet Now
+              </a>
+            </div>
+            <button
+              onClick={() => router.push("/")}
+              className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs uppercase tracking-wider py-3 px-4 rounded-xl transition-all cursor-pointer border-none outline-none"
+            >
+              Return to Homepage
+            </button>
+          </div>
+        </div>
+      )}
       <main className="w-full min-h-screen flex font-sans bg-white text-slate-900 overflow-x-hidden">
         {/* LEFT SIDE: Brand & Benefits (Langkawi / KL Parallax background) */}
         <div className="hidden lg:flex w-[45%] relative bg-[#013b85] flex-col justify-between p-16 xl:p-20 overflow-hidden">
