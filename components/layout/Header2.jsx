@@ -630,7 +630,7 @@ export default function Header2({ isSolid = false }) {
                       <ChevronDown className="h-4 w-4 text-slate-300 -rotate-90" />
                     </Link>
 
-                    <div className="pt-6 w-full mt-auto">
+                    <div className="pt-3 w-full">
                       <Link
                         href="/register"
                         onClick={toggleMenu}
