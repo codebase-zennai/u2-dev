@@ -67,6 +67,16 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   twitter: {
     card: "summary_large_image",
     title: "U2 Travels & Tours - Going Beyond Borders!",

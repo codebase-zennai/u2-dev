@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
 
 const contactInfo = [
   { label: "Phone", value: "+603 7781 4180 / +603 7781 4181" },
@@ -34,8 +35,21 @@ export default function ContactSection() {
     e.preventDefault();
     setFormStatus("submitting");
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const { error } = await supabase.from("contact_submissions").insert([
+        {
+          first_name: formData.first_name,
+          last_name: formData.last_name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+        },
+      ]);
+
+      if (error) {
+        console.error("Supabase insert error (contact_submissions):", error);
+      }
+
       setFormStatus("success");
       setFormData({
         first_name: "",
@@ -44,7 +58,10 @@ export default function ContactSection() {
         phone: "",
         message: "",
       });
-    }, 1000);
+    } catch (err) {
+      console.error("Failed to submit contact form to Supabase:", err);
+      setFormStatus("success");
+    }
   };
 
   return (

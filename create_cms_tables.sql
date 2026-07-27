@@ -132,3 +132,41 @@ UPDATE public.tours SET image = 'https://images.unsplash.com/photo-1518548419970
 UPDATE public.tours SET image = 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80' WHERE slug = 'kl-country-tour' OR id = 26;
 UPDATE public.tours SET image = 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80' WHERE slug = 'melaka-tour' OR id = 27;
 UPDATE public.tours SET image = 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80' WHERE slug = 'dinner-transfer' OR id = 28;
+
+
+-- ─── 6. Contact Submissions ─────────────────────────────────
+CREATE TABLE IF NOT EXISTS public.contact_submissions (
+  id         BIGSERIAL PRIMARY KEY,
+  first_name TEXT NOT NULL,
+  last_name  TEXT NOT NULL,
+  email      TEXT NOT NULL,
+  phone      TEXT,
+  message    TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.contact_submissions ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public insert contact_submissions" ON public.contact_submissions FOR INSERT WITH CHECK (true);
+CREATE POLICY "Public read contact_submissions"   ON public.contact_submissions FOR SELECT USING (true);
+CREATE POLICY "Public delete contact_submissions" ON public.contact_submissions FOR DELETE USING (true);
+
+
+-- ─── 7. Agent Registrations ─────────────────────────────────
+CREATE TABLE IF NOT EXISTS public.agent_registrations (
+  id             BIGSERIAL PRIMARY KEY,
+  first_name     TEXT NOT NULL,
+  last_name      TEXT NOT NULL,
+  business_name  TEXT NOT NULL,
+  email          TEXT NOT NULL,
+  phone          TEXT NOT NULL,
+  agree_to_terms BOOLEAN DEFAULT true,
+  status         TEXT DEFAULT 'pending',
+  created_at     TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.agent_registrations ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public insert agent_registrations" ON public.agent_registrations FOR INSERT WITH CHECK (true);
+CREATE POLICY "Public read agent_registrations"   ON public.agent_registrations FOR SELECT USING (true);
+CREATE POLICY "Public update agent_registrations" ON public.agent_registrations FOR UPDATE USING (true);
+CREATE POLICY "Public delete agent_registrations" ON public.agent_registrations FOR DELETE USING (true);
+

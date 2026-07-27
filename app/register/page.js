@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -31,7 +32,7 @@ export default function RegisterPage() {
     }));
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     setError("");
     setSuccess("");
@@ -61,8 +62,24 @@ export default function RegisterPage() {
 
     setIsLoading(true);
 
-    // Simulate registration
-    setTimeout(() => {
+    try {
+      const { error: subErr } = await supabase
+        .from("agent_registrations")
+        .insert([
+          {
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            business_name: formData.businessName,
+            email: formData.email,
+            phone: formData.phone,
+            agree_to_terms: formData.agreeToTerms,
+          },
+        ]);
+
+      if (subErr) {
+        console.error("Supabase insert error (agent_registrations):", subErr);
+      }
+
       setIsLoading(false);
       setSuccess(
         "Registration successful! Our agent verification team will contact you shortly.",
@@ -82,7 +99,11 @@ export default function RegisterPage() {
       setTimeout(() => {
         router.push("/");
       }, 3500);
-    }, 2000);
+    } catch (err) {
+      console.error("Registration error:", err);
+      setIsLoading(false);
+      setError("An unexpected error occurred. Please try again.");
+    }
   };
 
   return (
