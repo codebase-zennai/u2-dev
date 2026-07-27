@@ -278,7 +278,7 @@ export default function RegisterPage() {
             {/* Header info */}
             <div className="mb-8 text-left">
               <h2
-                className="text-3xl md:text-4xl font-normal text-[#013b85] tracking-tight mb-2"
+                className="text-2xl md:text-4xl font-normal text-[#013b85] tracking-tight mb-2"
                 style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
               >
                 Agent Registration
