@@ -95,7 +95,7 @@ export async function POST(request) {
                 We will review your credentials and get back to you shortly with your approved wholesale login details.
               </p>
               <div style="margin: 25px 0; text-align: center;">
-                <a href="https://u2travels.com.my/download/cost%20sheet.pdf" style="background-color: #013b85; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">
+                <a href="https://drive.google.com/file/d/1Vt3g74NVbqD-KEwpP-lkFTOgqkYHO5FI/view?usp=sharing" target="_blank" style="background-color: #013b85; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">
                   Download 2026 Wholesale Cost Sheet
                 </a>
               </div>

@@ -129,8 +129,7 @@ export default function RegisterPage() {
                 </div>
               </div>
               <a
-                href="/download/cost%20sheet.pdf"
-                download="U2_Travels_2026_Cost_Sheet.pdf"
+                href="https://drive.google.com/file/d/1Vt3g74NVbqD-KEwpP-lkFTOgqkYHO5FI/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-[#013b85] hover:bg-[#7ff74b] !text-white hover:!text-slate-950 font-extrabold text-xs uppercase tracking-wider py-3 px-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 !no-underline"
