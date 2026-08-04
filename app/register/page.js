@@ -90,7 +90,7 @@ export default function RegisterPage() {
       // Redirect home after delay
       setTimeout(() => {
         router.push("/");
-      }, 3500);
+      }, 10000);
     } catch (err) {
       console.error("Registration error:", err);
       setIsLoading(false);
