@@ -23,7 +23,7 @@ export default function WhatsAppWidget() {
 
   return (
     <div className="fixed bottom-6 right-6 z-[99999] flex flex-col items-end gap-3 pointer-events-auto">
-      {/* Pop-up Chat Card */}
+      {/* Pop-up Chat Card
       {isOpen && (
         <div className="bg-white rounded-2xl p-4 shadow-2xl border border-slate-100 max-w-[280px] sm:max-w-xs animate-slide-up relative flex flex-col gap-2.5">
           <button
@@ -76,7 +76,7 @@ export default function WhatsAppWidget() {
             Start WhatsApp Chat
           </a>
         </div>
-      )}
+      )} */}
 
       {/* Main Floating Circle Button */}
       <a
