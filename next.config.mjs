@@ -38,6 +38,16 @@ const nextConfig = {
         destination: "/tours",
         permanent: true,
       },
+      {
+        source: "/document",
+        destination: "/documents",
+        permanent: true,
+      },
+      {
+        source: "/documets",
+        destination: "/documents",
+        permanent: true,
+      },
     ];
   },
 };

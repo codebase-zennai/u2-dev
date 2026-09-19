@@ -99,6 +99,12 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li className="footer_link-item">
+                  <Link href="/documents" className="footer_link">
+                    Documents
+                    <div className="link_line"></div>
+                  </Link>
+                </li>
+                <li className="footer_link-item">
                   <Link href="/about-us" className="footer_link">
                     About
                     <div className="link_line"></div>
